@@ -23,4 +23,3 @@ if(!empty($_SESSION)){
 }else{ 
         require_once "../controller/publicController.php";
 } 
-
