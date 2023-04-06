@@ -11,10 +11,9 @@ if (isset($_GET['p'])) {
         case "admin":
             include "../publicView/adminView.php";
             break;
-        case "disconnect":
-            disconnect();
+        case "homePage":
             header("Location: ./");
-            exit();
+            break;
         default:
             include "../view/404.php";
     }
