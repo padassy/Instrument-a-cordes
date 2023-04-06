@@ -33,7 +33,8 @@ function fetchCategory(PDO $db): array {
 
 // récupère une catégorie complète
 function recupCategoryById(PDO $db,int $idcategory):array|bool{
-    $recup = "SELECT * FROM category where id=?";
+
+    $recup = "SELECT c.id,c.nomcategory, ih.instrument_id,ih.category_id,i.id,i.title,i.description,i.history,i.technics,i.visible FROM category c INNER JOIN instrument_has_category ih ON c.id=ih.category_id INNER JOIN instrument i ON c.id = i.id where c.id=?;" ;
     $prepare = $db -> prepare($recup);
     try{
         $prepare->execute([$idcategory]);
