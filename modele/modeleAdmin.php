@@ -1,16 +1,16 @@
 <?php
 
 // connexion admin
-function connectadmin (pdo $dbConnect, string $userLogin, string $userPassword): string|bool {
+function connectAdmin (pdo $dbConnect, string $userLogin, string $userPassword): string|bool {
 
     // sql - récupération via le username uniquement
     $userLogin = $_POST['username'];
     $userPassword= $_POST['password'];
-    $sqlAdmin=$dbConnect -> prepare("SELECT * FROM user WHERE login='$userLogin'");
+
 
     try{
-        $sqlAdmin->execute();
-    }catch(PDOException $e){
+        $sqlAdmin=$dbConnect -> query("SELECT * FROM user WHERE login='$userLogin'");
+    }catch(Exception $e){
         $e = throw new Exception ($e -> getMessage());
     }
     $recup = $sqlAdmin->fetch(PDO::FETCH_ASSOC);
