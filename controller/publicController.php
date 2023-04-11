@@ -7,6 +7,14 @@ if (isset($_GET['p'])) {
             break;
         case "article":
             include_once "../publicView/articleView.php";
+            $dataAllInstrument = fetchAllInstrument($dbConnect);
+            //var_dump($dataAllInstrument);
+            foreach($dataAllInstrument as $item){
+                $instruments[] = new modelInstrument($item);
+            }
+            var_dump($instruments);
+            
+            
             break;
         case "admin":
             include_once "../publicView/adminView.php";
@@ -18,16 +26,34 @@ if (isset($_GET['p'])) {
         default:
             include_once "../view/404.php";
     }
+} 
+elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
+
+    $idInstrument = (int) $_GET['idInstrument'];
+    $dataDetailInstrument = fetchDetailInstrument($dbConnect,$idInstrument);
+    var_dump($dataDetailInstrument);
+
+
+
+
+
 } elseif (isset($_GET['idcategory']) && ctype_digit($_GET['idcategory'])) {
     $idcategory = (int) $_GET['idcategory'];
     $fetchCategory = fetchCategory($dbConnect, $idcategory);
     $dataCategory = dataCategory($fetchCategory);
     // var_dump($datasLinkByCateg);
     include_once "../publicView/liensView.php";
+
+
+
+
 } else {
     $dataInstrumentHome = fetchInstrumentHome($dbConnect);
+    //var_dump($dataInstrumentHome);
     include_once "../publicView/homepageView.php";
-     if(isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
+}
+   
+if(isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
    
     $userLogin = $_POST['userLogin'];
     $userPassword = $_POST['userPassword'];
@@ -94,4 +120,3 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
 }else if(!filter_var($_POST['mail']),FILTER_VALIDATE_EMAIL) {
    $e = throw new Exception ("Veuillez rentrer un mail valide !") ; 
 }
-
