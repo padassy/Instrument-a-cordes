@@ -83,7 +83,7 @@ if(isset($_POST['userLogin']) && isset($_POST['userPassword'])){
 }
 
 
-if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($_POST['mail']),FILTER_VALIDATE_EMAIL){
+if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($_POST['mail'],FILTER_VALIDATE_EMAIL)){
     $firstname = htmlspecialchars(strip_tags(trim($_POST['firstname'])),ENT_QUOTES);
     $lastname = htmlspecialchars(strip_tags(trim($_POST['lastname'])),ENT_QUOTES);
     $mail =htmlspecialchars(strip_tags(trim($_POST['mail'])),ENT_QUOTES);
@@ -112,11 +112,11 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
      $e ="Merci pour votre commentaire" ; 
  
 
-    catch (Exception $e) {
+   }catch (Exception $e) {
      $e = throw new Exception ("Un problème est survenu  !");
 
     }
 
-}else if(!filter_var($_POST['mail']),FILTER_VALIDATE_EMAIL) {
+}else if(!filter_var($_POST['mail'],FILTER_VALIDATE_EMAIL)) {
    $e = throw new Exception ("Veuillez rentrer un mail valide !") ; 
 }
