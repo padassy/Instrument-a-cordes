@@ -12,7 +12,8 @@ if (isset($_GET['p'])) {
             include_once "../publicView/adminView.php";
             break;
         case "homepage":
-            header("Location: ./");
+            $dataInstrumentHome = fetchInstrumentHome($dbConnect);
+            include_once "../publicView/homepageView.php";
             break;
         default:
             include_once "../view/404.php";
@@ -22,7 +23,8 @@ if (isset($_GET['p'])) {
     $fetchCategory = fetchCategory($dbConnect, $idcategory);
     $dataCategory = dataCategory($fetchCategory);
     // var_dump($datasLinkByCateg);
-    include_once "../view/liensView.php";
+    include_once "../publicView/liensView.php";
 } else {
-    include_once "../view/homepageView.php";
+    $dataInstrumentHome = fetchInstrumentHome($dbConnect);
+    include_once "../publicView/homepageView.php";
 }
