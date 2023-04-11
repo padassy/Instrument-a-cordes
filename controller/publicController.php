@@ -27,4 +27,31 @@ if (isset($_GET['p'])) {
 } else {
     $dataInstrumentHome = fetchInstrumentHome($dbConnect);
     include_once "../publicView/homepageView.php";
+     if(isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
+   
+    $userLogin = $_POST['userLogin'];
+    $userPassword = $_POST['userPassword'];
+  
+    $userLogin = filter_var($userLogin, FILTER_SANITIZE_EMAIL);  
+    $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);  
+}
+  
+ 
+
+$userConnect = userConnect($dbConnect,$userLogin,$userPassword);
+
+if (is_string($userConnect)) {
+  echo "La variable \$userConnect contient uniquement du texte.";
+} else {
+  echo "La variable \$userConnect ne contient pas uniquement du texte.";
+}
+
+// Vérification de la validité de la connexion
+if(isset($_POST['userLogin']) && isset($_POST['userPassword'])){
+ header("Location: accueil.php");
+  exit(); 
+} else {
+   
+  echo "La connexion a échoué.";
+
 }
