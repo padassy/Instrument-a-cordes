@@ -33,7 +33,7 @@ elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
     $dataDetailInstrument = fetchDetailInstrument($dbConnect,$idInstrument);
     $detailInstrument = new modelInstrument($dataDetailInstrument);
     var_dump($detailInstrument);
-
+    echo $detailInstrument->title;
 
 
 
