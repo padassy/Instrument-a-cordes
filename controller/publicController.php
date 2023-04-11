@@ -31,7 +31,8 @@ elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
 
     $idInstrument = (int) $_GET['idInstrument'];
     $dataDetailInstrument = fetchDetailInstrument($dbConnect,$idInstrument);
-    var_dump($dataDetailInstrument);
+    $detailInstrument = new modelInstrument($dataDetailInstrument);
+    var_dump($detailInstrument);
 
 
 
@@ -57,30 +58,26 @@ if(isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
    
     $userLogin = $_POST['userLogin'];
     $userPassword = $_POST['userPassword'];
+
   
     $userLogin = filter_var($userLogin, FILTER_SANITIZE_EMAIL);  
     $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);  
-}
+
+
+    $userConnect = connectAdmin($dbConnect,$userLogin,$userPassword);
+    if (is_string($userConnect)) {
+        $erreur = $userConnect;
+    }
   
- 
-
-$userConnect = userConnect($dbConnect,$userLogin,$userPassword);
-
-if (is_string($userConnect)) {
-  echo "La variable \$userConnect contient uniquement du texte.";
-} else {
-  echo "La variable \$userConnect ne contient pas uniquement du texte.";
+   // redirection si connexion ok
+    if ($userConnect===true) {
+        // redirection sur index.php
+        header("Location:./");
+    }
 }
 
-// Vérification de la validité de la connexion
-if(isset($_POST['userLogin']) && isset($_POST['userPassword'])){
- header("Location: accueil.php");
-  exit(); 
-} else {
-   
-  echo "La connexion a échoué.";
 
-}
+
 
 
 if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($_POST['mail'],FILTER_VALIDATE_EMAIL)){
@@ -117,6 +114,6 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
 
     }
 
-}else if(!filter_var($_POST['mail'],FILTER_VALIDATE_EMAIL)) {
+}else if(isset($_POST['mail'])&&!filter_var($_POST['mail'],FILTER_VALIDATE_EMAIL)) {
    $e = throw new Exception ("Veuillez rentrer un mail valide !") ; 
 }

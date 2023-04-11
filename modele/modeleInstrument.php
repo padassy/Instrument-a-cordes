@@ -328,35 +328,25 @@ function truncate (string $text): string{
 function fetchDetailInstrument (pdo $dbConnect, int $idInstrument){
     
 
-    $dbConnect->beginTransaction();
-
-    $sql = $dbConnect->query("SELECT i.id as idInstrument, i.title, i.description, i.history, i.technics,i.visible,i.category_id,ihc.instrument_id, ihc.category_id,c.id as idCategory,c.nomcategory as nomCategory
+    $sql = $dbConnect->query("SELECT i.id as idInstrument, i.title, i.description, i.history, i.technics,i.visible,i.category_id,ihc.instrument_id, ihc.category_id,c.id as idCategory,c.nomcategory as nomCategory,s.id AS idSound ,s.titre as sound,s.instrument_id, p.id AS idPicture, p.name as picture ,p.id_instrument,m.id as idMusician, m.firstname as musicianFirstname, m.lastname as musicianLastname,m.id_instrument 
     FROM instrument i 
     LEFT JOIN instrument_has_category ihc 
     ON i.id= ihc.instrument_id 
     LEFT JOIN category c 
     ON ihc.category_id=c.id 
-    WHERE i.id=$idInstrument;");
-
-    $sql2 = $dbConnect->query("SELECT i.id as idInstrument, i.title, i.description, i.history, i.technics,i.visible, s.id AS idSound ,s.titre as sound,s.instrument_id, p.id AS idPicture, p.name as picture ,p.id_instrument,m.id as idMusician, m.firstname as musicianFirstname, m.lastname as musicianLastname,m.id_instrument 
-    FROM instrument i 
     LEFT JOIN sound s 
     ON  i.id = s.instrument_id 
     LEFT JOIN picture p 
     ON i.id = p.id_instrument 
     LEFT JOIN musician m 
     ON i.id=m.id_instrument 
-    WHERE i.id =$idInstrument;");
-
-    $dbConnect->commit();
-
-     $sql->setFetchMode(PDO::FETCH_CLASS, 'Instrument') ;
     
+    WHERE i.id=$idInstrument;");
+
+
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    $sql->execute();
     $datasDetailInstrument = $sql->fetch();
-
-    $sql2->setFetchMode(PDO::FETCH_INTO, $datasDetailInstrument) ;
-
-    $sql2->fetch();
 
     return $datasDetailInstrument;
 }
