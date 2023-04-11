@@ -1,0 +1,31 @@
+header {
+    height: 20vh;
+    width: 100%;
+}
+
+#boxLogoTitreHome{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#boxIntro{
+    text-align: center;
+    
+}
+
+#boxIntro p {
+    text-align: justify;
+}
+
+#boxTableauCartesHome{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.tableauCartesHome{
+    height: 10vh;
+    width: 100%;
+    border: 1px sol;
+}

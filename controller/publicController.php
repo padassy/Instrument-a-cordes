@@ -7,10 +7,12 @@ if (isset($_GET['p'])) {
             break;
         case "article":
             include_once "../publicView/articleView.php";
-           # $countInstrument = rowCountInstrument($dbConnect);
             $dataAllInstrument = fetchAllInstrument($dbConnect);
-            var_dump($dataAllInstrument);
-            
+            //var_dump($dataAllInstrument);
+            foreach($dataAllInstrument as $item){
+                $instruments[] = new modelInstrument($item);
+            }
+            var_dump($instruments);
             
             
             break;
@@ -47,6 +49,6 @@ elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
 
 } else {
     $dataInstrumentHome = fetchInstrumentHome($dbConnect);
-    var_dump($dataInstrumentHome);
+    //var_dump($dataInstrumentHome);
     include_once "../publicView/homepageView.php";
 }

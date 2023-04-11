@@ -1,5 +1,6 @@
 <?php
-class Instrument {
+
+class modelInstrument {
     public int $idInstrument;
     public string $title ;
     public string $description ;
@@ -18,28 +19,290 @@ class Instrument {
     
     public int|null $idMusician;
 
-    /*public function __construct($idInstrument, $title,$description,$technics,$visible,$history,$idCategory,$nomCategory,$musicianFirstname,$musicianLastname,$sound,$picture,$idSound,$idPicture,$idMusician) {
+    public function __construct(array $datas){
+        $this->hydrate($datas);
+    }
+
+    private function hydrate(array $datas){
+        foreach($datas as $key => $value){
+            $name = "set".ucfirst($key);
+            if(method_exists($this, $name)){
+                $this->$name($value);
+            }
+        }
+    }
+
+
+    /**
+     * Get the value of idInstrument
+     */
+    public function getIdInstrument(): int
+    {
+        return $this->idInstrument;
+    }
+
+    /**
+     * Set the value of idInstrument
+     */
+    public function setIdInstrument(int $idInstrument): self
+    {
         $this->idInstrument = $idInstrument;
-        $this->title=$title;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of title
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set the value of title
+     */
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of description
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set the value of description
+     */
+    public function setDescription(string $description): self
+    {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of technics
+     */
+    public function getTechnics(): ?string
+    {
+        return $this->technics;
+    }
+
+    /**
+     * Set the value of technics
+     */
+    public function setTechnics(?string $technics): self
+    {
         $this->technics = $technics;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of visible
+     */
+    public function getVisible(): int
+    {
+        return $this->visible;
+    }
+
+    /**
+     * Set the value of visible
+     */
+    public function setVisible(int $visible): self
+    {
         $this->visible = $visible;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of history
+     */
+    public function getHistory(): string
+    {
+        return $this->history;
+    }
+
+    /**
+     * Set the value of history
+     */
+    public function setHistory(string $history): self
+    {
         $this->history = $history;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of idCategory
+     */
+    public function getIdCategory(): int
+    {
+        return $this->idCategory;
+    }
+
+    /**
+     * Set the value of idCategory
+     */
+    public function setIdCategory(int $idCategory): self
+    {
         $this->idCategory = $idCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nomCategory
+     */
+    public function getNomCategory(): string
+    {
+        return $this->nomCategory;
+    }
+
+    /**
+     * Set the value of nomCategory
+     */
+    public function setNomCategory(string $nomCategory): self
+    {
         $this->nomCategory = $nomCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of musicianFirstname
+     */
+    public function getMusicianFirstname(): ?string
+    {
+        return $this->musicianFirstname;
+    }
+
+    /**
+     * Set the value of musicianFirstname
+     */
+    public function setMusicianFirstname(?string $musicianFirstname): self
+    {
         $this->musicianFirstname = $musicianFirstname;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of musicianLastname
+     */
+    public function getMusicianLastname(): ?string
+    {
+        return $this->musicianLastname;
+    }
+
+    /**
+     * Set the value of musicianLastname
+     */
+    public function setMusicianLastname(?string $musicianLastname): self
+    {
         $this->musicianLastname = $musicianLastname;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of sound
+     */
+    public function getSound(): ?string
+    {
+        return $this->sound;
+    }
+
+    /**
+     * Set the value of sound
+     */
+    public function setSound(?string $sound): self
+    {
         $this->sound = $sound;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of picture
+     */
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set the value of picture
+     */
+    public function setPicture(?string $picture): self
+    {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of idSound
+     */
+    public function getIdSound(): ?int
+    {
+        return $this->idSound;
+    }
+
+    /**
+     * Set the value of idSound
+     */
+    public function setIdSound(?int $idSound): self
+    {
         $this->idSound = $idSound;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of idPicture
+     */
+    public function getIdPicture(): ?int
+    {
+        return $this->idPicture;
+    }
+
+    /**
+     * Set the value of idPicture
+     */
+    public function setIdPicture(?int $idPicture): self
+    {
+        $this->idPicture = $idPicture;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of idMusician
+     */
+    public function getIdMusician(): ?int
+    {
+        return $this->idMusician;
+    }
+
+    /**
+     * Set the value of idMusician
+     */
+    public function setIdMusician(?int $idMusician): self
+    {
         $this->idMusician = $idMusician;
-        $this->idPicture=$idPicture;
-        
-        
-      }
-      public function get($k) {
-        return $this->$k;
-      }*/
+
+        return $this;
+    }
+
 }
 
 function fetchInstrument(pdo $dbConnect){
@@ -69,11 +332,11 @@ function fetchDetailInstrument (pdo $dbConnect, int $idInstrument){
 
     $sql = $dbConnect->query("SELECT i.id as idInstrument, i.title, i.description, i.history, i.technics,i.visible,i.category_id,ihc.instrument_id, ihc.category_id,c.id as idCategory,c.nomcategory as nomCategory
     FROM instrument i 
-    INNER JOIN instrument_has_category ihc 
+    LEFT JOIN instrument_has_category ihc 
     ON i.id= ihc.instrument_id 
-    INNER JOIN category c 
+    LEFT JOIN category c 
     ON ihc.category_id=c.id 
-    WHERE i.id='$idInstrument';");
+    WHERE i.id=$idInstrument;");
 
     $sql2 = $dbConnect->query("SELECT i.id as idInstrument, i.title, i.description, i.history, i.technics,i.visible, s.id AS idSound ,s.titre as sound,s.instrument_id, p.id AS idPicture, p.name as picture ,p.id_instrument,m.id as idMusician, m.firstname as musicianFirstname, m.lastname as musicianLastname,m.id_instrument 
     FROM instrument i 
@@ -83,7 +346,7 @@ function fetchDetailInstrument (pdo $dbConnect, int $idInstrument){
     ON i.id = p.id_instrument 
     LEFT JOIN musician m 
     ON i.id=m.id_instrument 
-    WHERE i.id = '$idInstrument';");
+    WHERE i.id =$idInstrument;");
 
     $dbConnect->commit();
 
@@ -106,33 +369,31 @@ function fetchDetailInstrument (pdo $dbConnect, int $idInstrument){
 
 
 
-
 function fetchAllInstrument (pdo $dbConnect){
     
 
     $dbConnect->beginTransaction();
-    $datasAllInstrument = new Instrument();
-    $sql = $dbConnect->prepare("SELECT i.id as idInstrument, i.title, i.description, i.history, i.technics,i.visible,i.category_id,ihc.instrument_id, ihc.category_id,c.id as idCategory,c.nomcategory as nomCategory
-    FROM instrument i 
-    INNER JOIN instrument_has_category ihc 
-    ON i.id= ihc.instrument_id 
-    INNER JOIN category c 
-    ON ihc.category_id=c.id ;");
-    $datassql = $sql->setFetchMode(PDO::FETCH_INTO, $datasAllInstrument) ;
-    $datassql = $sql->execute();
-    $sql->fetch();
+   
+    $sql = $dbConnect->prepare("SELECT i.id as idInstrument, i.title, i.description, i.history, i.technics,i.visible, c.id as idCategory,c.nomcategory as nomCategory, s.id AS idSound ,s.titre as sound, p.id AS idPicture, p.name as picture ,m.id as idMusician, m.firstname as musicianFirstname, m.lastname as musicianLastname
 
-    $sql2 = $dbConnect->prepare("SELECT i.id as idInstrument, s.id AS idSound ,s.titre as sound,s.instrument_id, p.id AS idPicture, p.name as picture ,p.id_instrument,m.id as idMusician, m.firstname as musicianFirstname, m.lastname as musicianLastname,m.id_instrument 
     FROM instrument i 
+    LEFT JOIN instrument_has_category ihc 
+    ON i.id= ihc.instrument_id 
+    LEFT JOIN category c 
+    ON ihc.category_id=c.id 
     LEFT JOIN sound s 
     ON  i.id = s.instrument_id 
     LEFT JOIN picture p 
     ON i.id = p.id_instrument 
     LEFT JOIN musician m 
     ON i.id=m.id_instrument ;");
-     $datassql= $sql2->setFetchMode(PDO::FETCH_INTO, $datasAllInstrument) ;
-     $sql2->execute();
-    $sql2->fetch();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    $sql->execute();
+    $datasAllInstrument = $sql->fetchAll();
+
+    
+
+
     $dbConnect->commit();
 
     
@@ -143,6 +404,47 @@ function fetchAllInstrument (pdo $dbConnect){
     return $datasAllInstrument;
 }
 
+
+
+
+
+
+
+
+/*function fetchAllInstrument (pdo $dbConnect){
+    
+
+    $dbConnect->beginTransaction();
+   
+    $sql = $dbConnect->prepare("SELECT i.id as idInstrument, i.title, i.description, i.history, i.technics,i.visible, c.id as idCategory,c.nomcategory as nomCategory, s.id AS idSound ,s.titre as sound, p.id AS idPicture, p.name as picture ,m.id as idMusician, m.firstname as musicianFirstname, m.lastname as musicianLastname
+
+    FROM instrument i 
+    LEFT JOIN instrument_has_category ihc 
+    ON i.id= ihc.instrument_id 
+    LEFT JOIN category c 
+    ON ihc.category_id=c.id 
+    LEFT JOIN sound s 
+    ON  i.id = s.instrument_id 
+    LEFT JOIN picture p 
+    ON i.id = p.id_instrument 
+    LEFT JOIN musician m 
+    ON i.id=m.id_instrument ;");
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    $sql->execute();
+    $datasAllInstrument = $sql->fetchAll();
+
+    
+
+
+    $dbConnect->commit();
+
+    
+    
+   
+   
+   
+    return $datasAllInstrument;
+}
 
 
 /*function foreachInstrument(object $object) {
