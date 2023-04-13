@@ -20,6 +20,7 @@ if(ENV=="dev"||ENV=="test"){
 }
 
 if(!empty($_SESSION)){
+        
         require_once "../controller/privateController.php";
 }else{ 
         require_once "../controller/publicController.php";

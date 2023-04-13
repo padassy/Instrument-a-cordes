@@ -1,18 +1,23 @@
 <?php
-
+$category = fetchCategory($dbConnect);
+$temps = microtime(true);
 if (isset($_GET['p'])) {
     switch ($_GET['p']) {
         case "contact":
+            
             include_once "../publicView/contactView.php";
             break;
         case "article":
-            include_once "../publicView/articleView.php";
-            $dataAllInstrument = fetchAllInstrument($dbConnect);
+            $assetInstruAll = fetchAllInstrument($dbConnect);
             //var_dump($dataAllInstrument);
-            foreach($dataAllInstrument as $item){
+            foreach($assetInstruAll as $item){
+                /*if (is_array($instruments[])){
+                    $instrument= explode($instruments,'||');
+                }*/
                 $instruments[] = new modelInstrument($item);
             }
             var_dump($instruments);
+            include "../publicView/articleView.php";
             
             
             break;
@@ -20,6 +25,7 @@ if (isset($_GET['p'])) {
             include_once "../publicView/adminView.php";
             break;
         case "homepage":
+            
             $dataInstrumentHome = fetchInstrumentHome($dbConnect);
             include_once "../publicView/homepageView.php";
             break;
@@ -33,17 +39,18 @@ elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
     $dataDetailInstrument = fetchDetailInstrument($dbConnect,$idInstrument);
     $detailInstrument = new modelInstrument($dataDetailInstrument);
     var_dump($detailInstrument);
-    echo $detailInstrument->title;
 
 
 
-
-} elseif (isset($_GET['idcategory']) && ctype_digit($_GET['idcategory'])) {
-    $idcategory = (int) $_GET['idcategory'];
-    $fetchCategory = fetchCategory($dbConnect, $idcategory);
-    $dataCategory = dataCategory($fetchCategory);
+} elseif (isset($_GET['idCategory']) && ctype_digit($_GET['idCategory'])) {
+    $idCategory = (int) $_GET['idCategory'];
+    $allCategory = recupCategoryById($dbConnect, $idCategory);
+    foreach($allCategory as $item): 
+        $category[] = new Category($item);  
+    endforeach;
+    var_dump($category);
     // var_dump($datasLinkByCateg);
-    include_once "../publicView/liensView.php";
+    include_once "../publicView/articleView.php";
 
 
 
@@ -117,3 +124,6 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
 }else if(isset($_POST['mail'])&&!filter_var($_POST['mail'],FILTER_VALIDATE_EMAIL)) {
    $e = throw new Exception ("Veuillez rentrer un mail valide !") ; 
 }
+$tempsEnd = microtime(true);
+
+echo $tempsEnd-$temps;
