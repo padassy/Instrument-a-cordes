@@ -13,7 +13,12 @@
 
         <nav>
             <?php
-            require_once "../publicView/src/menu.php"
+            require_once "../publicView/src/menu.php";
+            foreach($category as $item):
+            ?>
+            <a href="?idCategory=<?=$item['idCategory']?>"><?=$item['nameCategory']?></a>
+            <?php
+            endforeach;
             ?>
         </nav>
 

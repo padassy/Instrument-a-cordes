@@ -1,8 +1,10 @@
 <?php
+$category = fetchCategory($dbConnect);
 $temps = microtime(true);
 if (isset($_GET['p'])) {
     switch ($_GET['p']) {
         case "contact":
+            
             include_once "../publicView/contactView.php";
             break;
         case "article":
@@ -23,6 +25,7 @@ if (isset($_GET['p'])) {
             include_once "../publicView/adminView.php";
             break;
         case "homepage":
+            
             $dataInstrumentHome = fetchInstrumentHome($dbConnect);
             include_once "../publicView/homepageView.php";
             break;
@@ -39,12 +42,15 @@ elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
 
 
 
-} elseif (isset($_GET['idcategory']) && ctype_digit($_GET['idcategory'])) {
-    $idcategory = (int) $_GET['idcategory'];
-    $fetchCategory = fetchCategory($dbConnect, $idcategory);
-    $dataCategory = dataCategory($fetchCategory);
+} elseif (isset($_GET['idCategory']) && ctype_digit($_GET['idCategory'])) {
+    $idCategory = (int) $_GET['idCategory'];
+    $allCategory = recupCategoryById($dbConnect, $idCategory);
+    foreach($allCategory as $item): 
+        $category[] = new Category($item);  
+    endforeach;
+    var_dump($category);
     // var_dump($datasLinkByCateg);
-    include_once "../publicView/liensView.php";
+    include_once "../publicView/articleView.php";
 
 
 
