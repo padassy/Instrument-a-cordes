@@ -1,5 +1,7 @@
 <?php
+class modelMusician {
 
+}
 /**
  * Summary of modelInstrument
  */
@@ -476,34 +478,107 @@ function fetchDetailInstrument (pdo $dbConnect, int $idInstrument){
 
 
 
-
 function fetchAllInstrument (pdo $dbConnect){
     
 
     $dbConnect->beginTransaction();
-   
-    $sql = $dbConnect->prepare("SELECT i.id as idInstrument, i.title, i.description, i.history, i.intro, i.technics,i.visible, 
-    GROUP_CONCAT(c.id SEPARATOR '||') as idCategory,GROUP_CONCAT(c.namecategory) as nameCategory,
-    GROUP_CONCAT(s.id) AS idSound , GROUP_CONCAT(s.name SEPARATOR '||') as soundName, GROUP_CONCAT(s.audio SEPARATOR '||')as sound, GROUP_CONCAT(s.description SEPARATOR '||') as soundDescription, 
-    GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.image SEPARATOR '||') as picture ,
-    GROUP_CONCAT(m.id) as idMusician, GROUP_CONCAT(m.firstname SEPARATOR '||') as musicianFirstname, GROUP_CONCAT(m.biography SEPARATOR '||')as musicianBio,  GROUP_CONCAT(m.lastname SEPARATOR '||')as musicianLastname
 
-    FROM instrument i 
+    $sql = $dbConnect->query("SELECT i.id as idInstrument, i.title, i.description, i.history, i.intro, i.technics,i.visible, 
+    GROUP_CONCAT(c.id SEPARATOR '||') as idCategory,GROUP_CONCAT(c.namecategory) as nameCategory
+    FROM instrument i  
     LEFT JOIN category_has_instrument ihc 
     ON i.id= ihc.instrument_id 
     LEFT JOIN category c 
-    ON ihc.category_id=c.id 
+    ON ihc.category_id=c.id
+    GROUP BY i.id");
+    $sql2 = $dbConnect->query("SELECT GROUP_CONCAT(m.id) as idMusician, GROUP_CONCAT(m.firstname SEPARATOR '||') as musicianFirstname, GROUP_CONCAT(m.biography SEPARATOR '||')as musicianBio,  GROUP_CONCAT(m.lastname SEPARATOR '||')as musicianLastname
+    FROM instrument i
+    LEFT JOIN musician m 
+    ON i.id=m.id_instrument
+    GROUP BY m.id_instrument
+        ;");
+   
+    $sql3 = $dbConnect->query("SELECT GROUP_CONCAT(s.id) AS idSound , GROUP_CONCAT(s.name SEPARATOR '||') as soundName, GROUP_CONCAT(s.audio SEPARATOR '||')as sound, GROUP_CONCAT(s.description SEPARATOR '||') as soundDescription
+    FROM instrument i
+    LEFT JOIN sound s 
+    ON  i.id = s.id_instrument
+    GROUP BY i.id
+    ;");
+    $sql4 = $dbConnect->query("SELECT GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.image SEPARATOR '||') as picture 
+    FROM instrument i
+    LEFT JOIN picture p 
+    ON i.id = p.id_instrument 
+    GROUP BY i.id
+    ;");
+    
+
+    
+    $assetInstru = $sql->fetchAll(PDO::FETCH_ASSOC);
+    $assetInstru2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
+    $assetInstru3 = $sql3->fetchAll(PDO::FETCH_ASSOC);
+    $assetInstru4 = $sql4->fetchAll(PDO::FETCH_ASSOC);
+    
+     for ($i=0;$i<10;$i++){
+        array_push($assetInstru[$i], $assetInstru2[$i]);
+    }
+    for ($i=0;$i<10;$i++){
+        array_push($assetInstru[$i], $assetInstru3[$i]);
+    }
+    for ($i=0;$i<10;$i++){
+        array_push($assetInstru[$i], $assetInstru4[$i]);
+    }
+    for ($i=0;$i<10;$i++){
+       $assetInstruAll[$i] = $assetInstru[$i]+ $assetInstru[$i][0];
+       $assetInstruAll[$i] = $assetInstruAll[$i]+ $assetInstru[$i][1];
+       $assetInstruAll[$i] = $assetInstruAll[$i]+ $assetInstru[$i][2];
+    }
+    for ($i=0;$i<10;$i++){
+       unset($assetInstruAll[$i][0]);
+       unset($assetInstruAll[$i][1]);
+       unset($assetInstruAll[$i][2]);
+    }
+
+
+   /* echo "datasInstru";
+    var_dump($assetInstruAll);
+    echo "datasInstru2";
+    var_dump($assetInstru[0][0]);
+    echo "datasInstru2";
+    var_dump($assetInstru[0][1]);
+    echo "datasInstru2";
+    var_dump($assetInstru[0][2]);*/
+
+    $dbConnect->commit();
+
+    return $assetInstruAll;
+}
+
+/*function fetchAllInstrument (pdo $dbConnect){
+    
+
+    $dbConnect->beginTransaction();
+   
+    $sql = $dbConnect->query("   SELECT s.id AS idSound , s.name  as soundName, s.audio as sound, s.description  as soundDescription, 
+    p.id AS idPicture,  p.name as pictureName, p.description  as pictureDescription,p.image  as picture ,
+    m.id as idMusician, m.firstname  as musicianFirstname, m.biography as musicianBio,  m.lastname as musicianLastname,
+    (SELECT i.id as idInstrument, i.title, i.description, i.history, i.intro, i.technics,i.visible, 
+    GROUP_CONCAT(c.id SEPARATOR '||') as idCategory,GROUP_CONCAT(c.namecategory) as nameCategory
+    FROM instrument i  
+    LEFT JOIN category_has_instrument ihc 
+    ON i.id= ihc.instrument_id 
+    LEFT JOIN category c 
+    ON ihc.category_id=c.id) as assetInstrument
+    FROM instrument i
     LEFT JOIN sound s 
     ON  i.id = s.id_instrument
     LEFT JOIN picture p 
     ON i.id = p.id_instrument 
     LEFT JOIN musician m 
-    ON i.id=m.id_instrument 
-    GROUP BY i.id;");
-    $sql->setFetchMode(PDO::FETCH_ASSOC);
-    $sql->execute();
-    $datasAllInstrument = $sql->fetchAll();
+    ON i.id=m.id_instrument
+    ;");
+    $datasAllInstrument = $sql->fetchAll(PDO::FETCH_ASSOC);
 
+    
     
 
 
@@ -630,5 +705,29 @@ $datasAllInstrument[]=$dataAllInstrument;
    
    
     return $datasAllInstrument;
+
+
+
+        $sql = $dbConnect->prepare("SELECT i.id as idInstrument, i.title, i.description, i.history, i.intro, i.technics,i.visible, 
+    GROUP_CONCAT(c.id SEPARATOR '||') as idCategory,GROUP_CONCAT(c.namecategory) as nameCategory,    
+    (SELECT GROUP_CONCAT(s.id) AS idSound , GROUP_CONCAT(s.name SEPARATOR '||') as soundName, GROUP_CONCAT(s.audio SEPARATOR '||')as sound, GROUP_CONCAT(s.description SEPARATOR '||') as soundDescription, 
+    GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.image SEPARATOR '||') as picture ,
+    GROUP_CONCAT(m.id) as idMusician, GROUP_CONCAT(m.firstname SEPARATOR '||') as musicianFirstname, GROUP_CONCAT(m.biography SEPARATOR '||')as musicianBio,  GROUP_CONCAT(m.lastname SEPARATOR '||')as musicianLastname
+    FROM instrument i
+    LEFT JOIN sound s 
+    ON  i.id = s.id_instrument
+    LEFT JOIN picture p 
+    ON i.id = p.id_instrument 
+    LEFT JOIN musician m 
+    ON i.id=m.id_instrument) as assetInstrument
+    FROM instrument i 
+    LEFT JOIN category_has_instrument ihc 
+    ON i.id= ihc.instrument_id 
+    LEFT JOIN category c 
+    ON ihc.category_id=c.id;");
+
+
+
+
 
     */

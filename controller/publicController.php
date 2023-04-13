@@ -1,18 +1,21 @@
 <?php
-
+$temps = microtime(true);
 if (isset($_GET['p'])) {
     switch ($_GET['p']) {
         case "contact":
             include_once "../publicView/contactView.php";
             break;
         case "article":
-            include_once "../publicView/articleView.php";
-            $dataAllInstrument = fetchAllInstrument($dbConnect);
+            $assetInstruAll = fetchAllInstrument($dbConnect);
             //var_dump($dataAllInstrument);
-            foreach($dataAllInstrument as $item){
+            foreach($assetInstruAll as $item){
+                /*if (is_array($instruments[])){
+                    $instrument= explode($instruments,'||');
+                }*/
                 $instruments[] = new modelInstrument($item);
             }
             var_dump($instruments);
+            include "../publicView/articleView.php";
             
             
             break;
@@ -33,8 +36,6 @@ elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
     $dataDetailInstrument = fetchDetailInstrument($dbConnect,$idInstrument);
     $detailInstrument = new modelInstrument($dataDetailInstrument);
     var_dump($detailInstrument);
-    echo $detailInstrument->title;
-
 
 
 
@@ -117,3 +118,6 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
 }else if(isset($_POST['mail'])&&!filter_var($_POST['mail'],FILTER_VALIDATE_EMAIL)) {
    $e = throw new Exception ("Veuillez rentrer un mail valide !") ; 
 }
+$tempsEnd = microtime(true);
+
+echo $tempsEnd-$temps;
