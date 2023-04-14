@@ -490,7 +490,7 @@ function fetchDetailInstrument (pdo $dbConnect, int $idInstrument):array{
     $dbConnect->commit();
     
  
-    var_dump($instrument);
+    //var_dump($instrument);
 
     $sql->closeCursor();
     $sql2->closeCursor();
