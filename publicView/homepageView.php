@@ -13,7 +13,12 @@
 
         <nav>
             <?php
-            require_once "../publicView/src/menu.php"
+            require_once "../publicView/src/menu.php";
+            foreach($category as $item):
+            ?>
+            <a href="?idCategory=<?=$item['idCategory']?>"><?=$item['nameCategory']?></a>
+            <?php
+            endforeach;
             ?>
         </nav>
 
@@ -58,7 +63,7 @@
                 </tr>
 
                 <tr>
-                    <td><?=truncate($item['shortdescription'])?><a href="?idInstrument=<?=$item['id']?>">Lire la suite...</a></td>
+                    <td><?=truncate($item['shortIntro'])?><a href="?idInstrument=<?=$item['id']?>">Lire la suite...</a></td>
                 </tr>
 
                 <tr>

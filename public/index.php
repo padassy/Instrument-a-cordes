@@ -19,8 +19,12 @@ if(ENV=="dev"||ENV=="test"){
     $dbConnect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 }
 
-if(!empty($_SESSION)){
+if(isset($_SESSION['uniqueId'])&&$_SESSION['uniqueId']==session_id()){
+        
         require_once "../controller/privateController.php";
 }else{ 
         require_once "../controller/publicController.php";
 } 
+
+
+$dbConnect = null;
