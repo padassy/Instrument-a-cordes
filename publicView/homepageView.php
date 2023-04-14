@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Homepage</title>
 </head>
+
 <body>
 
     <header>
@@ -18,68 +20,69 @@
         </nav>
 
     </header>
+    <div class="container">
+        <div id="boxLogoTitreHome">
 
-    <div id="boxLogoTitreHome">
+            <div id="boxLogo">
+                <img src="" alt="">
+            </div>
 
-        <div id="boxLogo">
-            <img src="" alt="">
+            <div id="boxIntro">
+                <h1>Titre Site</h1>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere laboriosam voluptates quaerat vero. Illum quod repellat iure maiores esse ullam corrupti omnis est maxime, aut magnam. Distinctio, voluptas iusto. Sed!</p>
+
+            </div>
+
         </div>
+        <div id="boxTableauCartesHome">
 
-        <div id="boxIntro">
-            <h1>Titre Site</h1>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere laboriosam voluptates quaerat vero. Illum quod repellat iure maiores esse ullam corrupti omnis est maxime, aut magnam. Distinctio, voluptas iusto. Sed!</p>
+            <?php
 
-        </div>
+            if (isset($dataInstrumentHome)) :
+                foreach ($dataInstrumentHome as $item) :
+            ?>
+                    <table>
 
-    </div>
-    <div id="boxTableauCartesHome">
+                        <tr>
+                            <td rowspan="3"> Image</td>
+                            <td><?= $item['title'] ?></td>
+                        </tr>
 
-        <?php
-        
-        if (isset($dataInstrumentHome)):
-            foreach ($dataInstrumentHome as $item):
+                        <tr>
+                            <td><?= truncate($item['shortdescription']) ?><a href="?idInstrument=<?= $item['id'] ?>">Lire la suite...</a></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                        </tr>
+
+                    </table>
+            <?php
+                endforeach;
+            endif;
             ?>
             <table>
 
                 <tr>
-                    <td rowspan="3"> Image</td>
-                    <td><?=$item['title']?></td>
+                    <td rowspan="2"> Image</td>
+                    <td>Titre de l'instrument</td>
                 </tr>
 
                 <tr>
-                    <td><?=truncate($item['shortdescription'])?><a href="?idInstrument=<?=$item['id']?>">Lire la suite...</a></td>
+                    <td>Description: Pas plus de 60 caractères</td>
                 </tr>
-
-                <tr>
-                    <td></td>
-                </tr>
-
-            </table>
-            <?php
-            endforeach;
-        endif;
-        ?>
-        <table>
-
-            <tr>
-                <td rowspan="2"> Image</td>
-                <td>Titre de l'instrument</td>
-            </tr>
-
-            <tr>
-                <td>Description: Pas plus de 60 caractères</td>
-            </tr>
 
 
             </table>
+        </div>
     </div>
-    
     <footer>
         <?php
-            require_once "../publicView/src/footer.php"
+        require_once "../publicView/src/footer.php"
         ?>
     </footer>
 
     <script src="js/script.js"></script>
 </body>
+
 </html>
