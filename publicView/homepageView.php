@@ -63,7 +63,7 @@
                 </tr>
 
                 <tr>
-                    <td><?=truncate($item['shortdescription'])?><a href="?idInstrument=<?=$item['id']?>">Lire la suite...</a></td>
+                    <td><?=truncate($item['shortIntro'])?><a href="?idInstrument=<?=$item['id']?>">Lire la suite...</a></td>
                 </tr>
 
                 <tr>
