@@ -1,28 +1,41 @@
 <?php
-
+$category = fetchCategory($dbConnect);
+$temps = microtime(true);
 if (isset($_GET['p'])) {
     switch ($_GET['p']) {
+
         case "contact":
+            
             include_once "../publicView/contactView.php";
             break;
+
+
         case "article":
-            include_once "../publicView/articleView.php";
-            $dataAllInstrument = fetchAllInstrument($dbConnect);
+            $assetInstruAll = fetchAllInstrument($dbConnect);
             //var_dump($dataAllInstrument);
-            foreach($dataAllInstrument as $item){
+            foreach($assetInstruAll as $item){
+                /*if (is_array($instruments[])){
+                    $instrument= explode($instruments,'||');
+                }*/
                 $instruments[] = new modelInstrument($item);
             }
             var_dump($instruments);
-            
-            
+            include "../publicView/articleView.php";
             break;
+
+
         case "admin":
             include_once "../publicView/adminView.php";
             break;
+
+
         case "homepage":
+            
             $dataInstrumentHome = fetchInstrumentHome($dbConnect);
             include_once "../publicView/homepageView.php";
             break;
+
+
         default:
             include_once "../view/404.php";
     }
@@ -31,18 +44,20 @@ elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
 
     $idInstrument = (int) $_GET['idInstrument'];
     $dataDetailInstrument = fetchDetailInstrument($dbConnect,$idInstrument);
-    var_dump($dataDetailInstrument);
+    $detailInstrument = new modelInstrument($dataDetailInstrument);
+    var_dump($detailInstrument);
 
 
 
-
-
-} elseif (isset($_GET['idcategory']) && ctype_digit($_GET['idcategory'])) {
-    $idcategory = (int) $_GET['idcategory'];
-    $fetchCategory = fetchCategory($dbConnect, $idcategory);
-    $dataCategory = dataCategory($fetchCategory);
+} elseif (isset($_GET['idCategory']) && ctype_digit($_GET['idCategory'])) {
+    $idCategory = (int) $_GET['idCategory'];
+    $allCategory = recupCategoryById($dbConnect, $idCategory);
+    foreach($allCategory as $item): 
+        $category[] = new Category($item);  
+    endforeach;
+    var_dump($category);
     // var_dump($datasLinkByCateg);
-    include_once "../publicView/liensView.php";
+    include_once "../publicView/articleView.php";
 
 
 
@@ -55,35 +70,27 @@ elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
    
 if(isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
    
-    $userLogin = $_POST['userLogin'];
-    $userPassword = $_POST['userPassword'];
+    $userLogin = htmlspecialchars(strip_tags(trim($_POST['userLogin'])),ENT_QUOTES);
+    $userPassword = htmlspecialchars(strip_tags(trim($_POST['userPassword'])),ENT_QUOTES); 
+
+
+    $userConnect = connectAdmin($dbConnect,$userLogin,$userPassword);
+    if (is_string($userConnect)) {
+        $erreur = $userConnect;
+    }
   
-    $userLogin = filter_var($userLogin, FILTER_SANITIZE_EMAIL);  
-    $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);  
-}
-  
- 
-
-$userConnect = userConnect($dbConnect,$userLogin,$userPassword);
-
-if (is_string($userConnect)) {
-  echo "La variable \$userConnect contient uniquement du texte.";
-} else {
-  echo "La variable \$userConnect ne contient pas uniquement du texte.";
-}
-
-// Vérification de la validité de la connexion
-if(isset($_POST['userLogin']) && isset($_POST['userPassword'])){
- header("Location: accueil.php");
-  exit(); 
-} else {
-   
-  echo "La connexion a échoué.";
-
+   // redirection si connexion ok
+    if ($userConnect===true) {
+        // redirection sur index.php
+        header("Location:./");
+    }
 }
 
 
-if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($_POST['mail']),FILTER_VALIDATE_EMAIL){
+
+
+
+if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($_POST['mail'],FILTER_VALIDATE_EMAIL)){
     $firstname = htmlspecialchars(strip_tags(trim($_POST['firstname'])),ENT_QUOTES);
     $lastname = htmlspecialchars(strip_tags(trim($_POST['lastname'])),ENT_QUOTES);
     $mail =htmlspecialchars(strip_tags(trim($_POST['mail'])),ENT_QUOTES);
@@ -112,11 +119,14 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
      $e ="Merci pour votre commentaire"; 
  
 
-    catch (Exception $e) {
+   }catch (Exception $e) {
      $e = throw new Exception ("Un problème est survenu  !");
 
     }
 
-}else if(!filter_var($_POST['mail']),FILTER_VALIDATE_EMAIL) {
+}else if(isset($_POST['mail'])&&!filter_var($_POST['mail'],FILTER_VALIDATE_EMAIL)) {
    $e = throw new Exception ("Veuillez rentrer un mail valide !") ; 
 }
+$tempsEnd = microtime(true);
+
+echo $tempsEnd-$temps;
