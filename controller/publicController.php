@@ -89,7 +89,7 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
     $mail =htmlspecialchars(strip_tags(trim($_POST['mail'])),ENT_QUOTES);
     $message = htmlspecialchars(strip_tags(trim($_POST['message'])),ENT_QUOTES);
    try{
-
+   }
    //pour l'utilisateur
    $mail =(new Email())
    ->from(MAIL_FROM)
@@ -109,7 +109,7 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
    ->html('<p>Un nouveau message est arrivé sur votre site  !<br><br>'. 'Poste par : '.$mail.'</p>'); 
    $mailer->send($mail);    
 
-     $e ="Merci pour votre commentaire" ; 
+     $e ="Merci pour votre commentaire"; 
  
 
     catch (Exception $e) {
