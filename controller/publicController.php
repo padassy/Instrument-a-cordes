@@ -3,10 +3,13 @@ $category = fetchCategory($dbConnect);
 $temps = microtime(true);
 if (isset($_GET['p'])) {
     switch ($_GET['p']) {
+
         case "contact":
             
             include_once "../publicView/contactView.php";
             break;
+
+
         case "article":
             $assetInstruAll = fetchAllInstrument($dbConnect);
             //var_dump($dataAllInstrument);
@@ -18,17 +21,21 @@ if (isset($_GET['p'])) {
             }
             var_dump($instruments);
             include "../publicView/articleView.php";
-            
-            
             break;
+
+
         case "admin":
             include_once "../publicView/adminView.php";
             break;
+
+
         case "homepage":
             
             $dataInstrumentHome = fetchInstrumentHome($dbConnect);
             include_once "../publicView/homepageView.php";
             break;
+
+
         default:
             include_once "../view/404.php";
     }
@@ -64,12 +71,8 @@ elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
    
 if(isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
    
-    $userLogin = $_POST['userLogin'];
-    $userPassword = $_POST['userPassword'];
-
-  
-    $userLogin = filter_var($userLogin, FILTER_SANITIZE_EMAIL);  
-    $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);  
+    $userLogin = htmlspecialchars(strip_tags(trim($_POST['userLogin'])),ENT_QUOTES);
+    $userPassword = htmlspecialchars(strip_tags(trim($_POST['userPassword'])),ENT_QUOTES); 
 
 
     $userConnect = connectAdmin($dbConnect,$userLogin,$userPassword);

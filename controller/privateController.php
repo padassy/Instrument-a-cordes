@@ -1,6 +1,7 @@
 <h1>Private</h1>
 <?php
-if (isset($_GET['p']))
+if (isset($_GET['p'])){
+}
 
   
 
@@ -27,4 +28,7 @@ if(isset($_GET['disconnect'])){
         // appel de la vue 404
         include_once "../view/publicView/404View.php";*/
 
- 
+    else{
+        include_once "../publicView/adminView.php";
+    }
+
