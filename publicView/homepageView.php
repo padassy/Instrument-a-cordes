@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+
     <title>Mélodie en Cordes</title>
 </head>
+
 <body>
 
     <header>
@@ -23,12 +26,16 @@
         </nav>
 
     </header>
+    <div class="container">
+        <div id="boxLogoTitreHome">
 
-    <div id="boxLogoTitreHome">
+            <div id="boxLogo">
+                <img src="" alt="">
+            </div>
 
-        <div id="boxLogo">
-            <img src="" alt="">
-        </div>
+            <div id="boxIntro">
+                <h1>Titre Site</h1>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere laboriosam voluptates quaerat vero. Illum quod repellat iure maiores esse ullam corrupti omnis est maxime, aut magnam. Distinctio, voluptas iusto. Sed!</p>
 
         <div id="boxIntro">
             <h1>Mélodie en Cordes</h1>
@@ -46,44 +53,46 @@
                     instruments à cordes !</p>
 
         </div>
+        <div id="boxTableauCartesHome">
 
-    </div>
-    <div id="boxTableauCartesHome">
+            <?php
 
-        <?php
-        
-        if (isset($dataInstrumentHome)):
-            foreach ($dataInstrumentHome as $item):
+            if (isset($dataInstrumentHome)) :
+                foreach ($dataInstrumentHome as $item) :
             ?>
+
             <table class="tableauCartesHome">
 
-                <tr>
-                    <td rowspan="3"> Image</td>
-                    <td><?=$item['title']?></td>
-                </tr>
+
+                        <tr>
+                            <td rowspan="3"> Image</td>
+                            <td><?= $item['title'] ?></td>
+                        </tr>
+
 
                 <tr>
                     <td><?=truncate($item['shortIntro'])?><a href="?idInstrument=<?=$item['id']?>">Lire la suite...</a></td>
                 </tr>
 
-                <tr>
-                    <td></td>
-                </tr>
 
-            </table>
+                        <tr>
+                            <td></td>
+                        </tr>
+
+                    </table>
             <?php
             endforeach;
         endif;
         ?>
         
     </div>
-    
     <footer>
         <?php
-            require_once "../publicView/src/footer.php"
+        require_once "../publicView/src/footer.php"
         ?>
     </footer>
 
     <script src="js/script.js"></script>
 </body>
+
 </html>
