@@ -46,7 +46,7 @@ elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
     $dataDetailInstrument = fetchDetailInstrument($dbConnect,$idInstrument);
     $detailInstrument = new modelInstrument($dataDetailInstrument);
     include_once "../publicView/detailArticleView.php";
-    var_dump($detailInstrument);
+   # var_dump($detailInstrument);
 
 
 
@@ -97,7 +97,7 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
     $mail =htmlspecialchars(strip_tags(trim($_POST['mail'])),ENT_QUOTES);
     $message = htmlspecialchars(strip_tags(trim($_POST['message'])),ENT_QUOTES);
    try{
-
+   
    //pour l'utilisateur
    $mail =(new Email())
    ->from(MAIL_FROM)
@@ -117,7 +117,7 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
    ->html('<p>Un nouveau message est arrivé sur votre site  !<br><br>'. 'Poste par : '.$mail.'</p>'); 
    $mailer->send($mail);    
 
-     $e ="Merci pour votre commentaire" ; 
+     $e ="Merci pour votre commentaire"; 
  
 
    }catch (Exception $e) {
