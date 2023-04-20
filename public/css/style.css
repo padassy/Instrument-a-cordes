@@ -7,6 +7,11 @@ body {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    background: #c9a068;
+    font-family: Montserrat, "sans-serif";
+    display: flex;
+    justify-content: center;
+    color: #303030;
 }
 html , body{
     display: flex;
@@ -292,7 +297,7 @@ input[type="checkbox"]{
 
 #boxLogoTitreHome{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -315,16 +320,11 @@ input[type="checkbox"]{
     height: 10vh;
     width: 100%;
     border: 1px sol;
-<<<<<<< HEAD
+
 }
 
-body {
-    background: #c9a068;
-    font-family: Montserrat, "sans-serif";
-    display: flex;
-    justify-content: center;
-    color: #303030;
-    }
+
+
     
     .contactez-nous {
     width: 700px;
@@ -406,7 +406,8 @@ body {
     box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
     color: #303030;
     }
-=======
+
 
 }
->>>>>>> 5455799ed96853c8ef6b569e0a7ff37e29078a16
+
+

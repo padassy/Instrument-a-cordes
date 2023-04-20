@@ -33,10 +33,6 @@
                 <img src="" alt="">
             </div>
 
-            <div id="boxIntro">
-                <h1>Titre Site</h1>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere laboriosam voluptates quaerat vero. Illum quod repellat iure maiores esse ullam corrupti omnis est maxime, aut magnam. Distinctio, voluptas iusto. Sed!</p>
-
         <div id="boxIntro">
             <h1>Mélodie en Cordes</h1>
                 <h2>Bienvenue sur mon blog dédié aux instruments à cordes !</h2>
