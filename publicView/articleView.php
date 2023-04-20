@@ -46,11 +46,6 @@
         ?>
  </div>
 
-
-
-
-
-
     <footer>
 
         <?php include_once "src/footer.php"?>
