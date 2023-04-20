@@ -26,7 +26,7 @@
                     <textarea id="message" name="message" placeholder="Bonjour, je vous contacte car...." required></textarea>
                 </div>
                 <div>
-                    <button type="submit">Envoyer mon message</button>
+                    <button type="submit">Envoyer mon message.</button>
                 </div>
               </form>
     </div>
