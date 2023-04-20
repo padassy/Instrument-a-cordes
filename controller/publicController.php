@@ -3,10 +3,13 @@ $category = fetchCategory($dbConnect);
 $temps = microtime(true);
 if (isset($_GET['p'])) {
     switch ($_GET['p']) {
+
         case "contact":
             
             include_once "../publicView/contactView.php";
             break;
+
+
         case "article":
             $assetInstruAll = fetchAllInstrument($dbConnect);
             //var_dump($dataAllInstrument);
@@ -18,17 +21,21 @@ if (isset($_GET['p'])) {
             }
             var_dump($instruments);
             include "../publicView/articleView.php";
-            
-            
             break;
+
+
         case "admin":
             include_once "../publicView/adminView.php";
             break;
+
+
         case "homepage":
             
             $dataInstrumentHome = fetchInstrumentHome($dbConnect);
             include_once "../publicView/homepageView.php";
             break;
+
+
         default:
             include_once "../view/404.php";
     }
@@ -39,7 +46,7 @@ elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
     $dataDetailInstrument = fetchDetailInstrument($dbConnect,$idInstrument);
     $detailInstrument = new modelInstrument($dataDetailInstrument);
     include_once "../publicView/detailArticleView.php";
-    var_dump($detailInstrument);
+   # var_dump($detailInstrument);
 
 
 
@@ -64,12 +71,8 @@ elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
    
 if(isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
    
-    $userLogin = $_POST['userLogin'];
-    $userPassword = $_POST['userPassword'];
-
-  
-    $userLogin = filter_var($userLogin, FILTER_SANITIZE_EMAIL);  
-    $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);  
+    $userLogin = htmlspecialchars(strip_tags(trim($_POST['userLogin'])),ENT_QUOTES);
+    $userPassword = htmlspecialchars(strip_tags(trim($_POST['userPassword'])),ENT_QUOTES); 
 
 
     $userConnect = connectAdmin($dbConnect,$userLogin,$userPassword);
@@ -94,7 +97,7 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
     $mail =htmlspecialchars(strip_tags(trim($_POST['mail'])),ENT_QUOTES);
     $message = htmlspecialchars(strip_tags(trim($_POST['message'])),ENT_QUOTES);
    try{
-
+   
    //pour l'utilisateur
    $mail =(new Email())
    ->from(MAIL_FROM)
@@ -114,7 +117,7 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
    ->html('<p>Un nouveau message est arrivé sur votre site  !<br><br>'. 'Poste par : '.$mail.'</p>'); 
    $mailer->send($mail);    
 
-     $e ="Merci pour votre commentaire" ; 
+     $e ="Merci pour votre commentaire"; 
  
 
    }catch (Exception $e) {
@@ -123,7 +126,7 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
     }
 
 }else if(isset($_POST['mail'])&&!filter_var($_POST['mail'],FILTER_VALIDATE_EMAIL)) {
-   $e = throw new Exception ("Veuillez rentrer un mail valide !") ; 
+   $e = throw new Exception ("Veuillez entrer un mail valide svp") ; 
 }
 $tempsEnd = microtime(true);
 

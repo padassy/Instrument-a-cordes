@@ -1,4 +1,3 @@
-<h1>Private</h1>
 <?php
 if (isset($_GET['p'])) {
 
@@ -57,4 +56,24 @@ if (isset($_GET['p'])) {
 
  }
 
- 
+if (isset($_GET['p'])){
+}
+
+  
+
+if(isset($_GET['disconnect'])){
+    disconnect();
+    header("Location: ./");
+    exit();
+}
+
+
+
+
+
+
+
+
+
+
+
