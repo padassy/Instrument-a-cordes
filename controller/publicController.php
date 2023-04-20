@@ -126,7 +126,7 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
     }
 
 }else if(isset($_POST['mail'])&&!filter_var($_POST['mail'],FILTER_VALIDATE_EMAIL)) {
-   $e = throw new Exception ("Veuillez rentrer un mail valide !") ; 
+   $e = throw new Exception ("Veuillez entrer un mail valide svp") ; 
 }
 $tempsEnd = microtime(true);
 
