@@ -29,11 +29,6 @@ if (isset($_GET['p'])) {
             default:
             include_once "../view/404.php";
     }
-       
-    
-
-      
-    
     }elseif (isset($_GET['idcategory'])&& ctype_digit($_GET['idCategory'])){
         
         $fetchCategory = fetchCategory($dbConnect);
@@ -46,20 +41,16 @@ if (isset($_GET['p'])) {
 
          include_once "../publicView/articleView.php";
 
+
     }else if(isset($_GET['disconnect'])){
         disconnect();
         header("Location: ./");
         exit();
     }else{
 
-    include "../privateView/privateView.php";
+         include "../privateView/privateView.php";
 
- }
-
-if (isset($_GET['p'])){
-}
-
-  
+ }  
 
 if(isset($_GET['disconnect'])){
     disconnect();
