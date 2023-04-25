@@ -426,7 +426,7 @@ class modelInstrument {
 
 function fetchInstrumentHome(pdo $dbConnect):array { 
 
-        $sql= $dbConnect->query('SELECT id, title , LEFT(description,200)as shortIntro FROM instrument LIMIT 10');
+        $sql= $dbConnect->query('SELECT i.id, i.title , LEFT(i.description,200)as shortIntro, p.image,p.name FROM instrument i LEFT JOIN picture p ON i.id = p.id_instrument LIMIT 10');
         $dataInstrumentHome= $sql->fetchAll(PDO::FETCH_ASSOC);
         $sql->closeCursor();
         return $dataInstrumentHome;

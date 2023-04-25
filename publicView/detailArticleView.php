@@ -36,8 +36,25 @@
             <p><?=$detailInstrument->picture?></p>
         </article>
         <article>
-            <p><?=$detailInstrument->musicianFirstname?></p>
+            <?php
+            $nomMusicien = explode('||',$detailInstrument->musicianLastname);
+            $prenomMusicien = explode('||',$detailInstrument->musicianFirstname);
+            $bioMusicien = explode('||',$detailInstrument->musicianBio);
+            $idMusicien = explode(',',$detailInstrument->idMusician);
+
+            var_dump($nomMusicien);
+            var_dump($prenomMusicien);
+            var_dump($bioMusicien);
+            var_dump($idMusicien);
+            foreach ($idMusicien as $key => $value):
+            ?>
+            <p><?=$nomMusicien[$key]?>,<?=$prenomMusicien[$key]?>,<?=$bioMusicien[$key]?></p>
+            
         </article>
+        <?php
+        endforeach;
+
+        ?>
     
     
         <article>

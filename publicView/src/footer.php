@@ -1,41 +1,34 @@
-<div class="footNav">
-    <nav>
+<div id="logoFooter">
+    <img src="assets/logo.png" alt="">
+</div>
+<p>&copy Cf2m 2023</p>
+
+<div id="footNav">
         <a href="./">Accueil</a>
         <a href="?p=article">article</a>
         <a href="?p=contact">contact</a>
-    </nav>
-
 </div>
 
-<div class="footer-socials">
+<div id="footerSocial">
 
-    <div class="footer-socials-ind">
 
         <a href="https://github.com" class="icon-footer-socials" target="_blank">
-        <img class="icon-footer-socials-img" src="asset/icon-github.png" alt="">
+        <img class="icon-footer-socials-img" src="assets/icone/twitter.png" alt="">
         </a>
 
-    </div>
 
-    <div class="footer-socials-ind">
         <a href="https://fr.linkedin.com" class="icon-footer-socials" target="_blank">
-        <img class="icon-footer-socials-img" src="asset/icon-linkedin.png" alt="">
+        <img class="icon-footer-socials-img" src="assets/icone/instagram" alt="">
         </a>
 
-    </div>
-
-    <div class="footer-socials-ind">
+  
 
         <a href="https://www.codewars.com" class="icon-footer-socials" target="_blank">
-        <img class="icon-footer-socials-img" src="asset/icon-codewars.png" alt="">
+        <img class="icon-footer-socials-img" src="assets/icone/social.png" alt="">
         </a>
 
-    </div>
-
-    <div class="footer-socials-ind">
-
         <a href="?z=connect" class="icon-footer-socials">
-        <img class="icon-footer-socials-img" src="asset/icon-user.png" alt="">
+        <img class="icon-footer-socials-img" src="assets/icone/facebook.png" alt="">
         </a>
 
     </div>
