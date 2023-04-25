@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "../config.php";
+require_once "../modele/modelConstructor.php";
 require_once "../modele/modeleAdmin.php";
 require_once "../modele/modeleCategory.php";
 require_once "../modele/modeleInstrument.php";

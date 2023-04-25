@@ -9,27 +9,47 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="contactez-nous">
+    <header>
+
+        <nav>
+            <?php
+            require_once "../publicView/src/menu.php";
+            ?>
+        </nav>
+
+    </header>
+
+    <div class="pageContact">
+
         <h1>Contactez-nous</h1>
-            <p>Un problème, une question, envie de nous envoyer un message? Veuillez utiliser ce formulaire pour prendre contact avec nous !</p>
-              <form action="/page-traitement-donnees" method="post">
-                <div>
-                    <label for="nom">Votre nom</label>
+            <p>Une envie de nous envoyer un message ?</p>
+            <p>Une question à nous poser ?</p>
+            <p>Un problème rencontré lors de votre visite ?</p>
+            <p>Veuillez utiliser ce formulaire pour prendre contact avec nous !</p>
+            <p>Je me ferai un plaisir de vous répondre dans les plus brefs délais .</p>
+              <form action="" method="post" id="contactForm">
+                <div class="boxLabelInputContact">
+                    <label for="nom">nom</label>
                     <input type="text" id="nom" name="nom" placeholder="" required>
                 </div>
-                <div>
-                    <label for="email">Votre e-mail</label>
+                <div class="boxLabelInputContact">
+                    <label for="email">e-mail</label>
                     <input type="email" id="email" name="email" placeholder="" required>
                 </div>
-                <div>
-                    <label for="message">Votre message</label>
-                    <textarea id="message" name="message" placeholder="Bonjour, je vous contacte car...." required></textarea>
+                <div class="boxLabelInputContact">
+                    <label for="message">message</label>
+                    <textarea id="message" name="message" required></textarea>
                 </div>
-                <div>
+                <div id="buttonContact">
                     <button type="submit">Envoyer mon message.</button>
                 </div>
               </form>
     </div>
+    <footer>
+        <?php
+        require_once "../publicView/src/footer.php"
+        ?>
+    </footer>
        
 </body>
 </html>

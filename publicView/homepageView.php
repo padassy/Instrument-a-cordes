@@ -58,18 +58,24 @@
 
 
                         <tr>
-                            <th colspan="4"><h2><?= $item['title'] ?></h2></th>
+                            <th colspan="4">
+                                <h2><?= $item['title'] ?></h2>
+                            </th>
                         </tr>
 
 
                         <tr>
-                            <td rowspan="3" colspan="2" class="imageTableauHome"><img src="<?=$item['image']?>" alt="<?=$item['name']?>"></td>
+                            <td rowspan="3" colspan="2" class="imageTableauHome">
+                                <img src="<?=$item['image']?>" alt="<?=$item['name']?>">
+                            </td>
                         </tr>
 
 
                         <tr>
                             <td></td>
-                            <td class="texteTableauHome"><?=truncate($item['shortIntro'])?></td>
+                            <td class="texteTableauHome">
+                                <p><?=truncate($item['shortIntro'])?></p>
+                            </td>
                             
                         </tr>
 
