@@ -27,7 +27,7 @@
     <header class="header-tablet">
         <div class="nav-div-desktop">
             <div class="logo-main">
-                <img src="assets/Mélodie_en_Cordes-removebg-preview.png" alt="">
+                <img src="assets/logo.png" alt="">
             </div>
             <nav class="nav-desktop">
                 <a class="titre-menu-tab" href="./">ACCUEIL</a>

@@ -17,11 +17,6 @@
         <nav>
             <?php
             require_once "../publicView/src/menu.php";
-            foreach($category as $item):
-            ?>
-            <a href="?idCategory=<?=$item['idCategory']?>"><?=$item['nameCategory']?></a>
-            <?php
-            endforeach;
             ?>
         </nav>
 
@@ -30,7 +25,7 @@
         <div id="boxLogoTitreHome">
 
             <div id="boxLogo">
-                <img src="" alt="">
+                <img src="../public/assets/logo.png" alt="">
             </div>
 
         <div id="boxIntro">
@@ -49,6 +44,8 @@
                     instruments à cordes !</p>
 
         </div>
+        
+        <hr>
         <div id="boxTableauCartesHome">
 
             <?php
@@ -61,18 +58,26 @@
 
 
                         <tr>
-                            <td rowspan="3"> Image</td>
-                            <td><?= $item['title'] ?></td>
+                            <th colspan="4"><h2><?= $item['title'] ?></h2></th>
                         </tr>
 
 
-                <tr>
-                    <td><?=truncate($item['shortIntro'])?><a href="?idInstrument=<?=$item['id']?>">Lire la suite...</a></td>
-                </tr>
+                        <tr>
+                            <td rowspan="3" colspan="2" class="imageTableauHome"><img src="<?=$item['image']?>" alt="<?=$item['name']?>"></td>
+                        </tr>
 
 
                         <tr>
                             <td></td>
+                            <td class="texteTableauHome"><?=truncate($item['shortIntro'])?></td>
+                            
+                        </tr>
+
+
+                        <tr>
+                            <td colspan="4">
+                                <a href="?idInstrument=<?=$item['id']?>">Lire la suite...</a>
+                            </td>
                         </tr>
 
                     </table>
@@ -80,7 +85,7 @@
             endforeach;
         endif;
         ?>
-        
+        </div>
     </div>
     <footer>
         <?php

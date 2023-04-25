@@ -130,4 +130,4 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
 }
 $tempsEnd = microtime(true);
 
-echo $tempsEnd-$temps;
+#echo $tempsEnd-$temps;
