@@ -19,7 +19,7 @@ if (isset($_GET['p'])) {
                 }*/
                 $instruments[] = new modelInstrument($item);
             }
-            var_dump($instruments);
+            #var_dump($instruments);
             include "../publicView/articleView.php";
             break;
 
@@ -54,10 +54,9 @@ elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
     $idCategory = (int) $_GET['idCategory'];
     $allCategory = recupCategoryById($dbConnect, $idCategory);
     foreach($allCategory as $item): 
-        $category[] = new Category($item);  
+        $categoryInstrument[] = new modelInstrument($item);  
     endforeach;
-    var_dump($category);
-    // var_dump($datasLinkByCateg);
+    #var_dump($categoryInstrument);
     include_once "../publicView/articleView.php";
 
 

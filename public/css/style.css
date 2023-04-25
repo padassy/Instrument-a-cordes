@@ -270,88 +270,73 @@ input[type="checkbox"]{
 
 /*                          CSS Formulaire contact                          */
 
-.contactez-nous {
-    width: 700px;
-    border: 1px solid;
-    border-radius: 8px;
-    padding: 0 50px 0 50px;
-    background: white;
-    }
-    
-    .contactez-nous > h1 {
-    font-weight: 500;
-    }
-    
-    .contactez-nous > p {
-    font-weight: 300;
-    }
-    
-    form div {
-    width: 100%;
+
+.pageContact{
+    width: 90%;
+    margin: 2.5% auto 5% ;
+    background-color:#574D4D ;
+    border: #574D4D 1px solid;
+    border-radius: 15px;
+}
+.pageContact h1 {
+    text-align: center;
+}
+.pageContact p {
+    text-align: justify;
+    width: 60%;
+    margin: 0 auto;
+}
+
+#contactForm{
+    width: 90%;
+    margin: 10% auto 5% ;
+}
+.boxLabelInputContact{
     display: flex;
     flex-direction: column;
-    min-height: 83px;
-    margin-top: 25px;
-    }
+    color: #FDF7F7;
+    margin-bottom: 1em;
+}
+.boxLabelInputContact label{
+    text-transform: uppercase;
+    margin-bottom: 0.25em;
+}
+.boxLabelInputContact input{
+    height: 1.5em;
+    border: #FDF7F7 0.5em solid;
+    border-radius: 15px;
+
+}
+.boxLabelInputContact textarea{
+    height: 15em;
+    border: #FDF7F7 0.5em solid;
+    border-radius: 15px;
+    color: #FDF7F7;
+
+}
+#buttonContact{
+    display: flex;
+}
+#contactForm button{
+        height: 2em;
+        border: #FDF7F7 0.5em solid;
+        border-radius: 15px;
+        color:#303030;
+        margin: 2.5% auto 0;
     
-    form div > label {
-    margin-bottom: 7px;
-    font-weight: 600;
-    }
     
-    form div > input, form div > select, form div > textarea {
-    background: #d6b371;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 500;
-    font-family: Montserrat, "sans-serif";
-    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
-    }
-    
-    form div > input, form div > select {
-    height: 50px;
-    padding-left: 10px;
-    }
-    
-     
-    form div > textarea {
-    height: 195px;
-    padding: 15px 0px 0px 10px;
-    }
-    
-    form div > input::placeholder, form div > textarea::placeholder {
-    color: white;
-    }
-    
-    form div > select:invalid {
-    color: white;
-    }
-    
-    form div > select option {
-    background: #FDF7F7;
-    color: #303030;
-    }
-    
-    form div:last-child {
-    align-items:center;
-    margin-top: 20px;
-    }
-    
-    form button {
-    width: 450px;
-    max-width: 500px;
-    height: 60px;
-    font-weight: 700;
-    font-size: 28px;
-    background: #FDF7F7;
-    border: rgba(48, 48, 48, 0.5) solid 1px;
-    border-radius: 5px;
-    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
-    color: #303030;
-    }
+}
+
+
+
+
+
+
+
 
     /*                  CSS Footer                  */
+
+
     footer{
         background-color: #574D4D;
         display: flex;
@@ -391,8 +376,63 @@ input[type="checkbox"]{
             width: 100%;
     }
 
+/*                          CSS Article                             */
+#boxPageArticle{
+    width: 95%;
+    background-color: #AFA7A7;
+    margin: 5% auto 0;
+    border-radius: 15px 15px 0 0 ;
+}
 
+#boxTableauCartesArticle{
+    margin-top: 10%;
+}
+.tableauCartesArticle{
+    width: 90%;
+    height: 35vh;
+    margin:10% auto 10%;
+    border: 1.5px solid black;
+    border-radius: 15px;
+    padding: 1em;
+    color: #FDF7F7;
+}
 
+.imageTableauArticle{
+    width: 50%;
+}
+.titleTableauArticle{
+    text-align: center;
+}
+.imageTableauArticle img{
+    width: 100%;
+}
+.texteTableauArticle{
+    text-align: justify;
+}
+#boxCategory {
+    background-color: #D9D9D9 ;
+    text-align: center;
+    height: 2.5em;
+    line-height: 2.5em;
+    border-radius: 15px 15px 0 0 ;
+    
+  }
+  #boxCategory a{
+    text-decoration: none;
+    color: black ;
+    margin: 0 2.5%;
+    
+  }
+  #boxCategory a:active{
+    background-color: #AFA7A7;
+  }
+  #boxCategory a:visited{
+    background-color: #AFA7A7;
+  }
+  .linkArticle{
+    color: #FDF7F7;
+    text-decoration: none;
+  }
 
 
 
