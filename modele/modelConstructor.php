@@ -22,7 +22,9 @@ class modelInstrument {
     public int|null|string $idPicture;
     public null|string $pictureName;
     public null|string $pictureDescription;
-    public null|string $picture;
+    public null|string $pictureMini;
+    public null|string $pictureMiddle;
+    public null|string $pictureFull;
 
     
     
@@ -363,21 +365,48 @@ class modelInstrument {
     /**
      * Get the value of picture
      */
-    public function getPicture(): ?string
+    public function getPictureMini(): ?string
     {
-        return $this->picture;
+        return $this->pictureMini;
     }
 
     /**
-     * Set the value of picture
+     * Set the value of pictureMini
      */
-    public function setPicture(?string $picture): self
+    public function setPictureMini(?string $pictureMini): self
     {
-        $this->picture = $picture;
+        $this->pictureMini = $pictureMini;
 
         return $this;
     }
+     
+    public function getPictureMiddle(): ?string
+    {
+        return $this->pictureMiddle;
+    }
 
+    /**
+     * Set the value of pictureMiddle
+     */
+    public function setPictureMiddle(?string $pictureMiddle): self
+    {
+        $this->pictureMiddle = $pictureMiddle;
+        return $this;
+        
+    }
+    public function getPictureFull(): ?string
+    {
+        return $this->pictureFull;
+    }
+
+    /**
+     * Set the value of pictureFull
+     */
+    public function setPictureFull(?string $pictureFull): self
+    {
+        $this->pictureFull = $pictureFull;
+        return $this;
+    }
     /**
      * Get the value of idSound
      */

@@ -33,35 +33,32 @@
                 if(isset($instruments)):
                 foreach ($instruments as $item):
                 ?>
-                <table class="tableauCartesArticle">
+                      <table class="tableauCartesArticle" style="background: no-repeat url(<?=$item->pictureMiddle?>)bottom ; background-size:cover ; background-color:#574d4d11;" >
 
 
-                        <tr>
-                            <th colspan="2" >
-                                <h2 class="titleTableauArticle"><?= $item->title?></h2>
-                            </th>
-                           
-                        </tr>
+                            <tr>
+                                <th colspan="2" >
+                                    <h2 class="titleTableauArticle"><?= $item->title?></h2>
+                                </th>
+
+                            </tr>
 
 
-                        <tr>
-                            
-                            <td class="texteTableauArticle">
-                                <p><?=$item->shortdescription?></p>
-                            </td>
-                            <td rowspan="2" class="imageTableauArticle">
-                                <img src="<?=$item->picture?>" alt="<?=$item->pictureName?>">
-                            </td>
-                         </tr>
+                            <tr>
+                                
+                                <td class="texteTableauArticle">
+                                    <p><?=$item->shortdescription?></p>
+                                </td>
+                            </tr>
 
 
-                        <tr>
-                            <td>
-                                <a href="?idInstrument=<?=$item->idInstrument?>" class="linkArticle">En savoir plus ...</a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    <a href="?idInstrument=<?=$item->idInstrument?>" class="linkArticle">En savoir plus ...</a>
+                                </td>
+                            </tr>
 
-                    </table>
+                            </table>
 
 
             <?php
@@ -69,7 +66,7 @@
                 elseif(isset($categoryInstrument)):
                     foreach ($categoryInstrument as $item):
             ?>
-                    <table class="tableauCartesArticle" style=" background:rgba(0, 0, 0, .1) url(<?=$item->picture?>)" >
+                    <table class="tableauCartesArticle" style="background: no-repeat url(<?=$item->pictureMiddle?>)bottom ; background-size:cover ; background-color:#574d4d11;" >
 
 
                         <tr>

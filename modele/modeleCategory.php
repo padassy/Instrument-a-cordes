@@ -21,7 +21,7 @@ function fetchCategory(PDO $db): array  {
 // récupère une catégorie complète
 function recupCategoryById(PDO $db,int $idcategory):array|bool{
     $db->beginTransaction();
-    $recup = "SELECT c.id as idCategory,c.nameCategory,i.id as idInstrument, i.title,LEFT(i.description,500)as shortdescription,i.history,i.technics,i.visible, i.intro,p.id AS idPicture,  p.name as pictureName, p.description as pictureDescription,p.image as picture 
+    $recup = "SELECT c.id as idCategory,c.nameCategory,i.id as idInstrument, i.title,LEFT(i.description,500)as shortdescription,i.history,i.technics,i.visible, i.intro,p.id AS idPicture,  p.name as pictureName, p.description as pictureDescription,p.imageMiddle as pictureMiddle 
     FROM  instrument i
     LEFT JOIN picture p 
     ON i.id = p.id_instrument 

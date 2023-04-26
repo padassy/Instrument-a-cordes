@@ -20,6 +20,9 @@
     </header>
 
     <div class="pageContact">
+        <div id="boxIntroContact">
+
+        
 
         <h1>Contactez-nous</h1>
             <p>Une envie de nous envoyer un message ?</p>
@@ -27,6 +30,7 @@
             <p>Un problème rencontré lors de votre visite ?</p>
             <p>Veuillez utiliser ce formulaire pour prendre contact avec nous !</p>
             <p>Je me ferai un plaisir de vous répondre dans les plus brefs délais .</p>
+        </div>
               <form action="" method="post" id="contactForm">
                 <div class="boxLabelInputContact">
                     <label for="nom">nom</label>

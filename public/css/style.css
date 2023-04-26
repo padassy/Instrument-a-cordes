@@ -16,6 +16,7 @@ body {
 html , body{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 body, .container{
     flex-grow: 1;
@@ -214,10 +215,17 @@ input[type="checkbox"]{
 
 
 /*                          CSS Homepage                                    */
+.container{
+    width: 80%;
+    margin: 5% auto 0;
+    
+
+}
 #boxLogoTitreHome{
     text-align: center;
     width: 80%;
-    margin: 0 auto 2.5%;
+    margin: 0 auto ;
+    
    
 }
 
@@ -248,25 +256,36 @@ input[type="checkbox"]{
     margin-top: 10%;
 }
 .tableauCartesHome{
-    width: 90%;
-    height: 45vh;
+    height: 30%;
     margin:0 auto 10%;
-    border: 1.5px solid black;
+    border: 0.5px solid black;
     border-radius: 15px;
-    padding: 1em;
+    padding-right: 1em;
     background-color: #FDF7F7;
+    overflow: hidden;
+    border-spacing: 0 ;
+    background-size: cover ;
+    background-repeat: no-repeat;
 }
 
 .imageTableauHome{
     width: 50%;
+    margin: 0;
+    padding: 0;
 }
 .imageTableauHome img{
+    height: 100%;
     width: 100%;
+    object-fit:cover;
+    
 }
 .texteTableauHome{
     text-align: center;
 }
-
+.lienInstrumentHome a{
+    text-decoration: none;
+    color: black;
+}
 
 /*                          CSS Formulaire contact                          */
 
@@ -440,7 +459,7 @@ input[type="checkbox"]{
 
 /*                                                                  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CSS Tablette !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                                 */ 
 @media screen and (min-width: 550px) and (max-width: 1023px)  {
-
+/*                              CSS du header                                     */
     .header-mobile {
         display: none;
     }
@@ -450,36 +469,166 @@ input[type="checkbox"]{
     .menu-btn{
         display: none;
     }
+    header{
+        height: 20vh;
+    }
     
     .header-div-tablet{
         margin: 0;
-        min-width: 100%;
+        width: 100%;
         min-height: 20vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        background-image: url("../assets/fond-tablet.png");
+        background-image: url("../assets/fond-desktop.png");
         background-repeat: no-repeat;
-        object-fit: cover;
-        opacity: 0.73;
+        background-size: cover;-
     }
+
+    /*                                              CSS Nav                                             */
     .nav-desktop{
+        margin-top:10vh;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        align-items:flex-end;
         justify-content: space-evenly;
         
     }
     .nav-desktop a{
         text-decoration: none;
-        color: #000;
+        color: #fff;
         font-weight: bold;
-        font-size: 25px;
+        font-size: 1.75em;
         margin-left: 30px;
     }
+
+
+
+                /*                          CSS Homepage                            */
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+    }
+    #boxLogoTitreHome{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        text-align: left;
+    }
     
+    #boxIntro{
+        text-align: left;
+        
+    }
+    #boxLogo {
+        width:125%;
+        margin-right: 2.5%;
 }
+    
+    #boxIntro p {
+        text-align: justify;
+        width: 90%;
+    }
+    
+    #boxTableauCartesHome{
+        margin: 0 auto;
+    }
+    
+    .tableauCartesHome{
+        width: 100%;
+        height: 100%;
+        
+    
+    }
+    .imageTableauHome{
+        height: 110%;
+    }
+    #boxTableauCartesHome{
+        margin: 0 0 10%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(5,1fr);
+        gap: 2.5% 5%;
+    }
+    
+    .texteTableauHome{
+        text-align: justify;
+    }
+
+
+                /*                 CSS Footer               */
+    footer{
+
+    }
+    #footNav{
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        height: 10%;
+        align-self:center;
+    }
+
+                    /*              CSS Article                 */
+    #boxCategory{
+        font-size: 1.5em;
+    }
+    #boxPageArticle{
+        width: 90%;
+        background-color: #AFA7A7;
+        margin: 5% auto 0;
+        border-radius: 15px 15px 0 0 ;
+    }
+
+    #boxTableauCartesArticle{
+        margin-top: 10%;
+    }
+    .tableauCartesArticle{
+        height: 20%;
+        background-color: #574d4d2f;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 0%;
+      
+    }
+
+    .titleTableauArticle{
+        text-align: center;
+        font-size: 2em;
+    }
+
+    .texteTableauArticle{
+        text-align: justify;
+    }
+    /*                                          CSS contact                             */
+
+    .pageContact{
+        display: flex;
+        flex-direction: row ;
+        align-items:baseline;
+        color: #D9D9D9;
+        font-size: 1.25em;
+    }
+    #boxIntroContact{
+        width: 50%;
+    }
+    #contactForm {
+        width: 45%;
+    }
+
+
+
+
+}
+           /*                             !!!!!!!!!!!!!!!!!!!!!!!!!!!!! DESKTOP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                           ¨*/
 @media screen and (min-width: 1024px){
+    .container{
+        width: 95%;
+    }
+    header{
+        width: 100%;
+    }
     .header-mobile{
         display: none;
     }
@@ -494,19 +643,17 @@ input[type="checkbox"]{
         align-items: center;
         justify-content: center;
         background-repeat: no-repeat;
-        opacity: 0.73;
         object-fit: cover;
     }
-    .header-tablet{
-        min-width: 100%;
-        min-height: 100%;
-        justify-content: end;
-    }
+    
     .nav-desktop{
         display: flex;
         justify-content: flex-end;
         align-items: flex-start;
         
+    }
+    .nav-div-desktop{
+        margin-top: 5%;
     }
     .nav-desktop a{
         text-decoration: none;
@@ -533,35 +680,120 @@ input[type="checkbox"]{
         display: block;
     }
 
-#boxLogoTitreHome{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    #boxTableauCartesHome{
 
-#boxIntro{
-    text-align: center;
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows: repeat(3,1fr);
+        gap:  2.5%;
+        margin-bottom: 10%;
+    }
+    .tableauCartesHome{
+        width: 100%;
+        height: 100%;
+        
+        
     
+    }
+    .imageTableauHome{
+        height: 100%;
+    }
+    #boxLogoTitreHome{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        text-align: left;
+    }
+    
+    #boxIntro{
+        text-align: left;
+        
+    }
+    #boxLogo {
+        width:125%;
+        margin-right: 2.5%;
 }
+    
+    #boxIntro p {
+        text-align: justify;
+        width: 90%;
+    }
+    #footNav{
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        height: 10%;
+        align-self:center;
+    }
+                    /*              CSS Article                 */
+    #boxCategory{
+        font-size: 1.5em;
+    }
+    #boxPageArticle{
+        width: 90%;
+        background-color: #AFA7A7;
+        margin: 5% auto 0;
+        border-radius: 15px 15px 0 0 ;
+    }
 
-#boxIntro p {
-    text-align: justify;
+    #boxTableauCartesArticle{
+        margin-top: 10%;
+    }
+    .tableauCartesArticle{
+        height: 20%;
+        background-color: #574d4d11;
+      
+    }
+
+    .titleTableauArticle{
+        text-align: center;
+        font-size: 2em;
+    }
+
+    .header-div-tablet{
+        margin: 0;
+        width: 100%;
+        min-height: 20vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/fond-desktop.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    /*                                              CSS Nav                                             */
+    .nav-desktop{
+        margin-top:10vh;
+        display: flex;
+        align-items:flex-end;
+        justify-content: space-evenly;
+        
+    }
+    .nav-desktop a{
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.75em;
+        margin-left: 30px;
+    }
+
+
+    /*                                          CSS contact                             */
+
+.pageContact{
+    display: flex;
+    flex-direction: row ;
+    align-items:baseline;
+    color: #D9D9D9;
+    font-size: 1.25em;
 }
-
-#boxTableauCartesHome{
-    width: 80%;
-    margin: 0 auto;
+#boxIntroContact{
+    width: 50%;
 }
-
-.tableauCartesHome{
-    height: 10vh;
-    width: 100%;
-    border: 1px sol;
-
+#contactForm {
+    width: 45%;
 }
-
-
-
 }
 
