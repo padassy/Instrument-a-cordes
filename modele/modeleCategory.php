@@ -10,7 +10,7 @@ function fetchCategory(PDO $db): array  {
     }catch(Exception $e){
         die($e->getMessage());
     }
-    $category= $query->fetchAll(PDO::FETCH_ASSOC);
+    $category= $query->fetchAll(PDO::FETCH_OBJ);
     $query->closeCursor();
     return $category;
     
@@ -43,7 +43,7 @@ function recupCategoryById(PDO $db,int $idcategory):array|bool{
         die($e->getMessage());
         
     }
-    $bp = $prepare->fetchAll(PDO::FETCH_ASSOC);
+    $bp = $prepare->fetchAll(PDO::FETCH_OBJ);
 
 
     
