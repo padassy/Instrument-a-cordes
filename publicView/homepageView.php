@@ -28,8 +28,8 @@
                 <img src="../public/assets/logo.png" alt="">
             </div>
 
-        <div id="boxIntro">
-            <h1>Mélodie en Cordes</h1>
+            <div id="boxIntro">
+                <h1>Mélodie en Cordes</h1>
                 <h2>Bienvenue sur mon blog dédié aux instruments à cordes !</h2>
                     <p>Que vous soyez un musicien expérimenté, un débutant ou simplement un passionné de musique, vous trouverez ici des
                     informations utiles et intéressantes sur les différents types d'instruments à cordes, leur histoire, leur fabrication, leur
@@ -43,9 +43,10 @@
                     <p>Alors installez-vous confortablement, sortez votre instrument préféré et plongez avec moi dans l'univers fascinant des
                     instruments à cordes !</p>
 
+            </div>
         </div>
-        
         <hr>
+        
         <div id="boxTableauCartesHome">
 
             <?php
@@ -58,21 +59,21 @@
 
 
                         <tr>
-                            <th colspan="4">
+                            <td rowspan="4" colspan="2" class="imageTableauHome">
+                                <img src="<?=$item['imageMiddle']?>" alt="<?=$item['name']?>">
+                            </td>
+                            
+                        </tr>
+
+
+                        <tr>
+                            <th>
                                 <h2><?= $item['title'] ?></h2>
                             </th>
                         </tr>
 
 
                         <tr>
-                            <td rowspan="3" colspan="2" class="imageTableauHome">
-                                <img src="<?=$item['image']?>" alt="<?=$item['name']?>">
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td></td>
                             <td class="texteTableauHome">
                                 <p><?=truncate($item['shortIntro'])?></p>
                             </td>
@@ -81,7 +82,7 @@
 
 
                         <tr>
-                            <td colspan="4">
+                            <td class="lienInstrumentHome">
                                 <a href="?idInstrument=<?=$item['id']?>">Lire la suite...</a>
                             </td>
                         </tr>

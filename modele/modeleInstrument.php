@@ -4,7 +4,7 @@
 
 function fetchInstrumentHome(pdo $dbConnect):array { 
 
-        $sql= $dbConnect->query('SELECT i.id, i.title , LEFT(i.description,200)as shortIntro, p.image,p.name FROM instrument i LEFT JOIN picture p ON i.id = p.id_instrument LIMIT 10');
+        $sql= $dbConnect->query('SELECT i.id, i.title , LEFT(i.description,200)as shortIntro, p.imageMini,p.name,p.imageMiddle,p.imageFull FROM instrument i LEFT JOIN picture p ON i.id = p.id_instrument LIMIT 10');
         $dataInstrumentHome= $sql->fetchAll(PDO::FETCH_ASSOC);
         $sql->closeCursor();
         return $dataInstrumentHome;
@@ -35,7 +35,7 @@ function fetchDetailInstrument (pdo $dbConnect, int $idInstrument):array{
     LEFT JOIN sound s 
     ON  i.id = s.id_instrument
     WHERE i.id=$idInstrument;");
-    $sql4 = $dbConnect->query("SELECT GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.image SEPARATOR '||') as picture 
+    $sql4 = $dbConnect->query("SELECT GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.imageMini SEPARATOR '||') as pictureMini 
     FROM instrument i
     LEFT JOIN picture p 
     ON i.id = p.id_instrument  
@@ -113,7 +113,7 @@ function fetchAllInstrument (pdo $dbConnect) :array{
     ON  i.id = s.id_instrument
     GROUP BY i.id
     ;");
-    $sql4 = $dbConnect->query("SELECT GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.image SEPARATOR '||') as picture 
+    $sql4 = $dbConnect->query("SELECT GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.imageMini SEPARATOR '||') as pictureMini,GROUP_CONCAT(p.imageMiddle SEPARATOR '||') as pictureMiddle,GROUP_CONCAT(p.imageFull SEPARATOR '||') as pictureFull 
     FROM instrument i
     LEFT JOIN picture p 
     ON i.id = p.id_instrument 
@@ -172,7 +172,7 @@ function fetchAllInstrument (pdo $dbConnect) :array{
     $dbConnect->beginTransaction();
    
     $sql = $dbConnect->query("   SELECT s.id AS idSound , s.name  as soundName, s.audio as sound, s.description  as soundDescription, 
-    p.id AS idPicture,  p.name as pictureName, p.description  as pictureDescription,p.image  as picture ,
+    p.id AS idPicture,  p.name as pictureName, p.description  as pictureDescription,p.imageMini  as picture ,
     m.id as idMusician, m.firstname  as musicianFirstname, m.biography as musicianBio,  m.lastname as musicianLastname,
     (SELECT i.id as idInstrument, i.title, i.description, i.history, i.intro, i.technics,i.visible, 
     GROUP_CONCAT(c.id SEPARATOR '||') as idCategory,GROUP_CONCAT(c.namecategory) as nameCategory
@@ -324,7 +324,7 @@ $datasAllInstrument[]=$dataAllInstrument;
         $sql = $dbConnect->prepare("SELECT i.id as idInstrument, i.title, i.description, i.history, i.intro, i.technics,i.visible, 
     GROUP_CONCAT(c.id SEPARATOR '||') as idCategory,GROUP_CONCAT(c.namecategory) as nameCategory,    
     (SELECT GROUP_CONCAT(s.id) AS idSound , GROUP_CONCAT(s.name SEPARATOR '||') as soundName, GROUP_CONCAT(s.audio SEPARATOR '||')as sound, GROUP_CONCAT(s.description SEPARATOR '||') as soundDescription, 
-    GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.image SEPARATOR '||') as picture ,
+    GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.imageMini SEPARATOR '||') as picture ,
     GROUP_CONCAT(m.id) as idMusician, GROUP_CONCAT(m.firstname SEPARATOR '||') as musicianFirstname, GROUP_CONCAT(m.biography SEPARATOR '||')as musicianBio,  GROUP_CONCAT(m.lastname SEPARATOR '||')as musicianLastname
     FROM instrument i
     LEFT JOIN sound s 
