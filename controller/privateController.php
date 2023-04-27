@@ -4,7 +4,7 @@ if (isset($_GET['p'])) {
     switch ($_GET['p']) {
         case "add":
             $category = fetchCategory($dbConnect);
-            var_dump($category);
+            #var_dump($category);
             require_once "../privateView/add.php";
         break;
     }
