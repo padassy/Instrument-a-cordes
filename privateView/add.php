@@ -16,20 +16,23 @@
 </head>
 
 <body>
+    <?php
+var_dump($_POST);
+    ?>
     <div class="vh-100 vw-100 d-flex justify-content-center align-items-center flex-column">
         <h1 class="mb-5">Ajouter un article</h1>
-        <form action="" class="article row g-3 h-50 w-75 " id="formAddInstrument" method="POST" width="" >
+        <form action="" class="article row g-3 h-50 w-75 " id="formAddInstrument" method="POST" width="" name="formAddArticle" >
             <div class="row">
                 <div class="form-group form-control col">
                     <label for="titre" class="w-25">Titre :</label>
-                    <input type="text" class="w-50 " aria-describedby="" name="titre">
+                    <input type="text" class="w-100" aria-describedby="" name="titre">
                     
                 </div>
             
             
                 <div class="form-group form-control col ">
-                <label for="category" class="">Catégorie :</label>
-                    <select name="category" class=" w-50 form-select" id="category" value="" >
+                    <select name="category" class=" w-100 form-select h-100" id="category" value="" >
+                    <option selected>Catégorie :</option>
                         <?php
                         if(isset($category)):
                             foreach($category as $item):
@@ -39,7 +42,7 @@
                         <?php
                             endforeach;
                         endif;
-                        var_dump($_POST);
+                        
 
                         ?>
                        
@@ -47,12 +50,12 @@
                 </div>
 
                 
-                <div class="form-group col">
-                    <div class="">
-                        <input type="checkbox" class="btn-check w-25 mx-auto" id="btn-check-2-outlined" checked autocomplete="off" value="1">
+                <div class="form-group col form-check">
+                    
+                        <input type="checkbox" class="btn-check w-25 mx-auto" id="btn-check-2-outlined" name="btn-check-2-outlined" checked value="1">
                         <label class="btn btn-outline-secondary w-50 " for="btn-check-2-outlined">Visible</label><br>
                 
-                    </div>
+                    
                 </div> 
             </div>           
             <div class="row">
@@ -101,30 +104,30 @@
                         <div class="row">    
                             <div class="form-group form-control col">
                                 <label for="titleImage" class="w-25">Titre de l'image:</label>
-                                <input type="text" class="" aria-describedby="" name="titleImage"></input>
+                                <input type="text" class="w-100" aria-describedby="" name="titleImage"></input>
                             </div>
                     
                             <div class="form-group form-control col">
                                 <label for="descriptionImage w-25" class="">Description :</label>
-                                <textarea type="text" class="" aria-describedby="" name="descriptionImage" rows="3"></textarea>
+                                <textarea type="text" class="w-100" aria-describedby="" name="descriptionImage" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="custom-file col">
-                                <label class="custom-file-label w-25" for="customFile">Image miniature</label>
+                                <label class="custom-file-label w-50" for="customFile">Image miniature</label>
                                 <input type="file" class="custom-file-input" id="customFile" lang="fr">
                                 
                             </div>
                     
                         
                             <div class="custom-file col">
-                                <label class="custom-file-label w-25" for="customFile2">Image moyenne</label>
+                                <label class="custom-file-label w-50" for="customFile2">Image moyenne</label>
                                 <input type="file" class="custom-file-input" id="customFile2" lang="fr">
                                 
                             </div>
                     
                             <div class="custom-file col">
-                                <label class="custom-file-label w-25" for="customFile3">Grande image</label>
+                                <label class="custom-file-label w-50" for="customFile3">Grande image</label>
                                 <input type="file" class="custom-file-input" id="customFile3" lang="fr">
                                 
                             </div>
@@ -139,18 +142,18 @@
                         <div class="row">
                             <div class="form-group form-control col">
                                 <label for="firstnameMuscian" class="w-25">Prénom du musicien :</label>
-                                <input type="text" class="" aria-describedby="" name="firstnameMuscian"></input>
+                                <input type="text" class="w-100" aria-describedby="" name="firstnameMuscian"></input>
                             </div>
                 
                             <div class="form-group form-control col">
                                 <label for="lastnameMusician" class="w-25">Nom du musicien :</label>
-                                <input type="text" class="" aria-describedby="" name="lastnameMusician"></input>
+                                <input type="text" class="w-100" aria-describedby="" name="lastnameMusician"></input>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group form-control col">
-                                <label for="descriptionImage" class="w-25">Biographie :</label>
-                                <textarea type="text" class="" aria-describedby="" name="descriptionImage"></textarea>
+                                <label for="bioMusician" class="w-25">Biographie :</label>
+                                <textarea type="text" class="w-100" aria-describedby="" name="bioMusician"></textarea>
                             </div>
                         </div>
                     </div>
@@ -165,11 +168,11 @@
 
                             <div class="form-group form-control col">
                                 <label for="titleSound" class="">Titre du son :</label>
-                                <input type="text" class="" aria-describedby="" name="titleSound"></input>
+                                <input type="text" class="w-100" aria-describedby="" name="titleSound"></input>
                             </div>
                             <div class="custom-file  col">
                                 <label class="custom-file-label" for="customFile">Ajouter un audio :</label>
-                                <input type="file" class="custom-file-input" id="customFile" lang="fr">
+                                <input type="file" class="custom-file-input w-100" id="customFile" lang="fr">
                                     
                             </div>
                         </div>
@@ -177,7 +180,7 @@
                 </div>
             </div>
             
-                <input type="submit" class="btn btn-secondary w-25 mx-auto"></input>
+                <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="addInstrument"></input>
                 <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">
             
                 

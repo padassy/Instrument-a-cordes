@@ -36,6 +36,21 @@ if(isset($_GET['disconnect'])){
     exit();
 }
 
+if(isset($_POST['addInstrument'])){
+            
+            $lastInsert = addInstrument($dbConnect,$_POST['titre'],$_POST['intro'],$_POST['description'],$_POST['history'],$_POST['technics'],$_POST['btn-check-2-outlined']);
+            echo "ajout instrument";
+            addInstrumentHasCategory($dbConnect, $lastInsert,$_POST['category']);
+            echo "ajout table many to many";
+            if(!empty($_POST['firstnameMusician'])&&!empty($_POST['lastnameMusician'])){
+                echo "musicien";
+                addMusician($dbConnect, $_POST['firstnameMusician'],$_POST['lastnameMusician'],$_POST['bioMusician'],$lastInsert);
+                echo "ajout musicien";
+            }
+        
+    
+};
+
 
 
 

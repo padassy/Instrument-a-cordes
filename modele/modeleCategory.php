@@ -43,7 +43,7 @@ function recupCategoryById(PDO $db,int $idcategory):array|bool{
         die($e->getMessage());
         
     }
-    $bp = $prepare->fetchAll(PDO::FETCH_OBJ);
+    $bp = $prepare->fetchAll(PDO::FETCH_ASSOC);
 
 
     

@@ -57,8 +57,8 @@ function fetchDetailInstrument (pdo $dbConnect, int $idInstrument):array{
     
     
         $instrument = $assetInstru + $assetInstru[0];
-       $instrument = $instrument + $assetInstru[1];
-       $instrument = $instrument + $assetInstru[2];
+        $instrument = $instrument + $assetInstru[1];
+        $instrument = $instrument + $assetInstru[2];
     
     unset($instrument[0]);
     unset($instrument[1]);
@@ -75,7 +75,7 @@ function fetchDetailInstrument (pdo $dbConnect, int $idInstrument):array{
     $sql2->closeCursor();
     $sql3->closeCursor();
     $sql4->closeCursor();
-
+    #var_dump($instrument);
     return $instrument;
 }
 
@@ -130,7 +130,7 @@ function fetchAllInstrument (pdo $dbConnect) :array{
      for ($i=0;$i<$nbRow;$i++){
         array_push($assetInstru[$i], $assetInstru2[$i]);
     }
-    for ($i=0;$i<10;$i++){
+    for ($i=0;$i<$nbRow;$i++){
         array_push($assetInstru[$i], $assetInstru3[$i]);
     }
     for ($i=0;$i<$nbRow;$i++){
@@ -166,6 +166,78 @@ function fetchAllInstrument (pdo $dbConnect) :array{
     return $assetInstru;
 }
 
+
+
+function addInstrument(pdo $dbConnect,string $title,string $intro, string|null $description, string $history,string $technics,string $visible){
+
+    
+    $title = htmlspecialchars(strip_tags(trim($title)), ENT_QUOTES);
+    $intro = htmlspecialchars(strip_tags(trim($intro)), ENT_QUOTES);
+    $description = htmlspecialchars(strip_tags(trim($description)), ENT_QUOTES);
+    $history = htmlspecialchars(strip_tags(trim($history)), ENT_QUOTES);
+    $technics = htmlspecialchars(strip_tags(trim($technics)), ENT_QUOTES);
+    $visible= htmlspecialchars(strip_tags(trim($visible)), ENT_QUOTES);
+    
+
+    $sql = $dbConnect->prepare("INSERT INTO instrument (title,intro,description,history,technics,visible) VALUES (?,?,?,?,?,?)");
+    $sql->bindParam(1, $title ,PDO::PARAM_STR);
+    $sql->bindParam(2, $intro ,PDO::PARAM_STR);
+    $sql->bindParam(3,$description,PDO::PARAM_STR);
+    $sql->bindParam(4, $history ,PDO::PARAM_STR);
+    $sql->bindParam(5, $technics ,PDO::PARAM_STR);
+    $sql->bindParam(6,$visible,PDO::PARAM_STR);
+    try{
+        $sql->execute();
+        $lastId = $dbConnect->lastInsertId();
+        return $lastId;
+    }catch(Exception $e){
+        return $e = "Problème lors de l'ajout veuillez recommencer";
+
+    }
+}
+
+function addInstrumentHasCategory( pdo $dbConnect, string $lastId, string $category){
+    $category =htmlspecialchars(strip_tags(trim($category)), ENT_QUOTES);
+    $lastId =htmlspecialchars(strip_tags(trim($lastId)), ENT_QUOTES);
+
+
+    $sql = $dbConnect->prepare("INSERT INTO category_has_instrument (category_id, instrument_id) VALUES (?,?)");
+
+
+    $sql->bindParam(1, $category ,PDO::PARAM_STR);
+    $sql->bindParam(2, $lastId ,PDO::PARAM_STR);
+
+
+    try{
+        $sql->execute();
+    }catch(Exception $e){
+        return $e = "Problème lors de l'ajout veuillez recommencer";
+
+    }
+}
+
+function addMusician(pdo $dbConnect, string $firstname, string $lastname, string $bio, string $idInstrument ){
+    $firstname = htmlspecialchars(strip_tags(trim($firstname)), ENT_QUOTES);
+    $lastname = htmlspecialchars(strip_tags(trim($lastname)), ENT_QUOTES);
+    $bio = htmlspecialchars(strip_tags(trim($bio)), ENT_QUOTES);
+    $idInstrument = htmlspecialchars(strip_tags(trim($idInstrument)), ENT_QUOTES);
+
+
+    $sql = $dbConnect->prepare("INSERT INTO musician (firstname, lastname, biography, instrument_id) VALUES (?,?,?,?)");
+
+    $sql->bindParam(1, $firstname ,PDO::PARAM_STR);
+    $sql->bindParam(2, $lastname ,PDO::PARAM_STR);
+    $sql->bindParam(3, $bio ,PDO::PARAM_STR);
+    $sql->bindParam(4, $idInstrument ,PDO::PARAM_STR);
+
+    try{
+        $sql->execute();
+    }catch(Exception $e){
+        return $e = "Problème lors de l'ajout veuillez recommencer";
+
+    }
+    
+}
 /*function fetchAllInstrument (pdo $dbConnect){
     
 
