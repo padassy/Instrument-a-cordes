@@ -190,6 +190,7 @@ var_dump($_POST);
         </form>
         <a href="?p=addMusician">Musician</a>
         <a href="?p=addPicture">Picture</a>
+        
     </div>
 </body>
 

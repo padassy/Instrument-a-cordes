@@ -9,20 +9,20 @@ if (isset($_GET['p'])) {
         break;
         case "addMusician":
             $category = fetchCategory($dbConnect);
-            var_dump($category);
+            #var_dump($category);
             include_once "../privateView/addMusician.php";
         break;
         case "addPicture":
             $category = fetchCategory($dbConnect);
             $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
-            var_dump($category);
-            var_dump($dataInstrumentAdminAdd);
+            #var_dump($category);
+            #var_dump($dataInstrumentAdminAdd);
             include_once "../privateView/addPicture.php";
         break;
         case "addSound":
             $category = fetchCategory($dbConnect);
             $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
-            var_dump($category);
+            #var_dump($category);
             include_once "../privateView/addSound.php";
         break;
     }
@@ -107,15 +107,17 @@ if(isset($_POST['addMusician'])){
 
 
 if(isset($_POST['addPicture'])){
-    if(!empty($_POST['name'])&&!empty($_POST['description'])&&!empty($_FILES)&&!empty($_POST['idInstrument'])){
+    echo"picture before ";
+    if(!empty($_POST['titleImage'])&&!empty($_POST['descriptionImage'])&&!empty($_FILES)&&!empty($_POST['idInstrument'])){
 
 
         echo "picture";
         try{
-        addPicture($dbConnect, $_POST['name'],$_POST['description'],$_Files,$lastInsert);
+            echo "ajout picture";
+        addPicture($dbConnect, $_POST['titleImage'],$_POST['descriptionImage'],$_FILES,$_POST['idInstrument']);
 
         }catch(Exception $e){
-        echo "ajout picture";
+        echo "probleme picture";
         $e = throw new Exception ("Un problème est survenu lors de l ajout de l'image, veuillez réessayer");
         }
     }
