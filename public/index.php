@@ -1,15 +1,15 @@
 <?php
 session_start();
 require_once "../config.php";
+require_once "../vendor/autoload.php";
 require_once "../model/modelConstructor.php";
+require_once "../model/modelMyUpload.php";
 require_once "../model/modelAdmin.php";
 require_once "../model/modelCategory.php";
 require_once "../model/modelInstrument.php";
 require_once "../model/modelMusician.php";
 require_once "../model/modelPicture.php";
 require_once "../model/modelSound.php";
-require_once "../vendor/autoload.php";
-require_once "../model/modelMyUpload.php";
 
 try {
     $dbConnect = new PDO (DB_TYPE.':host='.DB_HOST.';port='.DB_PORT.';dbname='.DB_NAME.';charset='.DB_CHARSET,
@@ -32,6 +32,7 @@ if(isset($_SESSION['uniqueId'])&&$_SESSION['uniqueId']==session_id()){
 }else{ 
         require_once "../controller/publicController.php";
 } 
+
 
 
 $dbConnect = null;

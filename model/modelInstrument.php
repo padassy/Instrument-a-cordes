@@ -228,6 +228,15 @@ function addInstrumentHasCategory( pdo $dbConnect, string $lastId, string $categ
 }
 
 
+function deleteInstrument(pdo $dbConnect, int $idInstrumentDelete){
+    $sql= $dbConnect->prepare('DELETE FROM instrument WHERE id='.$idInstrumentDelete.'');
+    $sql->execute();
+    header("Location:./");
+    return "Projet bien effacé";
+}
+
+
+
 /*function fetchAllInstrument (pdo $dbConnect){
     
 

@@ -1,5 +1,10 @@
 <?php
-
+function allMusician(pdo $dbConnect){
+    $sql= $dbConnect->query('SELECT m.id as idMusician , m.firstname as musicianFirstname, m.lastname as musicianLastname, m.biography as musicianBio  FROM  musician m ');
+          $dataMusician= $sql->fetchAll(PDO::FETCH_ASSOC);
+          $sql->closeCursor();
+          return $dataMusician;
+  }
 
 function addMusician(pdo $dbConnect, string $firstname, string $lastname, string $bio, string $idInstrument ){
     $firstname = htmlspecialchars(strip_tags(trim($firstname)), ENT_QUOTES);
@@ -22,4 +27,11 @@ function addMusician(pdo $dbConnect, string $firstname, string $lastname, string
 
     }
     
+}
+
+function deleteMusician(pdo $dbConnect, int $idInstrumentDelete){
+    $sql= $dbConnect->prepare('DELETE FROM musician WHERE id='.$idInstrumentDelete.'');
+    $sql->execute();
+    header("Location:./");
+    return "Projet bien effacé";
 }

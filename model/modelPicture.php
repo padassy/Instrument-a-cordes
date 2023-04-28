@@ -1,30 +1,69 @@
 <?php
+function allPicture(pdo $dbConnect){
+  $sql= $dbConnect->query('SELECT p.id as idPicture , p.name as pictureName, p.description as pictureDescription, p.imageMini as pictureMini,p.imageMiddle as pictureMiddle,p.imageFull as pictureFull  FROM  picture p ');
+        $dataPicture= $sql->fetchAll(PDO::FETCH_ASSOC);
+        $sql->closeCursor();
+        return $dataPicture;
+}
+
+
 
 function addPicture(pdo $dbConnect, string $name, string $description, array $files, string $idInstrument ){
     
     
     $name = htmlspecialchars(strip_tags(trim($name)), ENT_QUOTES);
     $description = htmlspecialchars(strip_tags(trim($description)), ENT_QUOTES);
-    $files = new modelMyUpload($_FILES['customFile']);
+    $files = new modelMyUpload($_FILES['addPicture']);
+ 
     #var_dump($files);
+   
     if ($files->uploaded) {
       $files->file_new_name_body   = $name;
+     # $files->file_safe_name = true;
       $files->image_convert = 'jpg';
       $files->image_resize         = true;
-      $files->image_x              = 100;
+      $files->image_x              = 500;
       $files->image_ratio_y        = true;
-      $files->process('assets/test');
+      $files->process('assets/imgInstrument/mini');
+      $pathMini = $files->file_dst_pathname ;
+      $files->file_new_name_body   = $name;
+      #$$files->file_safe_name = true;
+      $files->image_convert = 'jpg';
+      $files->image_resize         = true;
+      $files->image_x              = 1000;
+      $files->image_ratio_y        = true;
+      $files->process('assets/imgInstrument/middle');
+      $pathMiddle = $files->file_dst_pathname ;
+      $files->file_new_name_body   = $name;
+     # $files->file_safe_name = true;
+      $files->image_convert = 'jpg';
+      $files->image_resize         = true;
+      $files->image_x              = 2500;
+      $files->image_ratio_y        = true;
+      $files->process('assets/imgInstrument/full');
+      $pathFull = $files->file_dst_pathname ;
+
       if ($files->processed) {
-        echo 'image resized';
+        echo 'image resized ';
         $files->clean();
+        
       } else {
         echo 'error : ' . $files->error;
       }
-    }
-    $pathMini = $files->file_dst_pathname ;
+    
+  }
+    
+  
     var_dump($pathMini); 
-    var_dump($files);
+    var_dump($pathMiddle); 
+    var_dump($pathFull); 
+    $pathMini = str_replace("\\", "/", $pathMini); 
+    $pathMiddle = str_replace("\\", "/", $pathMiddle); 
+    $pathFull = str_replace("\\", "/", $pathFull);
     $idInstrument = (int) (htmlspecialchars(strip_tags(trim($idInstrument)), ENT_QUOTES));
+    $pathMini = htmlspecialchars(strip_tags(trim($pathMini)), ENT_QUOTES);
+    $pathMiddle = htmlspecialchars(strip_tags(trim($pathMiddle)), ENT_QUOTES);
+    $pathFull = htmlspecialchars(strip_tags(trim($pathFull)), ENT_QUOTES);
     
 
     $sql = $dbConnect->prepare("INSERT INTO picture (name, description, imageMini, imageMiddle, imageFull, id_instrument) VALUES (?,?,?,?,?,?)");
@@ -32,8 +71,8 @@ function addPicture(pdo $dbConnect, string $name, string $description, array $fi
     $sql->bindParam(1, $name ,PDO::PARAM_STR);
     $sql->bindParam(2, $description ,PDO::PARAM_STR);
     $sql->bindParam(3, $pathMini ,PDO::PARAM_STR);
-    $sql->bindParam(4,  $path ,PDO::PARAM_STR);
-    $sql->bindParam(5,  $path ,PDO::PARAM_STR);
+    $sql->bindParam(4,  $pathMiddle ,PDO::PARAM_STR);
+    $sql->bindParam(5,  $pathFull ,PDO::PARAM_STR);
     $sql->bindParam(6,  $idInstrument ,PDO::PARAM_INT);
     
    echo "traitement donnees";
@@ -46,4 +85,11 @@ function addPicture(pdo $dbConnect, string $name, string $description, array $fi
     }
     
 }
-#function addPicture($dbConnect);
+
+
+function deletePicture(pdo $dbConnect, int $idInstrumentDelete){
+  $sql= $dbConnect->prepare('DELETE FROM picture WHERE id='.$idInstrumentDelete.'');
+  $sql->execute();
+  header("Location:./");
+  return "Projet bien effacé";
+}#function addPicture($dbConnect);

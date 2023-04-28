@@ -17,7 +17,10 @@
 
 <body>
     <?php
-var_dump($_POST);
+                  require_once "../publicView/src/error.php";
+
+#var_dump($_POST);
+#var_dump($_FILES);
     ?>
     <div class="vh-100 vw-100 d-flex justify-content-center align-items-center flex-column">
         <h1 class="mb-5">Ajouter un article</h1>
@@ -113,24 +116,11 @@ var_dump($_POST);
                             </div>
                         </div>
                         <div class="row">
-                            <div class="custom-file col">
-                                <label class="custom-file-label w-50" for="customFile">Image miniature</label>
-                                <input type="file" class="custom-file-input" id="customFile" lang="fr">
-                                
-                            </div>
-                    
-                        
-                            <div class="custom-file col">
-                                <label class="custom-file-label w-50" for="customFile2">Image moyenne</label>
-                                <input type="file" class="custom-file-input" id="customFile2" lang="fr">
-                                
-                            </div>
-                    
-                            <div class="custom-file col">
-                                <label class="custom-file-label w-50" for="customFile3">Grande image</label>
-                                <input type="file" class="custom-file-input" id="customFile3" lang="fr">
-                                
-                            </div>
+                    <div class="custom-file col">
+                        <label class="custom-file-label w-50" for="addPicture">Image :</label>
+                        <input type="file" class="custom-file-input" id="addPicture" lang="fr" name="addPicture" >
+                                        
+                    </div>
                         </div>
                     </div>
                 </div>
@@ -170,9 +160,15 @@ var_dump($_POST);
                                 <label for="titleSound" class="">Titre du son :</label>
                                 <input type="text" class="w-100" aria-describedby="" name="titleSound"></input>
                             </div>
+
+                            <div class="form-group form-control col">
+                                <label for="titleSound" class="">Titre du son :</label>
+                                <textarea type="text" class="w-100" aria-describedby="" name="descriptionSound"></textarea>
+                            </div>
+
                             <div class="custom-file  col">
-                                <label class="custom-file-label" for="customFile">Ajouter un audio :</label>
-                                <input type="file" class="custom-file-input w-100" id="customFile" lang="fr">
+                                <label class="custom-file-label" for="addSound">Ajouter un audio :</label>
+                                <input type="file" class="custom-file-input w-100" id="addSound" lang="fr" name="addSound">
                                     
                             </div>
                         </div>
@@ -190,6 +186,7 @@ var_dump($_POST);
         </form>
         <a href="?p=addMusician">Musician</a>
         <a href="?p=addPicture">Picture</a>
+        <a href="?p=addSound">Son</a>
         
     </div>
 </body>

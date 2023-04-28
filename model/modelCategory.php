@@ -28,7 +28,8 @@ function recupCategoryById(PDO $db,int $idcategory):array|bool{
     INNER JOIN category_has_instrument ih 
     ON i.id=ih.instrument_id
     INNER JOIN  category c
-    ON ih.category_id = c.id where c.id=?;" ;
+    ON ih.category_id = c.id where c.id=?
+    GROUP BY i.id;" ;
  
     
     $prepare = $db -> prepare($recup);

@@ -10,7 +10,11 @@
 </head>
 <body>
     <nav>
-        <?php include_once "src/menu.php"?>
+        <?php 
+        require_once "src/menu.php";
+        require_once "../publicView/src/error.php";
+
+        ?>
     </nav>
 
     <section>
