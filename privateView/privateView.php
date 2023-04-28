@@ -19,7 +19,7 @@
     <div class="container">
       <div class="d-flex flex-row-reverse bd-highlight">
       <button type="button" class="btn btn-primary" ><a href="?disconnect" class="link-light">Se Déconnecter</a></button>
-      <button class="btn btn-dark" type="submit"><a href="?p=add" class=" link-light">Nouvel Article</a></button>
+      <button class="btn btn-dark" type="submit"><a href="?p=addInstrument" class=" link-light">Nouvel Article</a></button>
       </div>
      
         <table>

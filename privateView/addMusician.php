@@ -12,51 +12,44 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-    <title>Ajout</title>
+    <title>Ajout Musicien</title>
 </head>
 
 <body>
-    <form action="" method="POST">
-        <div style="">  
-                <div class="collapse collapse-vertical" id="collapsePicture">
-                    <div class="card card-body" style="width: 100%;">      
-                        <div class="row">    
+    <?php
+    var_dump($_FILES);
+    var_dump($_POST);
+    ?>
+    <div class="vh-100 vw-100 d-flex justify-content-center align-items-center flex-column">
+        <form class="article row g-3 " id="formAddInstrument" method="POST" width="" name="formAddArticle" enctype="multipart/form-data">
+            <div style="">  
+                       
+            <div class="row">
                             <div class="form-group form-control col">
-                                <label for="titleImage" class="w-25">Titre de l'image:</label>
-                                <input type="text" class="w-100" aria-describedby="" name="titleImage"></input>
+                                <label for="firstnameMusician" class="w-25">Prénom du musicien :</label>
+                                <input type="text" class="w-100" aria-describedby="" name="firstnameMusician"></input>
                             </div>
-                    
+                
                             <div class="form-group form-control col">
-                                <label for="descriptionImage w-25" class="">Description :</label>
-                                <textarea type="text" class="w-100" aria-describedby="" name="descriptionImage" rows="3"></textarea>
+                                <label for="lastnameMusician" class="w-25">Nom du musicien :</label>
+                                <input type="text" class="w-100" aria-describedby="" name="lastnameMusician"></input>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="custom-file col">
-                                <label class="custom-file-label w-50" for="customFile">Image miniature</label>
-                                <input type="file" class="custom-file-input" id="customFile" lang="fr">
-                                
-                            </div>
-                    
-                        
-                            <div class="custom-file col">
-                                <label class="custom-file-label w-50" for="customFile2">Image moyenne</label>
-                                <input type="file" class="custom-file-input" id="customFile2" lang="fr">
-                                
-                            </div>
-                    
-                            <div class="custom-file col">
-                                <label class="custom-file-label w-50" for="customFile3">Grande image</label>
-                                <input type="file" class="custom-file-input" id="customFile3" lang="fr">
-                                
+                            <div class="form-group form-control col">
+                                <label for="bioMusician" class="w-25">Biographie :</label>
+                                <textarea type="text" class="w-100" aria-describedby="" name="bioMusician"></textarea>
                             </div>
                         </div>
+                            
+                      
                     </div>
                 </div>
-            </div>
+                <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="addMusician"></input>
+                <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">
 
             </form>
-
+    </div>
 
 </body>
 

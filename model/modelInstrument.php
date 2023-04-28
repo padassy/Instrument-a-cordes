@@ -9,6 +9,13 @@ function fetchInstrumentHome(pdo $dbConnect):array {
         $sql->closeCursor();
         return $dataInstrumentHome;
 }
+function fetchInstrumentAdminAdd(pdo $dbConnect):array { 
+
+        $sql= $dbConnect->query('SELECT i.id, i.title FROM instrument i ');
+        $dataInstrumentAdminAdd= $sql->fetchAll(PDO::FETCH_OBJ);
+        $sql->closeCursor();
+        return $dataInstrumentAdminAdd;
+}
 function truncate (string $text): string{
     // fonction qui trouve un numérique qui est la dernière sous chaine dans une chaine pour remplacer $cut : " "
     $cut = strrpos($text, ' ');
@@ -195,7 +202,7 @@ function addInstrument(pdo $dbConnect,string $title,string $intro, string|null $
         $lastId = $dbConnect->lastInsertId();
         return $lastId;
     }catch(Exception $e){
-        return $e = "Problème lors de l'ajout veuillez recommencer";
+        return $e = throw new Exception ( "Problème lors de l'ajout veuillez recommencer");
 
     }
 }
@@ -215,33 +222,12 @@ function addInstrumentHasCategory( pdo $dbConnect, string $lastId, string $categ
     try{
         $sql->execute();
     }catch(Exception $e){
-        return $e = "Problème lors de l'ajout veuillez recommencer";
+        return $e =  throw new Exception ("Problème lors de l'ajout veuillez recommencer");
 
     }
 }
 
-function addMusician(pdo $dbConnect, string $firstname, string $lastname, string $bio, string $idInstrument ){
-    $firstname = htmlspecialchars(strip_tags(trim($firstname)), ENT_QUOTES);
-    $lastname = htmlspecialchars(strip_tags(trim($lastname)), ENT_QUOTES);
-    $bio = htmlspecialchars(strip_tags(trim($bio)), ENT_QUOTES);
-    $idInstrument = (int) (htmlspecialchars(strip_tags(trim($idInstrument)), ENT_QUOTES));
-    echo "traitement" ;
 
-    $sql = $dbConnect->prepare("INSERT INTO musician (firstname, lastname, biography, id_instrument) VALUES (?,?,?,?)");
-
-    $sql->bindParam(1, $firstname ,PDO::PARAM_STR);
-    $sql->bindParam(2, $lastname ,PDO::PARAM_STR);
-    $sql->bindParam(3, $bio ,PDO::PARAM_STR);
-    $sql->bindParam(4, $idInstrument ,PDO::PARAM_INT);
-    echo"avant le try";
-    try{
-        $sql->execute();
-    }catch(Exception $e){
-        return $e = "Problème lors de l'ajout veuillez recommencer";
-
-    }
-    
-}
 /*function fetchAllInstrument (pdo $dbConnect){
     
 

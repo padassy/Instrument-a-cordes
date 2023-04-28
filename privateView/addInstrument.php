@@ -21,7 +21,7 @@ var_dump($_POST);
     ?>
     <div class="vh-100 vw-100 d-flex justify-content-center align-items-center flex-column">
         <h1 class="mb-5">Ajouter un article</h1>
-        <form action="" class="article row g-3 h-50 w-75 " id="formAddInstrument" method="POST" width="" name="formAddArticle" >
+        <form action="" class="article row g-3 h-50 w-75 " id="formAddInstrument" method="POST" width="" name="formAddArticle" enctype="multipart/form-data" >
             <div class="row">
                 <div class="form-group form-control col">
                     <label for="titre" class="w-25">Titre :</label>
@@ -188,6 +188,8 @@ var_dump($_POST);
 
 
         </form>
+        <a href="?p=addMusician">Musician</a>
+        <a href="?p=addPicture">Picture</a>
     </div>
 </body>
 

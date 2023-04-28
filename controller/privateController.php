@@ -2,10 +2,28 @@
 if (isset($_GET['p'])) {
 
     switch ($_GET['p']) {
-        case "add":
+        case "addInstrument":
             $category = fetchCategory($dbConnect);
             #var_dump($category);
-            include_once "../privateView/add.php";
+            include_once "../privateView/addInstrument.php";
+        break;
+        case "addMusician":
+            $category = fetchCategory($dbConnect);
+            var_dump($category);
+            include_once "../privateView/addMusician.php";
+        break;
+        case "addPicture":
+            $category = fetchCategory($dbConnect);
+            $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
+            var_dump($category);
+            var_dump($dataInstrumentAdminAdd);
+            include_once "../privateView/addPicture.php";
+        break;
+        case "addSound":
+            $category = fetchCategory($dbConnect);
+            $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
+            var_dump($category);
+            include_once "../privateView/addSound.php";
         break;
     }
             
@@ -47,7 +65,7 @@ if(isset($_POST['addInstrument'])){
             addInstrumentHasCategory($dbConnect, $lastInsert,$_POST['category']);
 
             }catch(Exception $e){
-                $e = "Un problème est survenu lors de l'ajout de l'instrument veuillez réessayer";
+                $e = throw new Exception("Un problème est survenu lors de l'ajout de l'instrument veuillez réessayer");
             }
             #echo "ajout instrument";
 
@@ -64,7 +82,7 @@ if(isset($_POST['addInstrument'])){
 
             }catch(Exception $e){
             #echo "ajout musicien";
-            $e = "Un problème est survenu lors de l ajout de l'artiste, veuillez réessayer";
+            $e = throw new Exception("Un problème est survenu lors de l ajout de l'artiste, veuillez réessayer");
             }
         }
         
@@ -72,6 +90,38 @@ if(isset($_POST['addInstrument'])){
         
     }
 };
+
+if(isset($_POST['addMusician'])){
+    if(!empty($_POST['lastnameMusician'])&&!empty($_POST['firstnameMusician'])&&!empty($lastInsert)){
+
+        #echo "musicien";
+        try{
+        addMusician($dbConnect, $_POST['firstnameMusician'],$_POST['lastnameMusician'],$_POST['bioMusician'],$lastInsert);
+
+        }catch(Exception $e){
+        #echo "ajout musicien";
+        $e = throw new Exception ("Un problème est survenu lors de l ajout de l'artiste, veuillez réessayer");
+        }
+    }
+}
+
+
+if(isset($_POST['addPicture'])){
+    if(!empty($_POST['name'])&&!empty($_POST['description'])&&!empty($_FILES)&&!empty($_POST['idInstrument'])){
+
+
+        echo "picture";
+        try{
+        addPicture($dbConnect, $_POST['name'],$_POST['description'],$_Files,$lastInsert);
+
+        }catch(Exception $e){
+        echo "ajout picture";
+        $e = throw new Exception ("Un problème est survenu lors de l ajout de l'image, veuillez réessayer");
+        }
+    }
+
+}
+
 
 
 
