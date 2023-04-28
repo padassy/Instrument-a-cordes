@@ -45,8 +45,9 @@ elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
     $idInstrument = (int) $_GET['idInstrument'];
     $dataDetailInstrument = fetchDetailInstrument($dbConnect,$idInstrument);
     $detailInstrument = new modelInstrument($dataDetailInstrument);
+    var_dump($detailInstrument);
     include_once "../publicView/detailArticleView.php";
-   # var_dump($detailInstrument);
+  
 
 
 

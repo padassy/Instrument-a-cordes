@@ -12,6 +12,7 @@
          <nav>
             <?php
               require_once "../publicView/src/menu.php";
+              require_once "../publicView/src/error.php";
             ?>
         </nav>
     </header>
@@ -22,7 +23,7 @@
                 foreach($category as $item):
                 ?>
                     
-                        <a href="?idCategory=<?=$item['idCategory']?>"><?=$item['nameCategory']?></a>
+                        <a href="?idCategory=<?=$item->idCategory?>"><?=$item->nameCategory?></a>
                     
                 <?php
                     endforeach;

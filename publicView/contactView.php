@@ -14,6 +14,8 @@
         <nav>
             <?php
             require_once "../publicView/src/menu.php";
+            require_once "../publicView/src/error.php";
+
             ?>
         </nav>
 

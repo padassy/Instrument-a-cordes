@@ -10,7 +10,11 @@
 </head>
 <body>
     <nav>
-        <?php include_once "src/menu.php"?>
+        <?php 
+        require_once "src/menu.php";
+        require_once "../publicView/src/error.php";
+
+        ?>
     </nav>
 
     <section>
@@ -33,7 +37,9 @@
         </article>  
         
         <article>
-            <p><?=$detailInstrument->picture?></p>
+        <?php if(isset($item->pictureMini)):?>
+            <p><?=$detailInstrument->pictureMini?></p>
+            <?php endif;?>
         </article>
         <article>
             <?php

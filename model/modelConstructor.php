@@ -9,8 +9,8 @@ class modelInstrument {
     public int $visible;
     public null|string $history ;
     public null|string $intro ;
-    public int|string  $idCategory ;
-    public string $nameCategory ;
+    public int|null|string  $idCategory ;
+    public string|null $nameCategory ;
     public int|null|string $idMusician;
     public null|string $musicianFirstname ;
     public null|string $musicianLastname ;
@@ -185,7 +185,7 @@ class modelInstrument {
     /**
      * Get the value of idCategory
      */
-    public function getIdCategory(): int|string 
+    public function getIdCategory(): int|string|null
     {
         return $this->idCategory;
     }
@@ -193,7 +193,7 @@ class modelInstrument {
     /**
      * Set the value of idCategory
      */
-    public function setIdCategory(int|string  $idCategory): self
+    public function setIdCategory(int|string|null  $idCategory): self
     {
         $this->idCategory = $idCategory;
 
@@ -203,7 +203,7 @@ class modelInstrument {
     /**
      * Get the value of nameCategory
      */
-    public function getNameCategory(): string
+    public function getNameCategory(): string|null
     {
         return $this->nameCategory;
     }
@@ -211,7 +211,7 @@ class modelInstrument {
     /**
      * Set the value of nameCategory
      */
-    public function setNameCategory(string $nameCategory): self
+    public function setNameCategory(string|null $nameCategory): self
     {
         $this->nameCategory = $nameCategory;
 
