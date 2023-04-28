@@ -53,7 +53,9 @@
                 <tr>
     
                     <td>
+                        <?php if(isset($item->pictureMini)):?>
                         <img src="<?=$item->pictureMini?>" width="100%" alt="">
+                        <?php endif; ?>
                     </td>
                     <td>
                         <h2><?=$item->title?></h2>

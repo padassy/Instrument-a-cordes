@@ -41,28 +41,21 @@ function fetchDetailInstrument (pdo $dbConnect, int $idInstrument):array{
     ON i.id = p.id_instrument  
     WHERE i.id=$idInstrument;");
 
-    $assetInstru = $sql->fetch(PDO::FETCH_ASSOC);
-    $assetInstru2 = $sql2->fetch(PDO::FETCH_ASSOC);
-    $assetInstru3 = $sql3->fetch(PDO::FETCH_ASSOC);
-    $assetInstru4 = $sql4->fetch(PDO::FETCH_ASSOC);
+$assetInstru = array();
+$queries = array($sql, $sql2, $sql3, $sql4);
 
-   
-        array_push($assetInstru, $assetInstru2);
-    
-   
-        array_push($assetInstru, $assetInstru3);
-    
-    
-        array_push($assetInstru, $assetInstru4);
-    
-    
-        $instrument = $assetInstru + $assetInstru[0];
-        $instrument = $instrument + $assetInstru[1];
-        $instrument = $instrument + $assetInstru[2];
-    
-    unset($instrument[0]);
-    unset($instrument[1]);
-    unset($instrument[2]);
+for ($i = 0; $i < count($queries); $i++) {
+    $result = $queries[$i]->fetch(PDO::FETCH_ASSOC);
+    if ($result) {
+        array_push($assetInstru, $result);
+    }
+}
+
+$instrument = $assetInstru[0] + $assetInstru[1] + $assetInstru[2];
+unset($instrument[0]);
+unset($instrument[1]);
+unset($instrument[2]);
+
     
 
     
@@ -126,26 +119,37 @@ function fetchAllInstrument (pdo $dbConnect) :array{
     $assetInstru2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
     $assetInstru3 = $sql3->fetchAll(PDO::FETCH_ASSOC);
     $assetInstru4 = $sql4->fetchAll(PDO::FETCH_ASSOC);
-    
-     for ($i=0;$i<$nbRow;$i++){
-        array_push($assetInstru[$i], $assetInstru2[$i]);
+
+    for ($i=0;$i<$nbRow;$i++){
+        if (isset($assetInstru2[$i])) {
+            $assetInstru[$i][] = $assetInstru2[$i];
+        }
     }
     for ($i=0;$i<$nbRow;$i++){
-        array_push($assetInstru[$i], $assetInstru3[$i]);
+        if (isset($assetInstru3[$i])) {
+            $assetInstru[$i][] = $assetInstru3[$i];
+        }
     }
     for ($i=0;$i<$nbRow;$i++){
-        array_push($assetInstru[$i], $assetInstru4[$i]);
+        if (isset($assetInstru4[$i])) {
+            $assetInstru[$i][] = $assetInstru4[$i];
+        }
     }
     for ($i=0;$i<$nbRow;$i++){
-       $assetInstru[$i] = $assetInstru[$i]+ $assetInstru[$i][0];
-       $assetInstru[$i] = $assetInstru[$i]+ $assetInstru[$i][1];
-       $assetInstru[$i] = $assetInstru[$i]+ $assetInstru[$i][2];
+        if (isset($assetInstru[$i][0]) && isset($assetInstru[$i][1]) && isset($assetInstru[$i][2])) {
+            $assetInstru[$i] = $assetInstru[$i]+ $assetInstru[$i][0];
+            $assetInstru[$i] = $assetInstru[$i]+ $assetInstru[$i][1];
+            $assetInstru[$i] = $assetInstru[$i]+ $assetInstru[$i][2];
+        }
     }
     for ($i=0;$i<$nbRow;$i++){
-       unset($assetInstru[$i][0]);
-       unset($assetInstru[$i][1]);
-       unset($assetInstru[$i][2]);
+        if (isset($assetInstru[$i][0]) && isset($assetInstru[$i][1]) && isset($assetInstru[$i][2])) {
+            unset($assetInstru[$i][0]);
+            unset($assetInstru[$i][1]);
+            unset($assetInstru[$i][2]);
+        }
     }
+
 
 
    /* echo "datasInstru";
@@ -176,7 +180,7 @@ function addInstrument(pdo $dbConnect,string $title,string $intro, string|null $
     $description = htmlspecialchars(strip_tags(trim($description)), ENT_QUOTES);
     $history = htmlspecialchars(strip_tags(trim($history)), ENT_QUOTES);
     $technics = htmlspecialchars(strip_tags(trim($technics)), ENT_QUOTES);
-    $visible= htmlspecialchars(strip_tags(trim($visible)), ENT_QUOTES);
+    $visible= (int) htmlspecialchars(strip_tags(trim($visible)), ENT_QUOTES);
     
 
     $sql = $dbConnect->prepare("INSERT INTO instrument (title,intro,description,history,technics,visible) VALUES (?,?,?,?,?,?)");
@@ -185,7 +189,7 @@ function addInstrument(pdo $dbConnect,string $title,string $intro, string|null $
     $sql->bindParam(3,$description,PDO::PARAM_STR);
     $sql->bindParam(4, $history ,PDO::PARAM_STR);
     $sql->bindParam(5, $technics ,PDO::PARAM_STR);
-    $sql->bindParam(6,$visible,PDO::PARAM_STR);
+    $sql->bindParam(6,$visible,PDO::PARAM_INT);
     try{
         $sql->execute();
         $lastId = $dbConnect->lastInsertId();
@@ -197,15 +201,15 @@ function addInstrument(pdo $dbConnect,string $title,string $intro, string|null $
 }
 
 function addInstrumentHasCategory( pdo $dbConnect, string $lastId, string $category){
-    $category =htmlspecialchars(strip_tags(trim($category)), ENT_QUOTES);
-    $lastId =htmlspecialchars(strip_tags(trim($lastId)), ENT_QUOTES);
+    $category = (int) htmlspecialchars(strip_tags(trim($category)), ENT_QUOTES);
+    $lastId = (int) htmlspecialchars(strip_tags(trim($lastId)), ENT_QUOTES);
 
 
     $sql = $dbConnect->prepare("INSERT INTO category_has_instrument (category_id, instrument_id) VALUES (?,?)");
 
 
-    $sql->bindParam(1, $category ,PDO::PARAM_STR);
-    $sql->bindParam(2, $lastId ,PDO::PARAM_STR);
+    $sql->bindParam(1, $category ,PDO::PARAM_INT);
+    $sql->bindParam(2, $lastId ,PDO::PARAM_INT);
 
 
     try{
@@ -220,16 +224,16 @@ function addMusician(pdo $dbConnect, string $firstname, string $lastname, string
     $firstname = htmlspecialchars(strip_tags(trim($firstname)), ENT_QUOTES);
     $lastname = htmlspecialchars(strip_tags(trim($lastname)), ENT_QUOTES);
     $bio = htmlspecialchars(strip_tags(trim($bio)), ENT_QUOTES);
-    $idInstrument = htmlspecialchars(strip_tags(trim($idInstrument)), ENT_QUOTES);
+    $idInstrument = (int) (htmlspecialchars(strip_tags(trim($idInstrument)), ENT_QUOTES));
+    echo "traitement" ;
 
-
-    $sql = $dbConnect->prepare("INSERT INTO musician (firstname, lastname, biography, instrument_id) VALUES (?,?,?,?)");
+    $sql = $dbConnect->prepare("INSERT INTO musician (firstname, lastname, biography, id_instrument) VALUES (?,?,?,?)");
 
     $sql->bindParam(1, $firstname ,PDO::PARAM_STR);
     $sql->bindParam(2, $lastname ,PDO::PARAM_STR);
     $sql->bindParam(3, $bio ,PDO::PARAM_STR);
-    $sql->bindParam(4, $idInstrument ,PDO::PARAM_STR);
-
+    $sql->bindParam(4, $idInstrument ,PDO::PARAM_INT);
+    echo"avant le try";
     try{
         $sql->execute();
     }catch(Exception $e){

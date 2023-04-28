@@ -33,7 +33,9 @@
         </article>  
         
         <article>
-            <p><?=$detailInstrument->picture?></p>
+        <?php if(isset($item->pictureMini)):?>
+            <p><?=$detailInstrument->pictureMini?></p>
+            <?php endif;?>
         </article>
         <article>
             <?php

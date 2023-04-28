@@ -141,8 +141,8 @@ var_dump($_POST);
                     <div class="card card-body" style="width: 100%;"> 
                         <div class="row">
                             <div class="form-group form-control col">
-                                <label for="firstnameMuscian" class="w-25">Prénom du musicien :</label>
-                                <input type="text" class="w-100" aria-describedby="" name="firstnameMuscian"></input>
+                                <label for="firstnameMusician" class="w-25">Prénom du musicien :</label>
+                                <input type="text" class="w-100" aria-describedby="" name="firstnameMusician"></input>
                             </div>
                 
                             <div class="form-group form-control col">
