@@ -28,38 +28,37 @@ var_dump($instrumentById);*/
         <h1 class="mb-5">Ajouter un article</h1>
         <form action="" class="article row g-3 h-100 w-100 " id="formUpdateInstrument" method="POST" width="" name="formUpdateArticle" enctype="multipart/form-data" >
             <div class="row">
-
-                <div class="form-group form-control col">
+            <div class="form-group form-control col">
                     <label for="titleSound" class="">Titre du son :</label>
-                    <input type="text" class="w-100" aria-describedby="" name="titleSound" value="<?=$soundById->soundName?>" ></input>
+                    <input type="text" class="w-100" aria-describedby="" name="titleSound" value="<?=$soundById->soundName?>"></input>
                 </div>
                 <div class="form-group form-control col">
-                    <label for="titleSound" class="">Titre du son :</label>
+                    <label for="descriptionSound" class="">Description du son :</label>
                     <textarea type="text" class="w-100" aria-describedby="" name="descriptionSound"><?=$soundById->soundDescription?></textarea>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group form-control col ">
-                        <select name="idInstrument" class=" w-100 form-select h-100" id="idInstrument" value="" >
-                        <option selected>Instrument</option>
-                        <?php
-                        if(isset($dataInstrumentAdminAdd)):
-                            foreach($dataInstrumentAdminAdd as $item):
-
-                        ?>
-                        <option value="<?=$item->id?>"> <?=$item->title?></option>
-                        <?php
-                            endforeach;
-                        endif;
-                                
-
-                        ?>
-                            
-                        </select>
-                </div>
                 
-
-                            <div class=" col">
+                <div class="row">
+                    <div class="form-group form-control col ">
+                        <select name="idInstrument" class=" w-100 form-select h-100" id="idInstrument" value="" >
+                            <option selected value="<?=$soundById->idInstrument?>"><?=$soundById->title?></option>
+                            <?php
+                            if(isset($dataInstrumentAdminAdd)):
+                                foreach($dataInstrumentAdminAdd as $item):
+                                    
+                                    ?>
+                            <option value="<?=$item->id?>"> <?=$item->title?></option>
+                            <?php
+                                endforeach;
+                            endif;
+                            
+                            
+                            ?>
+                                
+                            </select>
+                    </div>
+                    
+                    
+                    <div class=" col">
                             <figure>
                                 <figcaption>Ecouter l'extrait sonore :</figcaption>
                                 <audio src="<?=$instrumentById->soundDescription?>" preload="auto" ></audio>
@@ -78,7 +77,7 @@ var_dump($instrumentById);*/
                 </div>
             </div>
             <div class="row">
-                <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="UpdateSound"></input>
+                <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="updateSound"></input>
                 <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">
           
         
@@ -93,6 +92,9 @@ var_dump($instrumentById);*/
         <a href="?p=addSound">Son</a>
         
     </div>
+    <?php
+
+var_dump($_POST)    ?>
 </body>
 
 </html>

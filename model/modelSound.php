@@ -5,15 +5,21 @@ function allSound(pdo $dbConnect){
         $sql->closeCursor();
         return $dataSound;
 }
+function soundById(pdo $dbConnect,int $idSound){
+  $sql= $dbConnect->query("SELECT i.title,s.id as idSound, s.name as soundName, s.audio as sound, s.description as soundDescription,s.id_instrument as idInstrument  FROM  sound s INNER JOIN instrument i ON s.id_instrument = i.id WHERE s.id ='$idSound'");
+        $dataSound= $sql->fetch(PDO::FETCH_ASSOC);
+        $sql->closeCursor();
+        return $dataSound;
+}
 
 
-function updateSound(pdo $dbConnect, string $name, string $description, array $files, string $idInstrument, $idSound ){
+function updateSound(pdo $dbConnect, string $name, string $description, string $idInstrument, $idSoundUpdate ){
     
     
     $name = htmlspecialchars(strip_tags(trim($name)), ENT_QUOTES);
     $description = htmlspecialchars(strip_tags(trim($description)), ENT_QUOTES);
-    $idInstrument = htmlspecialchars(strip_tags(trim($idInstrument)), ENT_QUOTES);
     $idInstrument = (int) (htmlspecialchars(strip_tags(trim($idInstrument)), ENT_QUOTES));
+    $idSoundUpdate = (int) (htmlspecialchars(strip_tags(trim($idSoundUpdate)), ENT_QUOTES));
    /* $files = new modelMyUpload($_FILES['addSound']);
  
     #var_dump($files);
@@ -47,14 +53,13 @@ function updateSound(pdo $dbConnect, string $name, string $description, array $f
     */
     
 
-    $sql = $dbConnect->prepare("UPDATE sound name=?, audio=?, description=?, id_instrument=?  WHERE id = $idSound");
+    $sql = $dbConnect->prepare("UPDATE sound SET name=?, description=?, id_instrument=?  WHERE id = $idSoundUpdate");
 
     
 
     $sql->bindParam(1, $name ,PDO::PARAM_STR);
-    $sql->bindParam(2, $path ,PDO::PARAM_STR);
-    $sql->bindParam(3, $description ,PDO::PARAM_STR);
-    $sql->bindParam(4,  $idInstrument ,PDO::PARAM_INT);
+    $sql->bindParam(2, $description ,PDO::PARAM_STR);
+    $sql->bindParam(3,  $idInstrument ,PDO::PARAM_INT);
     
    echo "traitement donnees";
     try{

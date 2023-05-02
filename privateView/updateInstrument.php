@@ -87,7 +87,7 @@ var_dump($instrumentById);*/
         
             </div>
 
-
+            <img src="value="<?=$instrumentById->pictureMiddle?>   > 
 
             <p>
             <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePicture" aria-expanded="false" aria-controls="collapsePicture">
@@ -103,32 +103,32 @@ var_dump($instrumentById);*/
             </button>
             </p>
 
-            <div style="">  
+ <!--            <div style="">  
                 <div class="collapse collapse-vertical" id="collapsePicture">
                     <div class="card card-body" style="width: 100%;"> 
-                    <img src="value="<?=$instrumentById->pictureMiddle?>   >  
+                     
                         <div class="row">    
                             <div class="form-group form-control col">
                                 <label for="titleImage" class="w-25">Titre de l'image:</label>
-                                <input type="text" class="w-100 h-75" aria-describedby="" name="titleImage" value="<?=$instrumentById->pictureName?>"></input>
+                                <input type="text" class="w-100 h-75" aria-describedby="" name="titleImage" value="<#?=$instrumentById->pictureName?>"></input>
                             </div>
                     
                             <div class="form-group form-control col">
                                 <label for="descriptionImage w-25" class="">Description :</label>
-                                <textarea type="text" class="w-100 h-75" aria-describedby="" name="descriptionImage" rows="3" value="<?=$instrumentById->pictureDescription?>"></textarea>
+                                <textarea type="text" class="w-100 h-75" aria-describedby="" name="descriptionImage" rows="3" value="<#?=$instrumentById->pictureDescription?>"></textarea>
                             </div>
                         </div>
                             <div class="form-group form-control col">
                                 <label for="imageMini" class="w-25">Lien de la miniature l'image:</label>
-                                <input type="text" class="w-100 h-75" aria-describedby="" name="imageMini" value="<?=$instrumentById->pictureMini?>"></input>
+                                <input type="text" class="w-100 h-75" aria-describedby="" name="imageMini" value="<#?=$instrumentById->pictureMini?>"></input>
                             </div>
                             <div class="form-group form-control col">
                                 <label for="imageMiddle" class="w-25">Lien de la moyenne :</label>
-                                <input type="text" class="w-100 h-75" aria-describedby="" name="imageMiddle" value="<?=$instrumentById->pictureMiddle?>"></input>
+                                <input type="text" class="w-100 h-75" aria-describedby="" name="imageMiddle" value="<#?=$instrumentById->pictureMiddle?>"></input>
                             </div>
                             <div class="form-group form-control col">
                                 <label for="imageFull" class="w-25">Lien de la grande :</label>
-                                <input type="text" class="w-100 h-75" aria-describedby="" name="imageFull" value="<?=$instrumentById->pictureFull?>"></input>
+                                <input type="text" class="w-100 h-75" aria-describedby="" name="imageFull" value="<#?=$instrumentById->pictureFull?>"></input>
                             </div>
                     
                  
@@ -140,7 +140,7 @@ var_dump($instrumentById);*/
                                         
                             </div>
                         </div> -->
-                    </div>
+<!--                     </div>
                 </div>
             </div>
         
@@ -169,19 +169,19 @@ var_dump($instrumentById);*/
             </div>
 
 
-            <div style="">  
-                <div class="collapse collapse-vertical" id="collapseSound">
+            <div style="">   -->
+<!--                 <div class="collapse collapse-vertical" id="collapseSound">
                     <div class="card card-body" style="width: 100%;"> 
                         <div class="row">
 
                             <div class="form-group form-control col">
                                 <label for="titleSound" class="">Titre du son :</label>
-                                <input type="text" class="w-100 h-75" aria-describedby="" name="titleSound" value="<?=$instrumentById->soundName?>"></input>
+                                <input type="text" class="w-100 h-75" aria-describedby="" name="titleSound" value="<#?=$instrumentById->soundName?>"></input>
                             </div>
 
                             <div class="form-group form-control col">
                                 <label for="titleSound" class="">Titre du son :</label>
-                                <textarea type="text" class="w-100 h-75" aria-describedby="" name="descriptionSound" value="<?=$instrumentById->soundDescription?>"></textarea>
+                                <textarea type="text" class="w-100 h-75" aria-describedby="" name="descriptionSound" value="<#?=$instrumentById->soundDescription?>"></textarea>
                             </div>
 
                         </div>
@@ -190,21 +190,21 @@ var_dump($instrumentById);*/
                             <div class=" col">
                             <figure>
                                 <figcaption>Ecouter l'extrait sonore :</figcaption>
-                                <audio src="<?=$instrumentById->soundDescription?>" preload="auto" ></audio>
+                                <audio src="<#?=$instrumentById->soundDescription?>" preload="auto" ></audio>
                             </figure>
 
                                 
                             </div>
 
-                           <!--  <div class="custom-file  col">
+                           <div class="custom-file  col">
                                 <label class="custom-file-label" for="addSound">Ajouter un audio :</label>
                                 <input type="file" class="custom-file-input w-100" id="addSound" lang="fr" name="addSound">
                                     
-                            </div> -->
+                            </div> 
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="UpdateInstrument"></input>
                 <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">

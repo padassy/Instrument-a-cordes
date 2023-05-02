@@ -5,16 +5,26 @@ function allPicture(pdo $dbConnect){
         $sql->closeCursor();
         return $dataPicture;
 }
+function pictureById(pdo $dbConnect,int $idPicture){
+  $sql= $dbConnect->query("SELECT i.title,p.id as idPicture , p.name as pictureName, p.description as pictureDescription, p.imageMini as pictureMini,p.imageMiddle as pictureMiddle,p.imageFull as pictureFull,p.id_instrument as idInstrument  FROM  picture p INNER JOIN instrument i ON p.id_instrument = i.id WHERE p.id ='$idPicture '");
+        $dataPicture= $sql->fetch(PDO::FETCH_ASSOC);
+        $sql->closeCursor();
+        return $dataPicture;
+}
 
 
 
-function updatePicture(pdo $dbConnect, string $name, string $description, $mini, $middle, $full, string $idInstrument, $idPicture ){
+function updatePicture(pdo $dbConnect, string $name, string $description,string $pathMini,string $pathMiddle,string $pathFull, $idInstrument, $idPicture ){
     
     
     $name = htmlspecialchars(strip_tags(trim($name)), ENT_QUOTES);
     $description = htmlspecialchars(strip_tags(trim($description)), ENT_QUOTES);
+    $pathMini = htmlspecialchars(strip_tags(trim($pathMini)), ENT_QUOTES);
+    $pathMiddle = htmlspecialchars(strip_tags(trim($pathMiddle)), ENT_QUOTES);
+    $pathFull = htmlspecialchars(strip_tags(trim($pathFull)), ENT_QUOTES);
     $idPicture = (int) htmlspecialchars(strip_tags(trim($idPicture)), ENT_QUOTES);
     $idInstrument = (int) htmlspecialchars(strip_tags(trim($idInstrument)), ENT_QUOTES);
+    #var_dump($idPicture);
     /*$files = new modelMyUpload($_FILES['addPicture']);
  
     #var_dump($files);
@@ -68,7 +78,7 @@ function updatePicture(pdo $dbConnect, string $name, string $description, $mini,
     $pathFull = htmlspecialchars(strip_tags(trim($pathFull)), ENT_QUOTES);*/
     
 
-    $sql = $dbConnect->prepare("UPDATE picture name=?, description=?, imageMini=?, imageMiddle=?, imageFull=?, id_instrument=? WHERE id = $idInstrument");
+    $sql = $dbConnect->prepare("UPDATE picture SET name=?, description=?, imageMini=?, imageMiddle=?, imageFull=?, id_instrument=? WHERE id = $idPicture");
 
     $sql->bindParam(1, $name ,PDO::PARAM_STR);
     $sql->bindParam(2, $description ,PDO::PARAM_STR);
@@ -77,10 +87,11 @@ function updatePicture(pdo $dbConnect, string $name, string $description, $mini,
     $sql->bindParam(5,  $pathFull ,PDO::PARAM_STR);
     $sql->bindParam(6,  $idInstrument ,PDO::PARAM_INT);
     
-   echo "traitement donnees";
+   #echo "traitement donnees";
     try{
         $sql->execute();
-        echo "execute";
+        #header("Refresh:3");
+       # echo "execute";
     }catch(Exception $e){
         return $e = throw new Exception ("Problème lors de l'ajout veuillez recommencer");
 

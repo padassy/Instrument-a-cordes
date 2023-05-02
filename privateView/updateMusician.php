@@ -17,7 +17,8 @@
 
 <body>
     <?php
-                  require_once "../publicView/src/error.php";
+                require_once "../publicView/src/error.php";
+               
 
 /*var_dump($_POST);
 #var_dump($_FILES);
@@ -26,13 +27,13 @@ var_dump($instrumentById);*/
     ?>
     <div class="vh-100 vw-100 d-flex justify-content-center align-items-center flex-column mr-0 ml-0 ">
         <h1 class="mb-5">Ajouter un article</h1>
-        <form action="" class="article row g-3 h-100 w-100 " id="formUpdateInstrument" method="POST" width="" name="formUpdateArticle" enctype="multipart/form-data" >
+        <form action="" class="article row g-3 h-100 w-100 " id="updateMusician" method="POST" width="" name="updateMusician" enctype="multipart/form-data" >
                 <div style="">  
                        
                        <div class="row">
                           <div class="form-group form-control col">
                                        <label for="firstnameMusician" class="w-25">Prénom du musicien :</label>
-                                       <input type="text" class="w-100" aria-describedby="" name="firstnameMusician" value="<?=$musicianById->musicianFirstName?>"></input>
+                                       <input type="text" class="w-100" aria-describedby="" name="firstnameMusician" value="<?=$musicianById->musicianFirstname?>"></input>
                                    </div>
                        
                                    <div class="form-group form-control col">
@@ -41,13 +42,13 @@ var_dump($instrumentById);*/
                                    </div>
                                </div>
                        <div class="row">
-                           <div class="form-group form-control col">
+                           <div class="form-group form-control col h-50">
                                <label for="bioMusician" class="w-25">Biographie :</label>
-                               <textarea type="text" class="w-100" aria-describedby="" name="bioMusician"><?=$musicianById->musicianBio?></textarea>
+                               <textarea type="text" class="w-100 h-75" aria-describedby="" name="bioMusician"><?=$musicianById->musicianBio?></textarea>
                            </div>
                        </div>
                        <div class="form-group form-control col ">
-                               <select name="idInstrument" class=" w-100 form-select h-100" id="idInstrument" value="" >
+                               <select name="idInstrument" class=" w-100 form-select" id="idInstrument" value="" >
                                <option value="<?=$musicianById->idInstrument?>" selected><?=$musicianById->title?></option>
                                <?php
                                if(isset($dataInstrumentAdminAdd)):
@@ -65,10 +66,10 @@ var_dump($instrumentById);*/
                                </select>
                            </div>
                                    
-                             
+                           
+                           <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="updateMusician"></input>
+                           <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">
                    </div>
-                   <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="updateMusician"></input>
-                   <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">
 
         </form>
         <a href="?p=addMusician">Musician</a>

@@ -18,19 +18,14 @@
 <body>
     <?php
                   require_once "../publicView/src/error.php";
-
-/*var_dump($_POST);
-#var_dump($_FILES);
-echo "instrument by id";
-var_dump($instrumentById);*/
     ?>
     <div class="vh-100 vw-100 d-flex justify-content-center align-items-center flex-column mr-0 ml-0 ">
         <h1 class="mb-5">Modifier une image</h1>
-        <form action="" class="article row g-3 h-100 w-100 " id="formUpdateInstrument" method="POST" width="" name="formUpdateArticle" enctype="multipart/form-data" >
+        <form action="" class="article row g-3 h-100 w-100 " id="updatePicture" method="POST" width="" name="updatePicture" >
             <div class="row">    
                     <div class="form-group form-control col ">
                         <select name="idInstrument" class=" w-100 form-select h-100" id="idInstrument" value="" >
-                        <option selected>Instrument</option>
+                        <option value="<?=$pictureById->idInstrument?>" selected><?=$pictureById->title?></option>
                         <?php
                         if(isset($dataInstrumentAdminAdd)):
                             foreach($dataInstrumentAdminAdd as $item):
@@ -68,14 +63,14 @@ var_dump($instrumentById);*/
                     </div>
                     <div class="form-group form-control col">
                         <label for="imageFull" class="w-25">Lien de la grande :</label>
-                        <input type="text" class="w-100" aria-describedby="" name="titleImage" value="<?=$pictureById->pictureFull?>"></input>
+                        <input type="text" class="w-100" aria-describedby="" name="imageFull" value="<?=$pictureById->pictureFull?>"></input>
                     </div>
                     
                 </div>
                       
             </div>
         
-            <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="updateImage"></input>
+            <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="updatePictureSubmit"></input>
             <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">
         
             
@@ -87,7 +82,7 @@ var_dump($instrumentById);*/
         <a href="?p=addMusician">Musician</a>
         <a href="?p=addPicture">Picture</a>
         <a href="?p=addSound">Son</a>
-        
+
     </div>
 </body>
 

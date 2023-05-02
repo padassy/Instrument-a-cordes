@@ -5,6 +5,12 @@ function allMusician(pdo $dbConnect){
           $sql->closeCursor();
           return $dataMusician;
   }
+function musicianById(pdo $dbConnect, int $idMusician){
+    $sql= $dbConnect->query("SELECT i.title,m.id as idMusician , m.firstname as musicianFirstname, m.lastname as musicianLastname, m.biography as musicianBio, m.id_instrument as idInstrument FROM  musician m INNER JOIN instrument i ON m.id_instrument = i.id WHERE m.id = '$idMusician'");
+          $dataMusician= $sql->fetch(PDO::FETCH_ASSOC);
+          $sql->closeCursor();
+          return $dataMusician;
+  }
 
 function addMusician(pdo $dbConnect, string $firstname, string $lastname, string $bio, string $idInstrument ){
     $firstname = htmlspecialchars(strip_tags(trim($firstname)), ENT_QUOTES);

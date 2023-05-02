@@ -1,12 +1,12 @@
 <?php
 
 class modelInstrument {
-    public int|string $idInstrument;
-    public string $title ;
-    public string $description ;
+    public null|int|string $idInstrument;
+    public null|string $title ;
+    public null|string $description ;
     public null|string $shortdescription ;
     public null|string $technics ;
-    public int $visible;
+    public null|int $visible;
     public null|string $history ;
     public null|string $intro ;
     public int|null|string  $idCategory ;
@@ -45,7 +45,12 @@ class modelInstrument {
     }
 
 
-    public function getIdInstrument(): int | string
+    
+
+    /**
+     * Get the value of idInstrument
+     */
+    public function getIdInstrument(): null|int|string
     {
         return $this->idInstrument;
     }
@@ -53,7 +58,7 @@ class modelInstrument {
     /**
      * Set the value of idInstrument
      */
-    public function setIdInstrument(int | string $idInstrument): self
+    public function setIdInstrument($idInstrument): self
     {
         $this->idInstrument = $idInstrument;
 
@@ -63,7 +68,7 @@ class modelInstrument {
     /**
      * Get the value of title
      */
-    public function getTitle(): string
+    public function getTitle(): null|string
     {
         return $this->title;
     }
@@ -71,7 +76,7 @@ class modelInstrument {
     /**
      * Set the value of title
      */
-    public function setTitle(string $title): self
+    public function setTitle(null|string $title): self
     {
         $this->title = $title;
 
@@ -81,7 +86,7 @@ class modelInstrument {
     /**
      * Get the value of description
      */
-    public function getDescription(): string
+    public function getDescription(): null|string
     {
         return $this->description;
     }
@@ -89,13 +94,17 @@ class modelInstrument {
     /**
      * Set the value of description
      */
-    public function setDescription(string $description): self
+    public function setDescription(null|string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
-    public function getshortDescription(): string
+
+    /**
+     * Get the value of shortdescription
+     */
+    public function getShortdescription(): null|string
     {
         return $this->shortdescription;
     }
@@ -103,7 +112,7 @@ class modelInstrument {
     /**
      * Set the value of shortdescription
      */
-    public function setshortDescription(string $shortdescription): self
+    public function setShortdescription(null|string $shortdescription): self
     {
         $this->shortdescription = $shortdescription;
 
@@ -113,7 +122,7 @@ class modelInstrument {
     /**
      * Get the value of technics
      */
-    public function getTechnics(): ?string
+    public function getTechnics(): null|string
     {
         return $this->technics;
     }
@@ -121,7 +130,7 @@ class modelInstrument {
     /**
      * Set the value of technics
      */
-    public function setTechnics(?string $technics): self
+    public function setTechnics(null|string $technics): self
     {
         $this->technics = $technics;
 
@@ -131,7 +140,7 @@ class modelInstrument {
     /**
      * Get the value of visible
      */
-    public function getVisible(): int
+    public function getVisible(): null|int
     {
         return $this->visible;
     }
@@ -139,7 +148,7 @@ class modelInstrument {
     /**
      * Set the value of visible
      */
-    public function setVisible(int $visible): self
+    public function setVisible(null|int $visible): self
     {
         $this->visible = $visible;
 
@@ -149,7 +158,7 @@ class modelInstrument {
     /**
      * Get the value of history
      */
-    public function getHistory(): string
+    public function getHistory(): null|string
     {
         return $this->history;
     }
@@ -157,7 +166,7 @@ class modelInstrument {
     /**
      * Set the value of history
      */
-    public function setHistory(string $history): self
+    public function setHistory(null|string $history): self
     {
         $this->history = $history;
 
@@ -167,7 +176,7 @@ class modelInstrument {
     /**
      * Get the value of intro
      */
-    public function getIntro(): ?string
+    public function getIntro(): null|string
     {
         return $this->intro;
     }
@@ -175,7 +184,7 @@ class modelInstrument {
     /**
      * Set the value of intro
      */
-    public function setIntro(?string $intro): self
+    public function setIntro(null|string $intro): self
     {
         $this->intro = $intro;
 
@@ -185,7 +194,7 @@ class modelInstrument {
     /**
      * Get the value of idCategory
      */
-    public function getIdCategory(): int|string|null
+    public function getIdCategory(): null|int|string
     {
         return $this->idCategory;
     }
@@ -193,7 +202,7 @@ class modelInstrument {
     /**
      * Set the value of idCategory
      */
-    public function setIdCategory(int|string|null  $idCategory): self
+    public function setIdCategory(null|int|string $idCategory): self
     {
         $this->idCategory = $idCategory;
 
@@ -203,7 +212,7 @@ class modelInstrument {
     /**
      * Get the value of nameCategory
      */
-    public function getNameCategory(): string|null
+    public function getNameCategory(): null|string
     {
         return $this->nameCategory;
     }
@@ -211,7 +220,7 @@ class modelInstrument {
     /**
      * Set the value of nameCategory
      */
-    public function setNameCategory(string|null $nameCategory): self
+    public function setNameCategory(null|string $nameCategory): self
     {
         $this->nameCategory = $nameCategory;
 
@@ -219,9 +228,27 @@ class modelInstrument {
     }
 
     /**
+     * Get the value of idMusician
+     */
+    public function getIdMusician(): null|int|string
+    {
+        return $this->idMusician;
+    }
+
+    /**
+     * Set the value of idMusician
+     */
+    public function setIdMusician(null|int|string $idMusician): self
+    {
+        $this->idMusician = $idMusician;
+
+        return $this;
+    }
+
+    /**
      * Get the value of musicianFirstname
      */
-    public function getMusicianFirstname(): ?string
+    public function getMusicianFirstname(): null|string
     {
         return $this->musicianFirstname;
     }
@@ -229,7 +256,7 @@ class modelInstrument {
     /**
      * Set the value of musicianFirstname
      */
-    public function setMusicianFirstname(?string $musicianFirstname): self
+    public function setMusicianFirstname(null|string $musicianFirstname): self
     {
         $this->musicianFirstname = $musicianFirstname;
 
@@ -239,7 +266,7 @@ class modelInstrument {
     /**
      * Get the value of musicianLastname
      */
-    public function getMusicianLastname(): ?string
+    public function getMusicianLastname(): null|string
     {
         return $this->musicianLastname;
     }
@@ -247,7 +274,7 @@ class modelInstrument {
     /**
      * Set the value of musicianLastname
      */
-    public function setMusicianLastname(?string $musicianLastname): self
+    public function setMusicianLastname(null|string $musicianLastname): self
     {
         $this->musicianLastname = $musicianLastname;
 
@@ -257,7 +284,7 @@ class modelInstrument {
     /**
      * Get the value of musicianBio
      */
-    public function getMusicianBio(): ?string
+    public function getMusicianBio(): null|string
     {
         return $this->musicianBio;
     }
@@ -265,7 +292,7 @@ class modelInstrument {
     /**
      * Set the value of musicianBio
      */
-    public function setMusicianBio(?string $musicianBio): self
+    public function setMusicianBio(null|string $musicianBio): self
     {
         $this->musicianBio = $musicianBio;
 
@@ -273,9 +300,27 @@ class modelInstrument {
     }
 
     /**
+     * Get the value of idSound
+     */
+    public function getIdSound(): null|int|string
+    {
+        return $this->idSound;
+    }
+
+    /**
+     * Set the value of idSound
+     */
+    public function setIdSound(null|int|string $idSound): self
+    {
+        $this->idSound = $idSound;
+
+        return $this;
+    }
+
+    /**
      * Get the value of soundName
      */
-    public function getSoundName(): ?string
+    public function getSoundName(): null|string
     {
         return $this->soundName;
     }
@@ -283,7 +328,7 @@ class modelInstrument {
     /**
      * Set the value of soundName
      */
-    public function setSoundName(?string $soundName): self
+    public function setSoundName(null|string $soundName): self
     {
         $this->soundName = $soundName;
 
@@ -293,7 +338,7 @@ class modelInstrument {
     /**
      * Get the value of soundDescription
      */
-    public function getSoundDescription(): ?string
+    public function getSoundDescription(): null|string
     {
         return $this->soundDescription;
     }
@@ -301,7 +346,7 @@ class modelInstrument {
     /**
      * Set the value of soundDescription
      */
-    public function setSoundDescription(?string $soundDescription): self
+    public function setSoundDescription(null|string $soundDescription): self
     {
         $this->soundDescription = $soundDescription;
 
@@ -311,7 +356,7 @@ class modelInstrument {
     /**
      * Get the value of sound
      */
-    public function getSound(): ?string
+    public function getSound(): null|string
     {
         return $this->sound;
     }
@@ -319,7 +364,7 @@ class modelInstrument {
     /**
      * Set the value of sound
      */
-    public function setSound(?string $sound): self
+    public function setSound(null|string $sound): self
     {
         $this->sound = $sound;
 
@@ -327,9 +372,27 @@ class modelInstrument {
     }
 
     /**
+     * Get the value of idPicture
+     */
+    public function getIdPicture(): null|int|string
+    {
+        return $this->idPicture;
+    }
+
+    /**
+     * Set the value of idPicture
+     */
+    public function setIdPicture(null|int|string $idPicture): self
+    {
+        $this->idPicture = $idPicture;
+
+        return $this;
+    }
+
+    /**
      * Get the value of pictureName
      */
-    public function getPictureName(): ?string
+    public function getPictureName(): null|string
     {
         return $this->pictureName;
     }
@@ -337,7 +400,7 @@ class modelInstrument {
     /**
      * Set the value of pictureName
      */
-    public function setPictureName(?string $pictureName): self
+    public function setPictureName(null|string $pictureName): self
     {
         $this->pictureName = $pictureName;
 
@@ -347,7 +410,7 @@ class modelInstrument {
     /**
      * Get the value of pictureDescription
      */
-    public function getPictureDescription(): ?string
+    public function getPictureDescription(): null|string
     {
         return $this->pictureDescription;
     }
@@ -355,7 +418,7 @@ class modelInstrument {
     /**
      * Set the value of pictureDescription
      */
-    public function setPictureDescription(?string $pictureDescription): self
+    public function setPictureDescription(null|string $pictureDescription): self
     {
         $this->pictureDescription = $pictureDescription;
 
@@ -363,9 +426,9 @@ class modelInstrument {
     }
 
     /**
-     * Get the value of picture
+     * Get the value of pictureMini
      */
-    public function getPictureMini(): ?string
+    public function getPictureMini(): null|string
     {
         return $this->pictureMini;
     }
@@ -373,14 +436,17 @@ class modelInstrument {
     /**
      * Set the value of pictureMini
      */
-    public function setPictureMini(?string $pictureMini): self
+    public function setPictureMini(null|string $pictureMini): self
     {
         $this->pictureMini = $pictureMini;
 
         return $this;
     }
-     
-    public function getPictureMiddle(): ?string
+
+    /**
+     * Get the value of pictureMiddle
+     */
+    public function getPictureMiddle(): null|string
     {
         return $this->pictureMiddle;
     }
@@ -388,13 +454,17 @@ class modelInstrument {
     /**
      * Set the value of pictureMiddle
      */
-    public function setPictureMiddle(?string $pictureMiddle): self
+    public function setPictureMiddle(null|string $pictureMiddle): self
     {
         $this->pictureMiddle = $pictureMiddle;
+
         return $this;
-        
     }
-    public function getPictureFull(): ?string
+
+    /**
+     * Get the value of pictureFull
+     */
+    public function getPictureFull(): null|string
     {
         return $this->pictureFull;
     }
@@ -402,61 +472,9 @@ class modelInstrument {
     /**
      * Set the value of pictureFull
      */
-    public function setPictureFull(?string $pictureFull): self
+    public function setPictureFull(null|string $pictureFull): self
     {
         $this->pictureFull = $pictureFull;
-        return $this;
-    }
-    /**
-     * Get the value of idSound
-     */
-    public function getIdSound():  int | string | null 
-    {
-        return $this->idSound;
-    }
-
-    /**
-     * Set the value of idSound
-     */
-    public function setIdSound(int | string | null  $idSound): self
-    {
-        $this->idSound = $idSound;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of idPicture
-     */
-    public function getIdPicture(): int | string | null 
-    {
-        return $this->idPicture;
-    }
-
-    /**
-     * Set the value of idPicture
-     */
-    public function setIdPicture(int | string | null  $idPicture): self
-    {
-        $this->idPicture = $idPicture;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of idMusician
-     */
-    public function getIdMusician(): int | string | null 
-    {
-        return $this->idMusician;
-    }
-
-    /**
-     * Set the value of idMusician
-     */
-    public function setIdMusician(int | string | null  $idMusician): self
-    {
-        $this->idMusician = $idMusician;
 
         return $this;
     }
