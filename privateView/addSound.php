@@ -59,10 +59,7 @@
                             
                         </select>
                 </div>
-                <div class="form-group form-control col">
-                    <label for="titleSound" class="">Titre du son :</label>
-                    <textarea type="text" class="w-100" aria-describedby="" name="descriptionSound"></textarea>
-                </div>
+                
             </div>
             <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="addSound"></input>
             <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">

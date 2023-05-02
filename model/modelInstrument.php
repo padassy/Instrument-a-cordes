@@ -42,23 +42,32 @@ function fetchDetailInstrument (pdo $dbConnect, int $idInstrument):array{
     LEFT JOIN sound s 
     ON  i.id = s.id_instrument
     WHERE i.id=$idInstrument;");
-    $sql4 = $dbConnect->query("SELECT GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.imageMini SEPARATOR '||') as pictureMini 
+    $sql4 = $dbConnect->query("SELECT GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.imageMini SEPARATOR '||') as pictureMini ,GROUP_CONCAT(p.imageMiddle SEPARATOR '||') as pictureMiddle ,GROUP_CONCAT(p.imageFull SEPARATOR '||') as pictureFull 
     FROM instrument i
     LEFT JOIN picture p 
     ON i.id = p.id_instrument  
-    WHERE i.id=$idInstrument;");
+    WHERE i.id=$idInstrument
+    GROUP BY i.id;");
 
-$assetInstru = array();
-$queries = array($sql, $sql2, $sql3, $sql4);
+$assetInstru = $sql->fetch(PDO::FETCH_ASSOC);
+$assetInstru2 = $sql2->fetch(PDO::FETCH_ASSOC);
+$assetInstru3 = $sql3->fetch(PDO::FETCH_ASSOC);
+$assetInstru4 = $sql4->fetch(PDO::FETCH_ASSOC);
 
-for ($i = 0; $i < count($queries); $i++) {
-    $result = $queries[$i]->fetch(PDO::FETCH_ASSOC);
-    if ($result) {
-        array_push($assetInstru, $result);
-    }
-}
 
-$instrument = $assetInstru[0] + $assetInstru[1] + $assetInstru[2];
+    array_push($assetInstru, $assetInstru2);
+
+
+    array_push($assetInstru, $assetInstru3);
+
+
+    array_push($assetInstru, $assetInstru4);
+
+
+    $instrument = $assetInstru + $assetInstru[0];
+    $instrument = $instrument + $assetInstru[1];
+    $instrument = $instrument + $assetInstru[2];
+
 unset($instrument[0]);
 unset($instrument[1]);
 unset($instrument[2]);
@@ -179,6 +188,31 @@ function fetchAllInstrument (pdo $dbConnect) :array{
 
 
 
+function updateInstrument(pdo $dbConnect,string $title,string $intro, string|null $description, string $history,string $technics,string $visible,$idInstrument){
+
+    
+    $title = htmlspecialchars(strip_tags(trim($title)), ENT_QUOTES);
+    $intro = htmlspecialchars(strip_tags(trim($intro)), ENT_QUOTES);
+    $description = htmlspecialchars(strip_tags(trim($description)), ENT_QUOTES);
+    $history = htmlspecialchars(strip_tags(trim($history)), ENT_QUOTES);
+    $technics = htmlspecialchars(strip_tags(trim($technics)), ENT_QUOTES);
+    $visible= (int) htmlspecialchars(strip_tags(trim($visible)), ENT_QUOTES);
+    
+
+    $sql = $dbConnect->prepare("UPDATE instrument title=?,intro=?,description=?,history=?,technics=?,visible=? WHERE id =$idInstrument");
+    $sql->bindParam(1, $title ,PDO::PARAM_STR);
+    $sql->bindParam(2, $intro ,PDO::PARAM_STR);
+    $sql->bindParam(3,$description,PDO::PARAM_STR);
+    $sql->bindParam(4, $history ,PDO::PARAM_STR);
+    $sql->bindParam(5, $technics ,PDO::PARAM_STR);
+    $sql->bindParam(6,$visible,PDO::PARAM_INT);
+    try{
+        $sql->execute();
+    }catch(Exception $e){
+        return $e = throw new Exception ( "Problème lors de l'ajout veuillez recommencer");
+
+    }
+}
 function addInstrument(pdo $dbConnect,string $title,string $intro, string|null $description, string $history,string $technics,string $visible){
 
     
@@ -207,6 +241,25 @@ function addInstrument(pdo $dbConnect,string $title,string $intro, string|null $
     }
 }
 
+function updateInstrumentHasCategory( pdo $dbConnect, string $idInstrument, string $category){
+    $category = (int) htmlspecialchars(strip_tags(trim($category)), ENT_QUOTES);
+    $idInstrument = (int) htmlspecialchars(strip_tags(trim($idInstrument)), ENT_QUOTES);
+
+
+    $sql = $dbConnect->prepare("UPDATE category_has_instrument category_id=?, instrument_id=? WHERE id =$idInstrument ");
+
+
+    $sql->bindParam(1, $category ,PDO::PARAM_INT);
+    $sql->bindParam(2, $idInstrument ,PDO::PARAM_INT);
+
+
+    try{
+        $sql->execute();
+    }catch(Exception $e){
+        return $e =  throw new Exception ("Problème lors de l'ajout veuillez recommencer");
+
+    }
+}
 function addInstrumentHasCategory( pdo $dbConnect, string $lastId, string $category){
     $category = (int) htmlspecialchars(strip_tags(trim($category)), ENT_QUOTES);
     $lastId = (int) htmlspecialchars(strip_tags(trim($lastId)), ENT_QUOTES);
