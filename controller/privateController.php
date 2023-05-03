@@ -167,11 +167,13 @@ if (isset($_GET['p'])) {
 
         $idInstrumentUpdate = (int) $_GET['idInstrumentUpdate'];
 
-        $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
+        
+        $category = fetchCategory($dbConnect);
 
         $getInstrumentById = fetchDetailInstrument($dbConnect,$idInstrumentUpdate);
 
         $instrumentById = new modelInstrument ($getInstrumentById);
+
 
         var_dump($instrumentById);
 
@@ -201,10 +203,10 @@ if (isset($_GET['p'])) {
 
         include_once "../privateView/privateView.php";
 
-    } 
+    
 
 
- if(isset($_POST['addInstrument'])){
+    }if(isset($_POST['addInstrument'])){
         echo "addInstrument";
         if (!empty($_POST['titre'])&&!empty($_POST['intro'])&&!empty($_POST['description'])&&!empty($_POST['history'])&&!empty($_POST['technics'])&&!empty($_POST['btn-check-2-outlined'])){
 
@@ -285,11 +287,11 @@ if (isset($_GET['p'])) {
 
 
 
-    }
+    
 
 
 
-   if(isset($_POST['addMusician'])){
+}if(isset($_POST['addMusician'])){
     if(!empty($_POST['lastnameMusician'])&&!empty($_POST['firstnameMusician'])&&!empty($_POST['idInstrument'])){
 
         #echo "musicien";
@@ -308,9 +310,13 @@ if (isset($_GET['p'])) {
 
 
 
-}
 
-if(isset($_POST['addPicture'])){
+
+
+
+
+
+}if(isset($_POST['addPicture'])){
     
     if(!empty($_POST['titleImage'])&&!empty($_POST['descriptionImage'])&&!empty($_FILES)&&!empty($_POST['idInstrument'])){
         
@@ -334,16 +340,16 @@ if(isset($_POST['addPicture'])){
     }
 
 
-}
 
 
- if(isset($_POST['addSound'])){
+
+}if(isset($_POST['addSound'])){
     #echo"addSound else if";
     
     if(!empty($_POST['titleSound'])&&!empty($_FILES)&&!empty($_POST['idInstrument'])){
         
 
-        if ($_FILES['addSound']['error']===0){
+        if ($_FILES['sound']['error']===0){
 
             try{
                     
@@ -361,11 +367,11 @@ if(isset($_POST['addPicture'])){
         $e = throw new Exception('Veuillez remplir tous les champs nécessaires, merci');
     }
 
-} 
+ 
 
 
 
-if (isset($_POST['updateMusician'])){
+}if (isset($_POST['updateMusician'])){
 
     $idMusicianUpdate = (int) $idMusicianUpdate;
 

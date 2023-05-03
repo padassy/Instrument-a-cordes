@@ -51,22 +51,7 @@
                         <textarea type="text" class="w-100" aria-describedby="" name="descriptionImage" rows="3"><?=$pictureById->pictureDescription?></textarea>
                     </div>
                 </div>
-                            
-                <div class="row">
-                    <div class="form-group form-control col">
-                        <label for="imageMini" class="w-25">Lien de la miniature :</label>
-                        <input type="text" class="w-100" aria-describedby="" name="imageMini" value="<?=$pictureById->pictureMini?>"></input>
-                    </div>
-                    <div class="form-group form-control col">
-                        <label for="imageMiddle" class="w-25">Lien de la moyenne :</label>
-                        <input type="text" class="w-100" aria-describedby="" name="imageMiddle" value="<?=$pictureById->pictureMiddle?>"></input>
-                    </div>
-                    <div class="form-group form-control col">
-                        <label for="imageFull" class="w-25">Lien de la grande :</label>
-                        <input type="text" class="w-100" aria-describedby="" name="imageFull" value="<?=$pictureById->pictureFull?>"></input>
-                    </div>
-                    
-                </div>
+                        
                       
             </div>
         

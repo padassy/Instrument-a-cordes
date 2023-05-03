@@ -92,7 +92,6 @@ function addSound(pdo $dbConnect, string $name, string $description, array $file
 
 
       if ($files->processed) {
-        echo 'image resized ';
         $files->clean();
         
       } else {
@@ -102,7 +101,7 @@ function addSound(pdo $dbConnect, string $name, string $description, array $file
   }
     
   
-    var_dump($path);  
+   # var_dump($path);  
     $path = str_replace("\\", "/", $path); 
     $idInstrument = (int) (htmlspecialchars(strip_tags(trim($idInstrument)), ENT_QUOTES));
     $path = htmlspecialchars(strip_tags(trim($path)), ENT_QUOTES);
@@ -115,10 +114,10 @@ function addSound(pdo $dbConnect, string $name, string $description, array $file
     $sql->bindParam(3, $description ,PDO::PARAM_STR);
     $sql->bindParam(4,  $idInstrument ,PDO::PARAM_INT);
     
-   echo "traitement donnees";
+
     try{
         $sql->execute();
-        echo "execute";
+        
     }catch(Exception $e){
         return $e = throw new Exception ("Problème lors de l'ajout veuillez recommencer");
 

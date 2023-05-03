@@ -199,7 +199,7 @@ function updateInstrument(pdo $dbConnect,string $title,string $intro, string|nul
     $visible= (int) htmlspecialchars(strip_tags(trim($visible)), ENT_QUOTES);
     
 
-    $sql = $dbConnect->prepare("UPDATE instrument title=?,intro=?,description=?,history=?,technics=?,visible=? WHERE id =$idInstrument");
+    $sql = $dbConnect->prepare("UPDATE instrument SET title=?,intro=?,description=?,history=?,technics=?,visible=? WHERE id =$idInstrument");
     $sql->bindParam(1, $title ,PDO::PARAM_STR);
     $sql->bindParam(2, $intro ,PDO::PARAM_STR);
     $sql->bindParam(3,$description,PDO::PARAM_STR);

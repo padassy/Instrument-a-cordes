@@ -36,8 +36,8 @@ var_dump($instrumentById);*/
             
             
                 <div class="form-group form-control col d-flex ">
-                    <select name="category" class=" w-100 form-select h-50 align-self-center" id="category" value="" >
-                    <option  selected value="<?=$instrumentById->idCategory?>"><?=$instrumentById->nameCategory?> :</option>
+                    <select name="category" class=" w-100 form-select h-100 align-self-center" id="category" value="<?=$instrumentById->nameCategory?>" >
+                    <option value="<?=$instrumentById->idCategory?>" selected ><?=$instrumentById->nameCategory?> </option>
                         <?php
                         if(isset($category)):
                             foreach($category as $item):
@@ -57,8 +57,8 @@ var_dump($instrumentById);*/
                 
                 <div class="form-group col form-check d-flex ">
                     
-                        <input type="checkbox" class="btn-check w-25 mx-auto align-self-center" id="btn-check-2-outlined" name="btn-check-2-outlined" checked value="<?=$instrumentById->visible?>">
-                        <label class="btn btn-outline-secondary w-50 align-self-center " for="btn-check-2-outlined">Visible</label><br>
+                        <input type="checkbox" class="btn-check w-25 mx-auto align-self-center" id="btn-check-2-outlined" name="visible" checked value="<?=$instrumentById->visible?>">
+                        <label class="btn btn-outline-secondary w-50 align-self-center " for="visible">Visible</label><br>
                 
                     
                 </div> 
@@ -89,20 +89,7 @@ var_dump($instrumentById);*/
 
             <img src="value="<?=$instrumentById->pictureMiddle?>   > 
 
-            <p>
-            <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePicture" aria-expanded="false" aria-controls="collapsePicture">
-                Ajouter une image
-            </button>
-
-            <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSound" aria-expanded="false" aria-controls="collapseSound">
-                Ajouter un audio
-            </button>
-
-            <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMusician" aria-expanded="false" aria-controls="collapseMusician">
-                Ajouter un musicien
-            </button>
-            </p>
-
+            
  <!--            <div style="">  
                 <div class="collapse collapse-vertical" id="collapsePicture">
                     <div class="card card-body" style="width: 100%;"> 
@@ -206,7 +193,7 @@ var_dump($instrumentById);*/
                 </div>
             </div> -->
             <div class="row">
-                <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="UpdateInstrument"></input>
+                <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="updateInstrument"></input>
                 <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">
             </div>
         
