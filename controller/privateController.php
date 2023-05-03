@@ -66,39 +66,132 @@ if (isset($_GET['p'])) {
         header("Location: ./");
         exit();
     
+
+
+
+
     }else if (isset($_GET['idInstrumentDelete'])){
         $idInstrumentDelete = (int) $_GET['idInstrumentDelete'];
 
         deleteInstrument($dbConnect,$idInstrumentDelete);
 
-    }
-    else if (isset($_GET['idSoundDelete'])){
+
+
+
+
+    }else if (isset($_GET['idSoundDelete'])){
         $idSoundDelete = (int) $_GET['idSoundDelete'];
 
         deleteSound($dbConnect,$idSoundDelete);
 
-    }
-    else if (isset($_GET['idPictureDelete'])){
+
+
+
+
+    }else if (isset($_GET['idPictureDelete'])){
         $idPictureDelete = (int) $_GET['idPictureDelete'];
 
         deletePicture($dbConnect,$idPictureDelete);
 
-    }
-    else if (isset($_GET['idMusicianDelete'])){
+
+
+
+    }else if (isset($_GET['idMusicianDelete'])){
         $idMusicianDelete = (int) $_GET['idMusicianDelete'];
 
         deleteMusician($dbConnect,$idMusicianDelete);
-
-    }
-
-   
+  
 
 
 
 
 
+    }else if (isset($_GET['idSoundUpdate'])){
 
-    else{
+        $idSoundUpdate = (int) $_GET['idSoundUpdate'];
+
+        $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
+        
+        $getSoundById = soundById($dbConnect,$idSoundUpdate);
+
+        $soundById = new modelInstrument($getSoundById);
+
+        include_once "../privateView/updateSound.php";
+
+        
+
+
+
+
+
+    } else if (isset($_GET['idPictureUpdate'])){
+
+        $idPictureUpdate = (int) $_GET['idPictureUpdate'];
+
+        $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
+       
+        
+        $getPictureById = pictureById($dbConnect,$idPictureUpdate);
+
+        $pictureById = new modelInstrument($getPictureById);
+
+        include_once "../privateView/updateImage.php"  ;
+        
+
+
+
+
+
+    }else if (isset($_GET['idMusicianUpdate'])){
+        #echo "idMusician";
+
+        $idMusicianUpdate = (int) $_GET['idMusicianUpdate'];
+        #echo "idMusician INT ";
+        $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
+
+        $getMusicianById = musicianById($dbConnect,$idMusicianUpdate);
+        #echo "idMusician Musician ID ";
+        #var_dump($getMusicianById);
+
+        $musicianById = new modelInstrument ($getMusicianById);
+        #echo "idMusician Modele Instrument";
+        #var_dump($musicianById);
+        #var_dump($instrumentById);
+        include_once "../privateView/updateMusician.php";
+
+     
+        
+
+
+    }elseif(isset($_GET['idInstrumentUpdate'])){
+
+        $idInstrumentUpdate = (int) $_GET['idInstrumentUpdate'];
+
+        
+        $category = fetchCategory($dbConnect);
+
+        $getInstrumentById = fetchDetailInstrument($dbConnect,$idInstrumentUpdate);
+
+        $instrumentById = new modelInstrument ($getInstrumentById);
+
+
+        var_dump($instrumentById);
+
+        #var_dump($instrumentById);
+        include_once "../privateView/updateInstrument.php";
+
+
+
+
+
+
+
+
+
+
+
+
+    }else{
         $assetInstruAll = fetchAllInstrument($dbConnect);
         //var_dump($dataAllInstrument);
         foreach($assetInstruAll as $item){
@@ -110,10 +203,10 @@ if (isset($_GET['p'])) {
 
         include_once "../privateView/privateView.php";
 
-    } 
+    
 
 
- if(isset($_POST['addInstrument'])){
+    }if(isset($_POST['addInstrument'])){
         echo "addInstrument";
         if (!empty($_POST['titre'])&&!empty($_POST['intro'])&&!empty($_POST['description'])&&!empty($_POST['history'])&&!empty($_POST['technics'])&&!empty($_POST['btn-check-2-outlined'])){
 
@@ -194,11 +287,11 @@ if (isset($_GET['p'])) {
 
 
 
-    }
+    
 
 
 
-   if(isset($_POST['addMusician'])){
+}if(isset($_POST['addMusician'])){
     if(!empty($_POST['lastnameMusician'])&&!empty($_POST['firstnameMusician'])&&!empty($_POST['idInstrument'])){
 
         #echo "musicien";
@@ -217,9 +310,13 @@ if (isset($_GET['p'])) {
 
 
 
-}
 
-if(isset($_POST['addPicture'])){
+
+
+
+
+
+}if(isset($_POST['addPicture'])){
     
     if(!empty($_POST['titleImage'])&&!empty($_POST['descriptionImage'])&&!empty($_FILES)&&!empty($_POST['idInstrument'])){
         
@@ -243,16 +340,16 @@ if(isset($_POST['addPicture'])){
     }
 
 
-}
 
 
- if(isset($_POST['addSound'])){
+
+}if(isset($_POST['addSound'])){
     #echo"addSound else if";
     
     if(!empty($_POST['titleSound'])&&!empty($_FILES)&&!empty($_POST['idInstrument'])){
         
 
-        if ($_FILES['addSound']['error']===0){
+        if ($_FILES['sound']['error']===0){
 
             try{
                     
@@ -270,7 +367,51 @@ if(isset($_POST['addPicture'])){
         $e = throw new Exception('Veuillez remplir tous les champs nécessaires, merci');
     }
 
-} 
+ 
+
+
+
+}if (isset($_POST['updateMusician'])){
+
+    $idMusicianUpdate = (int) $idMusicianUpdate;
+
+
+    updateMusician($dbConnect,$_POST['firstnameMusician'],$_POST['lastnameMusician'],$_POST['bioMusician'],$_POST['idInstrument'],$idMusicianUpdate);
+
+
+
+
+
+}if (isset($_POST['updatePictureSubmit'])&&isset($idPictureUpdate)){
+
+    $idPictureUpdate = (int) $idPictureUpdate;
+    #var_dump($_POST);
+    echo "update";
+    updatePicture($dbConnect , $_POST['titleImage'],$_POST['descriptionImage'],$_POST['imageMini'],$_POST['imageMiddle'] ,$_POST['imageFull'],$_POST['idInstrument'],$idPictureUpdate);
+    echo "after function" ;
+
+   
+
+  
+
+
+
+
+}if (isset($_POST['updateSound'])){
+
+    $idSoundUpdate = (int) $idSoundUpdate;
+
+
+    updateSound($dbConnect, $_POST['titleSound'],$_POST['descriptionSound'],$_POST['idInstrument'],$idSoundUpdate);
+
+
+
+}if (isset($_POST['updateInstrument'])&&isset($idInstrumentUpdate)){
+
+    $idInstrumentUpdate = (int) $idInstrumentUpdate;
+
+
+    updateInstrument($dbConnect,$_POST['titre'],$_POST['intro'],$_POST['description'],$_POST['history'],$_POST['technics'],$_POST['visible'],$idInstrumentUpdate);
 
 
 
@@ -283,4 +424,9 @@ if(isset($_POST['addPicture'])){
 
 
 
+
+
+
+
+}
 
