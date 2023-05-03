@@ -22,7 +22,7 @@
     #var_dump($_FILES);
     #var_dump($_POST);
     ?>
-    <div class="vh-100 vw-100 d-flex justify-content-center align-items-center flex-column">
+    <div class="vh-100 vw-100 d-flex mt-5 align-items-center flex-column">
         <div style=""> 
             <form class="article row g-3 " id="formAddPicture" method="POST" width="" name="formAddArticle" enctype="multipart/form-data">
             
@@ -50,14 +50,9 @@
 
                     <div class="form-group">
                         <label for="dateTake">Date de prise :</label>
-                        <input type="date" class="form-control" id="dateTake">
+                        <input type="date" class="form-control" id="dateTake" name="dateTake">
                     </div>
 
-
-                    <div class="form-group">
-                        <label for="dateFetch">Date d'ajout :</label>
-                        <input type="date" class="form-control" id="dateFetch">
-                    </div>
 
                 </div>
                 <div class="row">

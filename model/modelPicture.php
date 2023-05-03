@@ -98,11 +98,12 @@ function updatePicture(pdo $dbConnect, string $name, string $description,string 
     }
     
 }
-function addPicture(pdo $dbConnect, string $name, string $description, array $files, string $idInstrument ){
+function addPicture(pdo $dbConnect, string $name, string $description, array $files, string $date, string $idInstrument ){
     
     
     $name = htmlspecialchars(strip_tags(trim($name)), ENT_QUOTES);
     $description = htmlspecialchars(strip_tags(trim($description)), ENT_QUOTES);
+    $date = htmlspecialchars(strip_tags(trim($date)), ENT_QUOTES);
     $files = new modelMyUpload($_FILES['addPicture']);
  
     #var_dump($files);
@@ -144,9 +145,9 @@ function addPicture(pdo $dbConnect, string $name, string $description, array $fi
   }
     
   
-    var_dump($pathMini); 
-    var_dump($pathMiddle); 
-    var_dump($pathFull); 
+    #var_dump($pathMini); 
+    #var_dump($pathMiddle); 
+    #var_dump($pathFull); 
     $pathMini = str_replace("\\", "/", $pathMini); 
     $pathMiddle = str_replace("\\", "/", $pathMiddle); 
     $pathFull = str_replace("\\", "/", $pathFull);
@@ -156,14 +157,15 @@ function addPicture(pdo $dbConnect, string $name, string $description, array $fi
     $pathFull = htmlspecialchars(strip_tags(trim($pathFull)), ENT_QUOTES);
     
 
-    $sql = $dbConnect->prepare("INSERT INTO picture (name, description, imageMini, imageMiddle, imageFull, id_instrument) VALUES (?,?,?,?,?,?)");
+    $sql = $dbConnect->prepare("INSERT INTO picture (name, description, imageMini, imageMiddle, imageFull,date, id_instrument) VALUES (?,?,?,?,?,?,?)");
 
     $sql->bindParam(1, $name ,PDO::PARAM_STR);
     $sql->bindParam(2, $description ,PDO::PARAM_STR);
     $sql->bindParam(3, $pathMini ,PDO::PARAM_STR);
     $sql->bindParam(4,  $pathMiddle ,PDO::PARAM_STR);
     $sql->bindParam(5,  $pathFull ,PDO::PARAM_STR);
-    $sql->bindParam(6,  $idInstrument ,PDO::PARAM_INT);
+    $sql->bindParam(6,  $date ,PDO::PARAM_STR);
+    $sql->bindParam(7,  $idInstrument ,PDO::PARAM_INT);
     
    echo "traitement donnees";
     try{
