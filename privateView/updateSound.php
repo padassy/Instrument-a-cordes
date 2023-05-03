@@ -28,14 +28,21 @@ var_dump($instrumentById);*/
         <h1 class="mb-5">Ajouter un article</h1>
         <form action="" class="article row g-3 h-100 w-100 " id="formUpdateInstrument" method="POST" width="" name="formUpdateArticle" enctype="multipart/form-data" >
             <div class="row">
-            <div class="form-group form-control col">
+                <div class="form-group form-control col">
                     <label for="titleSound" class="">Titre du son :</label>
                     <input type="text" class="w-100" aria-describedby="" name="titleSound" value="<?=$soundById->soundName?>"></input>
                 </div>
+                <div class="form-group">
+                    <label for="dateSound">Date :</label>
+                    <input type="date" class="form-control" id="dateSound" value="<?=$soundById->soundDate?>" >
+                </div>
+            </div>
+            <div class="row">
                 <div class="form-group form-control col">
                     <label for="descriptionSound" class="">Description du son :</label>
                     <textarea type="text" class="w-100" aria-describedby="" name="descriptionSound"><?=$soundById->soundDescription?></textarea>
                 </div>
+            </div>
                 
                 <div class="row">
                     <div class="form-group form-control col ">

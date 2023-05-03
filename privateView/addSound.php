@@ -35,11 +35,21 @@
                     <input type="text" class="w-100" aria-describedby="" name="titleSound"></input>
                 </div>
 
+                <div class="form-group">
+                    <label for="dateSound">Date :</label>
+                    <input type="date" class="form-control" id="dateSound" >
+                </div>
+            </div>
+            <div class="row">
 
                 <div class="form-group form-control col">
                         <label for="descriptionSound w-25" class="">Description :</label>
                         <textarea type="text" class="w-100" aria-describedby="" name="descriptionSound" rows="3"></textarea>
                 </div>
+
+
+
+
 
                 
             </div>

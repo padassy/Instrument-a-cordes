@@ -45,6 +45,20 @@
                         <label for="titleImage" class="w-25">Titre de l'image:</label>
                         <input type="text" class="w-100" aria-describedby="" name="titleImage" value="<?=$pictureById->pictureName?>"></input>
                     </div>
+                    <div class="row">
+
+                        <div class="form-group">
+                            <label for="dateTake">Date de prise :</label>
+                            <input type="date" class="form-control" id="dateTake" value="<?=$pictureById->pictureDateTake?>">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="dateFetch">Date d'ajout :</label>
+                            <input type="date" class="form-control" id="dateFetch" value="<?=$pictureById->pictureDateFetch?>">
+                        </div>
+
+                    </div>
                         
                     <div class="form-group form-control col">
                         <label for="descriptionImage w-25" class="">Description :</label>

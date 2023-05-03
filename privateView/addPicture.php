@@ -46,6 +46,22 @@
                         <input type="file" class="custom-file-input" id="addPicture" lang="fr" name="addPicture" >
                                         
                     </div>
+                <div class="row">
+
+                    <div class="form-group">
+                        <label for="dateTake">Date de prise :</label>
+                        <input type="date" class="form-control" id="dateTake">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="dateFetch">Date d'ajout :</label>
+                        <input type="date" class="form-control" id="dateFetch">
+                    </div>
+
+                </div>
+                <div class="row">
+
                     <div class="form-group form-control col ">
                         <select name="idInstrument" class=" w-100 form-select h-100" id="idInstrument" value="" >
                         <option selected>Instrument</option>

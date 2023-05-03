@@ -43,7 +43,22 @@
                         <textarea type="text" class="w-100" aria-describedby="" name="bioMusician"></textarea>
                     </div>
                 </div>
-                <div class="form-group form-control col ">
+                <div class="row">
+
+                    <div class="form-group">
+                        <label for="dateBorn">Date de naissance</label>
+                        <input type="date" class="form-control" id="dateBorn" placeholder="Date de l'ajout de l'article">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="dateDeath">Date de décès</label>
+                        <input type="date" class="form-control" id="dateDeath" placeholder="Date de l'ajout de l'article">
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group form-control col ">
                         <select name="idInstrument" class=" w-100 form-select h-100" id="idInstrument" value="" >
                         <option selected>Instrument</option>
                         <?php
@@ -61,6 +76,7 @@
                             
                         </select>
                     </div>
+                </div>
                             
                       
             </div>

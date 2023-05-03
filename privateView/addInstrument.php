@@ -51,6 +51,7 @@
                        
                     </select>
                 </div>
+                
 
                 
                 <div class="form-group col form-check">
@@ -109,18 +110,32 @@
                                 <label for="titleImage" class="w-25">Titre de l'image:</label>
                                 <input type="text" class="w-100" aria-describedby="" name="titleImage"></input>
                             </div>
+                            <div class="custom-file col">
+                                <label class="custom-file-label w-50" for="addPicture">Image :</label>
+                                <input type="file" class="custom-file-input" id="addPicture" lang="fr" name="addPicture" >
+                                                
+                            </div>
                     
+                        </div>
+                        <div class="row">
+
+                        <div class="form-group">
+                            <label for="dateTake">Date de prise :</label>
+                            <input type="date" class="form-control" id="dateTake">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="dateFetch">Date d'ajout :</label>
+                            <input type="date" class="form-control" id="dateFetch">
+                        </div>
+
+                        </div>
+                        <div class="row">
                             <div class="form-group form-control col">
                                 <label for="descriptionImage w-25" class="">Description :</label>
                                 <textarea type="text" class="w-100" aria-describedby="" name="descriptionImage" rows="3"></textarea>
                             </div>
-                        </div>
-                        <div class="row">
-                    <div class="custom-file col">
-                        <label class="custom-file-label w-50" for="addPicture">Image :</label>
-                        <input type="file" class="custom-file-input" id="addPicture" lang="fr" name="addPicture" >
-                                        
-                    </div>
                         </div>
                     </div>
                 </div>
@@ -141,6 +156,20 @@
                             </div>
                         </div>
                         <div class="row">
+
+                            <div class="form-group">
+                                <label for="dateBorn">Date de naissance</label>
+                                <input type="date" class="form-control" id="dateBorn" placeholder="Date de l'ajout de l'article">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="dateDeath">Date de décès</label>
+                                <input type="date" class="form-control" id="dateDeath" placeholder="Date de l'ajout de l'article">
+                            </div>
+
+                        </div>
+                        <div class="row">
                             <div class="form-group form-control col">
                                 <label for="bioMusician" class="w-25">Biographie :</label>
                                 <textarea type="text" class="w-100" aria-describedby="" name="bioMusician"></textarea>
@@ -157,14 +186,21 @@
                         <div class="row">
 
                             <div class="form-group form-control col">
-                                <label for="titleSound" class="">Titre du son :</label>
+                                <label for="titleSound" class="">Titre de l'audio :</label>
                                 <input type="text" class="w-100" aria-describedby="" name="titleSound"></input>
                             </div>
 
                             <div class="form-group form-control col">
-                                <label for="titleSound" class="">Titre du son :</label>
+                                <label for="titleSound" class="">Description de l'audio :</label>
                                 <textarea type="text" class="w-100" aria-describedby="" name="descriptionSound"></textarea>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="dateSound">Date :</label>
+                                <input type="date" class="form-control" id="dateSound" >
+                            </div>
+
 
                             <div class="custom-file  col">
                                 <label class="custom-file-label" for="addSound">Ajouter un audio :</label>

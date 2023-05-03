@@ -22,10 +22,12 @@
 
 /*var_dump($_POST);
 #var_dump($_FILES);
-echo "instrument by id";
-var_dump($instrumentById);*/
+echo "instrument by id";*/
+#var_dump($musicianById);
     ?>
     <div class="vh-100 vw-100 d-flex justify-content-center align-items-center flex-column mr-0 ml-0 ">
+        <h1><?=$musicianById->musicianBorn?></h1>
+        <h1><?=$musicianById->musicianDeath?></h1>
         <h1 class="mb-5">Ajouter un article</h1>
         <form action="" class="article row g-3 h-100 w-100 " id="updateMusician" method="POST" width="" name="updateMusician" enctype="multipart/form-data" >
                 <div style="">  
@@ -47,7 +49,22 @@ var_dump($instrumentById);*/
                                <textarea type="text" class="w-100 h-75" aria-describedby="" name="bioMusician"><?=$musicianById->musicianBio?></textarea>
                            </div>
                        </div>
-                       <div class="form-group form-control col ">
+                       <div class="row">
+
+                        <div class="form-group">
+                            <label for="dateBorn">Date de naissance</label>
+                            <input type="date" class="form-control" id="dateBorn" value="<?=$musicianById->musicianBorn?>">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="dateDeath">Date de décès</label>
+                            <input type="date" class="form-control" id="dateDeath" value="<?=$musicianById->musicianDeath?>">
+                        </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group form-control col ">
                                <select name="idInstrument" class=" w-100 form-select" id="idInstrument" value="" >
                                <option value="<?=$musicianById->idInstrument?>" selected><?=$musicianById->title?></option>
                                <?php
@@ -65,7 +82,7 @@ var_dump($instrumentById);*/
                                    
                                </select>
                            </div>
-                                   
+                        </div>           
                            
                            <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="updateMusician"></input>
                            <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">

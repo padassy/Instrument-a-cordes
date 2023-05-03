@@ -53,6 +53,10 @@ var_dump($instrumentById);*/
                        
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="dateArticle">Date de l'article :</label>
+                    <input type="date" class="form-control" id="dateArticle" placeholder="Date de l'ajout de l'article" value="<?=$instrumentById->dateArticle?>">
+                </div>
 
                 
                 <div class="form-group col form-check d-flex ">
