@@ -1,12 +1,12 @@
 <?php
 function allPicture(pdo $dbConnect){
-  $sql= $dbConnect->query('SELECT p.id as idPicture , p.name as pictureName, p.description as pictureDescription, p.imageMini as pictureMini,p.imageMiddle as pictureMiddle,p.imageFull as pictureFull  FROM  picture p ');
+  $sql= $dbConnect->query('SELECT p.id as idPicture , p.name as pictureName, p.description as pictureDescription, p.imageMini as pictureMini,p.imageMiddle as pictureMiddle,p.imageFull as pictureFull,p.date as pictureDateTake,p.dateFetch as pictureDateFetch  FROM  picture p ');
         $dataPicture= $sql->fetchAll(PDO::FETCH_ASSOC);
         $sql->closeCursor();
         return $dataPicture;
 }
 function pictureById(pdo $dbConnect,int $idPicture){
-  $sql= $dbConnect->query("SELECT i.title,p.id as idPicture , p.name as pictureName, p.description as pictureDescription, p.imageMini as pictureMini,p.imageMiddle as pictureMiddle,p.imageFull as pictureFull,p.id_instrument as idInstrument  FROM  picture p INNER JOIN instrument i ON p.id_instrument = i.id WHERE p.id ='$idPicture '");
+  $sql= $dbConnect->query("SELECT i.title,p.id as idPicture , p.name as pictureName, p.description as pictureDescription, p.imageMini as pictureMini,p.imageMiddle as pictureMiddle,p.imageFull as pictureFull,p.id_instrument as idInstrument,p.date as pictureDateTake,p.dateFetch as pictureDateFetch  FROM  picture p INNER JOIN instrument i ON p.id_instrument = i.id WHERE p.id ='$idPicture '");
         $dataPicture= $sql->fetch(PDO::FETCH_ASSOC);
         $sql->closeCursor();
         return $dataPicture;

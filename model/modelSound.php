@@ -1,12 +1,12 @@
 <?php
 function allSound(pdo $dbConnect){
-  $sql= $dbConnect->query('SELECT s.id as idSound, s.name as soundName, s.audio as sound, s.description as soundDescription  FROM  sound s');
+  $sql= $dbConnect->query('SELECT s.id as idSound, s.name as soundName, s.audio as sound, s.description as soundDescription,s.dateFetch as soundDate  FROM  sound s');
         $dataSound= $sql->fetchAll(PDO::FETCH_ASSOC);
         $sql->closeCursor();
         return $dataSound;
 }
 function soundById(pdo $dbConnect,int $idSound){
-  $sql= $dbConnect->query("SELECT i.title,s.id as idSound, s.name as soundName, s.audio as sound, s.description as soundDescription,s.id_instrument as idInstrument  FROM  sound s INNER JOIN instrument i ON s.id_instrument = i.id WHERE s.id ='$idSound'");
+  $sql= $dbConnect->query("SELECT i.title,s.id as idSound, s.name as soundName, s.audio as sound, s.description as soundDescription,s.id_instrument as idInstrument,s.dateFetch as soundDate  FROM  sound s INNER JOIN instrument i ON s.id_instrument = i.id WHERE s.id ='$idSound'");
         $dataSound= $sql->fetch(PDO::FETCH_ASSOC);
         $sql->closeCursor();
         return $dataSound;

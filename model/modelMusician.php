@@ -1,12 +1,12 @@
 <?php
 function allMusician(pdo $dbConnect){
-    $sql= $dbConnect->query('SELECT m.id as idMusician , m.firstname as musicianFirstname, m.lastname as musicianLastname, m.biography as musicianBio  FROM  musician m ');
+    $sql= $dbConnect->query('SELECT m.id as idMusician , m.firstname as musicianFirstname, m.lastname as musicianLastname, m.biography as musicianBio, m.bornDate as musicianBorn,m.deathDate as musicianDeath FROM  musician m ');
           $dataMusician= $sql->fetchAll(PDO::FETCH_ASSOC);
           $sql->closeCursor();
           return $dataMusician;
   }
 function musicianById(pdo $dbConnect, int $idMusician){
-    $sql= $dbConnect->query("SELECT i.title,m.id as idMusician , m.firstname as musicianFirstname, m.lastname as musicianLastname, m.biography as musicianBio, m.id_instrument as idInstrument FROM  musician m INNER JOIN instrument i ON m.id_instrument = i.id WHERE m.id = '$idMusician'");
+    $sql= $dbConnect->query("SELECT i.title,m.id as idMusician , m.firstname as musicianFirstname, m.lastname as musicianLastname, m.biography as musicianBio, m.bornDate as musicianBorn,m.deathDate as musicianDeath, m.id_instrument as idInstrument FROM  musician m INNER JOIN instrument i ON m.id_instrument = i.id WHERE m.id = '$idMusician'");
           $dataMusician= $sql->fetch(PDO::FETCH_ASSOC);
           $sql->closeCursor();
           return $dataMusician;
