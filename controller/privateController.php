@@ -325,7 +325,7 @@ if (isset($_GET['p'])) {
 
             try{
                     
-                addPicture($dbConnect, $_POST['titleImage'],$_POST['descriptionImage'],$_FILES,$_POST['idInstrument']);
+                addPicture($dbConnect, $_POST['titleImage'],$_POST['descriptionImage'],$_FILES,$_POST['dateTake'],$_POST['idInstrument']);
 
             }catch(Exception $e){
                 $e = throw new Exception ("Un problème est survenu lors de l ajout de l'image, veuillez réessayer");

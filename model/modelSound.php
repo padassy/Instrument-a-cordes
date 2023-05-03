@@ -76,7 +76,7 @@ function addSound(pdo $dbConnect, string $name, string $description, array $file
     
     $name = htmlspecialchars(strip_tags(trim($name)), ENT_QUOTES);
     $description = htmlspecialchars(strip_tags(trim($description)), ENT_QUOTES);
-    $files = new modelMyUpload($_FILES['addSound']);
+    $files = new modelMyUpload($_FILES['sound']);
  
     #var_dump($files);
    

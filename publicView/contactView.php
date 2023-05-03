@@ -35,15 +35,19 @@
         </div>
               <form action="" method="post" id="contactForm">
                 <div class="boxLabelInputContact">
-                    <label for="nom">nom</label>
-                    <input type="text" id="nom" name="nom" placeholder="" required>
+                    <label for="firstname">Prénom :</label>
+                    <input type="text" id="firstname" name="firstname" placeholder="" required>
                 </div>
                 <div class="boxLabelInputContact">
-                    <label for="email">e-mail</label>
-                    <input type="email" id="email" name="email" placeholder="" required>
+                    <label for="lastname">Nom :</label>
+                    <input type="text" id="lastname" name="lastname" placeholder="" required>
                 </div>
                 <div class="boxLabelInputContact">
-                    <label for="message">message</label>
+                    <label for="mail">Mail :</label>
+                    <input type="mail" id="email" name="mail" placeholder="" required>
+                </div>
+                <div class="boxLabelInputContact">
+                    <label for="message">Message :</label>
                     <textarea id="message" name="message" required></textarea>
                 </div>
                 <div id="buttonContact">

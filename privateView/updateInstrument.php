@@ -91,7 +91,7 @@ var_dump($instrumentById);*/
         
             </div>
 
-            <img src="value="<?=$instrumentById->pictureMiddle?>   > 
+            <img src="<?=$instrumentById->pictureFull?>"> 
 
             
  <!--            <div style="">  
@@ -124,7 +124,7 @@ var_dump($instrumentById);*/
                     
                  
                         </div>
-                        <!-- <div class="row">
+                     <div class="row">
                             <div class="custom-file col">
                                 <label class="custom-file-label w-50" for="addPicture">Image :</label>
                                 <input type="file" class="custom-file-input" id="addPicture" lang="fr" name="addPicture"  >

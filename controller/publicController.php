@@ -1,5 +1,12 @@
 <?php
 $category = fetchCategory($dbConnect);
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Email;
+
+// création des variables pour l'envoi de mail
+$transport = Transport::fromDsn(DNS_MAILER);
+$mailer = new Mailer($transport);
 $temps = microtime(true);
 if (isset($_GET['p'])) {
     switch ($_GET['p']) {
@@ -94,17 +101,19 @@ if(isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
 if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($_POST['mail'],FILTER_VALIDATE_EMAIL)){
     $firstname = htmlspecialchars(strip_tags(trim($_POST['firstname'])),ENT_QUOTES);
     $lastname = htmlspecialchars(strip_tags(trim($_POST['lastname'])),ENT_QUOTES);
-    $mail =htmlspecialchars(strip_tags(trim($_POST['mail'])),ENT_QUOTES);
+    $mailCustomer =trim($_POST['mail']);
     $message = htmlspecialchars(strip_tags(trim($_POST['message'])),ENT_QUOTES);
+    #var_dump($_POST);
    try{
-   
+   #echo "avant le try";
    //pour l'utilisateur
    $mail =(new Email())
    ->from(MAIL_FROM)
-   ->to($mail)
+   ->to($mailCustomer)
    ->subject('Votre message a bien été posté !')
-   ->text('Votre message a bien été posté !\r\n '."\r\n". 'X-Mailer:PHP/'.phpversion())
-   ->html('<p>Votre message a bien  été posté !<br><br> </p>'); 
+   ->text('Votre message a bien été posté !\r\n \r\n sur le site https://www.instruments-a-cordes.webdev-cf2m.be/')
+   ->html('<p>Votre message a bien été posté !<br><br>sur le site  https://www.instruments-a-cordes.webdev-cf2m.be/</p>'); 
+   #echo "avant le send";
    $mailer->send($mail);    
 
     
@@ -113,8 +122,8 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
    ->from(MAIL_FROM)
    ->to(MAIL_ADMIN)
    ->subject('Un nouveau message est arrivé sur votre site !')
-   ->text('Un nouveau message est arrivé sur votre site !\r\n '."\r\n". 'Poste par :'.$mail)
-   ->html('<p>Un nouveau message est arrivé sur votre site  !<br><br>'. 'Poste par : '.$mail.'</p>'); 
+   ->text('Un nouveau message est arrivé sur votre site !\r\n \r\n Posté par ' . $mailCustomer)
+   ->html('<p>Un nouveau message est arrivé sur votre site !<br><br>Posté par ' . $mailCustomer . '</p>'); 
    $mailer->send($mail);    
 
      $e ="Merci pour votre commentaire"; 
