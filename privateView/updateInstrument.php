@@ -26,7 +26,7 @@ var_dump($instrumentById);*/
     ?>
     <div class="vh-100 vw-100 d-flex justify-content-center align-items-center flex-column mr-0 ml-0 ">
         <h1 class="mb-5">Ajouter un article</h1>
-        <form action="" class="article row g-3 h-100 w-100 " id="formUpdateInstrument" method="POST" width="" name="formUpdateArticle" enctype="multipart/form-data" >
+        <form action="" class="article row g-3 h-100 w-100 " id="formUpdateInstrument" method="POST" width="" name="formUpdateArticle" >
             <div class="row">
                 <div class="form-group form-control col d-flex ">
                     <label for="titre" class="w-25 align-self-center">Titre :</label>
@@ -141,18 +141,18 @@ var_dump($instrumentById);*/
                         <div class="row">
                             <div class="form-group form-control col">
                                 <label for="firstnameMusician" class="w-25">Prénom du musicien :</label>
-                                <input type="text" class="w-100 h-75" aria-describedby="" name="firstnameMusician" value="<?=$instrumentById->musicianFirstname?>"></input>
+                                <input type="text" class="w-100 h-75" aria-describedby="" name="firstnameMusician" value=""></input>
                             </div>
                 
                             <div class="form-group form-control col">
                                 <label for="lastnameMusician" class="w-25">Nom du musicien :</label>
-                                <input type="text" class="w-100 h-75" aria-describedby="" name="lastnameMusician" value="<?=$instrumentById->musicianLastname?>"></input>
+                                <input type="text" class="w-100 h-75" aria-describedby="" name="lastnameMusician" value=""></input>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group form-control col">
                                 <label for="bioMusician" class="w-25">Biographie :</label>
-                                <textarea type="text" class="w-100 h-75" aria-describedby="" name="bioMusician" ><?=$instrumentById->musicianBio?></textarea>
+                                <textarea type="text" class="w-100 h-75" aria-describedby="" name="bioMusician" ></textarea>
                             </div>
                         </div>
                     </div>

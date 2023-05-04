@@ -18,7 +18,7 @@
 
 
         <a href="https://fr.linkedin.com" class="icon-footer-socials" target="_blank">
-        <img class="icon-footer-socials-img" src="assets/icone/instagram" alt="">
+        <img class="icon-footer-socials-img" src="assets/icone/instagram.png" alt="">
         </a>
 
   

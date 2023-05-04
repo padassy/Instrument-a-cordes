@@ -20,7 +20,7 @@ function connectAdmin (pdo $dbConnect, string $userLogin, string $userPassword):
 
         $_SESSION['uniqueId'] = session_id();
 
-        echo "<h1>Admin connecté</h1>";
+        #echo "<h1>Admin connecté</h1>";
 
         // on envoie vraie si la connexion est une réussite
         return true;

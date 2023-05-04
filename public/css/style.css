@@ -35,7 +35,7 @@ hr{
 
 /*                          CSS Header                          */
 header {
-    height: 70vh;
+    height: 100vh;
     position: relative;
 }
 header img{
@@ -330,7 +330,6 @@ input[type="checkbox"]{
     height: 15em;
     border: #FDF7F7 0.5em solid;
     border-radius: 15px;
-    color: #FDF7F7;
 
 }
 #buttonContact{
@@ -344,6 +343,43 @@ input[type="checkbox"]{
         margin: 2.5% auto 0;
     
     
+}
+#adminForm{
+    width: 50%;
+    margin: 10% auto 5% ;
+}
+#buttonAdmin{
+    height: 2em;
+    border: #303030 0.5em solid;
+    background-color: #303030;
+    border-radius: 15px;
+    color:#FDF7F7;
+    margin: 2.5% auto 0;
+    font-size: x-large;
+}
+.boxLabelInputAdmin{
+    display: flex;
+    flex-direction: column;
+    color: #FDF7F7;
+    margin-bottom: 1em;
+    font-size: x-large;
+}
+.boxLabelInputAdmin label{
+    text-transform: uppercase;
+    margin-bottom: 0.25em;
+}
+.boxLabelInputAdmin input{
+    height: 2.5em;
+    border: #FDF7F7 0.5em solid;
+    border-radius: 15px;
+    font-size:large;
+
+}
+#adminPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 
@@ -363,6 +399,7 @@ input[type="checkbox"]{
         justify-content: center;
         align-items:center ;
         color: #FDF7F7;
+        height: 100vh;
     }
     #logoFooter{
         width: 30%;
@@ -480,9 +517,9 @@ input[type="checkbox"]{
         display: flex;
         align-items: center;
         justify-content: center;
-        background-image: url("../assets/fond-desktop.png");
+        background-image: url("../assets/fond-tablet.png");
         background-repeat: no-repeat;
-        background-size: cover;-
+        background-size: cover;
     }
 
     /*                                              CSS Nav                                             */
@@ -559,9 +596,7 @@ input[type="checkbox"]{
 
 
                 /*                 CSS Footer               */
-    footer{
-
-    }
+    
     #footNav{
         flex-direction: row;
         justify-content: space-evenly;
@@ -634,7 +669,7 @@ input[type="checkbox"]{
     }
     .header-div-tablet {
         display: flex ;
-        background-image: url("../assets/fond-desktop.png");
+        background-image: url("../assets/fond-tablet.png");
         width: 100%;
         margin: 0;
         min-width: 100%;
@@ -644,6 +679,7 @@ input[type="checkbox"]{
         justify-content: center;
         background-repeat: no-repeat;
         object-fit: cover;
+        background-size: contain;
     }
     
     .nav-desktop{
@@ -722,9 +758,12 @@ input[type="checkbox"]{
     #footNav{
         flex-direction: row;
         justify-content: space-evenly;
-        width: 100%;
+        width: none;
         height: 10%;
         align-self:center;
+    }
+    #footNav a {
+        margin: 0 10%;
     }
                     /*              CSS Article                 */
     #boxCategory{

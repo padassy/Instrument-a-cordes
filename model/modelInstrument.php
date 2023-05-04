@@ -90,11 +90,6 @@ unset($instrument[2]);
 
 
 
-
-
-
-
-
 function fetchAllInstrument (pdo $dbConnect) :array{
     
 
@@ -187,8 +182,100 @@ function fetchAllInstrument (pdo $dbConnect) :array{
 }
 
 
+function fetchAllInstrumentAdmin (pdo $dbConnect) :array{
+    
 
-function updateInstrument(pdo $dbConnect,string $title,string $intro, string|null $description, string $history,string $technics,string $visible,$idInstrument){
+    $dbConnect->beginTransaction();
+
+    $sql = $dbConnect->query("SELECT i.id as idInstrument, i.title,LEFT(i.description,500)as shortdescription , i.history, i.intro, i.technics,i.visible,i.date as dateArticle,
+    GROUP_CONCAT(c.id SEPARATOR '||') as idCategory,GROUP_CONCAT(c.namecategory) as nameCategory
+    FROM instrument i  
+    LEFT JOIN category_has_instrument ihc 
+    ON i.id= ihc.instrument_id 
+    LEFT JOIN category c 
+    ON ihc.category_id=c.id
+    GROUP BY i.id
+    ORDER BY i.date DESC");
+    $nbRow = $sql->rowCount();
+    $sql2 = $dbConnect->query("SELECT GROUP_CONCAT(m.id) as idMusician, GROUP_CONCAT(m.firstname SEPARATOR '||') as musicianFirstname, GROUP_CONCAT(m.biography SEPARATOR '||')as musicianBio,  GROUP_CONCAT(m.lastname SEPARATOR '||')as musicianLastname,GROUP_CONCAT(m.bornDate SEPARATOR '||')as musicianBorn,GROUP_CONCAT(m.deathDate SEPARATOR '||')as musicianDeath
+    FROM instrument i
+    LEFT JOIN musician m 
+    ON i.id=m.id_instrument
+    GROUP BY m.id_instrument
+        ;");
+   
+    $sql3 = $dbConnect->query("SELECT GROUP_CONCAT(s.id) AS idSound , GROUP_CONCAT(s.name SEPARATOR '||') as soundName, GROUP_CONCAT(s.audio SEPARATOR '||')as sound, GROUP_CONCAT(s.description SEPARATOR '||') as soundDescription,GROUP_CONCAT(s.dateFetch SEPARATOR '||')as soundDate
+    FROM instrument i
+    LEFT JOIN sound s 
+    ON  i.id = s.id_instrument
+    GROUP BY i.id
+    ;");
+    $sql4 = $dbConnect->query("SELECT GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.imageMini SEPARATOR '||') as pictureMini,GROUP_CONCAT(p.imageMiddle SEPARATOR '||') as pictureMiddle,GROUP_CONCAT(p.imageFull SEPARATOR '||') as pictureFull ,GROUP_CONCAT(p.date SEPARATOR '||')as pictureDateTake,GROUP_CONCAT(p.dateFetch SEPARATOR '||')as pictureDateFetch
+    FROM instrument i
+    LEFT JOIN picture p 
+    ON i.id = p.id_instrument 
+    GROUP BY i.id
+    ;");
+    
+
+    
+    $assetInstru = $sql->fetchAll(PDO::FETCH_ASSOC);
+    $assetInstru2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
+    $assetInstru3 = $sql3->fetchAll(PDO::FETCH_ASSOC);
+    $assetInstru4 = $sql4->fetchAll(PDO::FETCH_ASSOC);
+
+    for ($i=0;$i<$nbRow;$i++){
+        if (isset($assetInstru2[$i])) {
+            $assetInstru[$i][] = $assetInstru2[$i];
+        }
+    }
+    for ($i=0;$i<$nbRow;$i++){
+        if (isset($assetInstru3[$i])) {
+            $assetInstru[$i][] = $assetInstru3[$i];
+        }
+    }
+    for ($i=0;$i<$nbRow;$i++){
+        if (isset($assetInstru4[$i])) {
+            $assetInstru[$i][] = $assetInstru4[$i];
+        }
+    }
+    for ($i=0;$i<$nbRow;$i++){
+        if (isset($assetInstru[$i][0]) && isset($assetInstru[$i][1]) && isset($assetInstru[$i][2])) {
+            $assetInstru[$i] = $assetInstru[$i]+ $assetInstru[$i][0];
+            $assetInstru[$i] = $assetInstru[$i]+ $assetInstru[$i][1];
+            $assetInstru[$i] = $assetInstru[$i]+ $assetInstru[$i][2];
+        }
+    }
+    for ($i=0;$i<$nbRow;$i++){
+        if (isset($assetInstru[$i][0]) && isset($assetInstru[$i][1]) && isset($assetInstru[$i][2])) {
+            unset($assetInstru[$i][0]);
+            unset($assetInstru[$i][1]);
+            unset($assetInstru[$i][2]);
+        }
+    }
+
+
+
+   /* echo "datasInstru";
+    var_dump($assetInstru);
+    echo "datasInstru2";
+    var_dump($assetInstru[0][0]);
+    echo "datasInstru2";
+    var_dump($assetInstru[0][1]);
+    echo "datasInstru2";
+    var_dump($assetInstru[0][2]);*/
+
+    $dbConnect->commit();
+    $sql->closeCursor();
+    $sql2->closeCursor();
+    $sql3->closeCursor();
+    $sql4->closeCursor();
+
+    return $assetInstru;
+}
+
+
+function updateInstrument(pdo $dbConnect,string $title,string $intro, string|null $description, string $history,string $technics,string $visible,int $idInstrumentUpdate){
 
     
     $title = htmlspecialchars(strip_tags(trim($title)), ENT_QUOTES);
@@ -197,16 +284,18 @@ function updateInstrument(pdo $dbConnect,string $title,string $intro, string|nul
     $history = htmlspecialchars(strip_tags(trim($history)), ENT_QUOTES);
     $technics = htmlspecialchars(strip_tags(trim($technics)), ENT_QUOTES);
     $visible= (int) htmlspecialchars(strip_tags(trim($visible)), ENT_QUOTES);
-    
+  
 
-    $sql = $dbConnect->prepare("UPDATE instrument SET title=?,intro=?,description=?,history=?,technics=?,visible=? WHERE id =$idInstrument");
+    $sql = $dbConnect->prepare("UPDATE instrument SET title=?,intro=?,description=?,history=?,technics=?,visible=? WHERE id = $idInstrumentUpdate");
     $sql->bindParam(1, $title ,PDO::PARAM_STR);
     $sql->bindParam(2, $intro ,PDO::PARAM_STR);
     $sql->bindParam(3,$description,PDO::PARAM_STR);
     $sql->bindParam(4, $history ,PDO::PARAM_STR);
     $sql->bindParam(5, $technics ,PDO::PARAM_STR);
     $sql->bindParam(6,$visible,PDO::PARAM_INT);
+   
     try{
+      
         $sql->execute();
     }catch(Exception $e){
         return $e = throw new Exception ( "Problème lors de l'ajout veuillez recommencer");
