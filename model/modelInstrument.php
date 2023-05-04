@@ -194,8 +194,7 @@ function fetchAllInstrumentAdmin (pdo $dbConnect) :array{
     ON i.id= ihc.instrument_id 
     LEFT JOIN category c 
     ON ihc.category_id=c.id
-    GROUP BY i.id
-    ORDER BY i.date DESC");
+    GROUP BY i.id");
     $nbRow = $sql->rowCount();
     $sql2 = $dbConnect->query("SELECT GROUP_CONCAT(m.id) as idMusician, GROUP_CONCAT(m.firstname SEPARATOR '||') as musicianFirstname, GROUP_CONCAT(m.biography SEPARATOR '||')as musicianBio,  GROUP_CONCAT(m.lastname SEPARATOR '||')as musicianLastname,GROUP_CONCAT(m.bornDate SEPARATOR '||')as musicianBorn,GROUP_CONCAT(m.deathDate SEPARATOR '||')as musicianDeath
     FROM instrument i
