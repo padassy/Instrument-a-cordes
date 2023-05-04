@@ -18,9 +18,7 @@
                 <a href="?p=contact">CONTACT</a>
             </li>
             <li>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            ADMIN
-            </button>
+            <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">ADMIN</a>
             </li>
         </ul>
     </div>
@@ -35,8 +33,7 @@
                 <a class="titre-menu-tab" href="./">ACCUEIL</a>
                 <a href="?p=article">ARTICLE</a> 
                 <a href="?p=contact">CONTACT</a>
-                <a href="?p=admin">ADMIN Form</a>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">ADMIN Modal</button>
+                <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">ADMIN</a>
             </nav>
         </div>
     </header>
@@ -52,12 +49,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <div class="modal-body">
-        <?php
-            if(isset($e)){
-                echo $e;
-            }
-            if(empty($_SESSION)):
-            ?>
             <form action="" method="POST" id="contactForm">
                 <label for="userLogin">Login :</label>
                 <input type="text" name="userLogin" required>
@@ -66,14 +57,11 @@
                 <input type="checkbox" placeholder="Rester connecter">
                 </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
                 <button type="submit" class="btn btn-light">Se connecter</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
                 
             </form>
-        </div>
-                <?php
-                endif;
-            ?>
+            </div>
 
     </div>
   </div>

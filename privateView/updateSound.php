@@ -32,10 +32,25 @@ var_dump($instrumentById);*/
                     <label for="titleSound" class="">Titre du son :</label>
                     <input type="text" class="w-100" aria-describedby="" name="titleSound" value="<?=$soundById->soundName?>"></input>
                 </div>
-                <div class="form-group">
-                    <label for="dateSound">Date :</label>
-                    <input type="date" class="form-control" id="dateSound" value="<?=$soundById->soundDate?>" >
+                <div class="form-group form-control col ">
+                    <select name="idInstrument" class=" w-100 form-select h-100" id="idInstrument" value="" >
+                        <option selected value="<?=$soundById->idInstrument?>"><?=$soundById->title?></option>
+                        <?php
+                        if(isset($dataInstrumentAdminAdd)):
+                            foreach($dataInstrumentAdminAdd as $item):
+                                
+                                ?>
+                        <option value="<?=$item->id?>"> <?=$item->title?></option>
+                        <?php
+                            endforeach;
+                        endif;
+                        
+                        
+                        ?>
+                            
+                        </select>
                 </div>
+             
             </div>
             <div class="row">
                 <div class="form-group form-control col">
@@ -45,24 +60,6 @@ var_dump($instrumentById);*/
             </div>
                 
                 <div class="row">
-                    <div class="form-group form-control col ">
-                        <select name="idInstrument" class=" w-100 form-select h-100" id="idInstrument" value="" >
-                            <option selected value="<?=$soundById->idInstrument?>"><?=$soundById->title?></option>
-                            <?php
-                            if(isset($dataInstrumentAdminAdd)):
-                                foreach($dataInstrumentAdminAdd as $item):
-                                    
-                                    ?>
-                            <option value="<?=$item->id?>"> <?=$item->title?></option>
-                            <?php
-                                endforeach;
-                            endif;
-                            
-                            
-                            ?>
-                                
-                            </select>
-                    </div>
                     
                     
                     <div class=" col">

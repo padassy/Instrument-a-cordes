@@ -47,13 +47,13 @@
 
                     <div class="form-group">
                         <label for="dateBorn">Date de naissance</label>
-                        <input type="date" class="form-control" id="dateBorn" placeholder="Date de l'ajout de l'article">
+                        <input type="date" class="form-control" id="dateBorn" name="bornDate" >
                     </div>
 
 
                     <div class="form-group">
                         <label for="dateDeath">Date de décès</label>
-                        <input type="date" class="form-control" id="dateDeath" placeholder="Date de l'ajout de l'article">
+                        <input type="date" class="form-control" id="dateDeath" name="deathDate" >
                     </div>
 
                 </div>

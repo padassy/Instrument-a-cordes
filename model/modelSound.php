@@ -1,6 +1,6 @@
 <?php
 function allSound(pdo $dbConnect){
-  $sql= $dbConnect->query('SELECT s.id as idSound, s.name as soundName, s.audio as sound, s.description as soundDescription,s.dateFetch as soundDate  FROM  sound s');
+  $sql= $dbConnect->query('SELECT s.id as idSound, s.name as soundName, s.audio as sound, s.description as soundDescription,s.dateFetch as soundDate  FROM  sound s ORDER BY s.dateFetch DESC');
         $dataSound= $sql->fetchAll(PDO::FETCH_ASSOC);
         $sql->closeCursor();
         return $dataSound;
@@ -61,10 +61,10 @@ function updateSound(pdo $dbConnect, string $name, string $description, string $
     $sql->bindParam(2, $description ,PDO::PARAM_STR);
     $sql->bindParam(3,  $idInstrument ,PDO::PARAM_INT);
     
-   echo "traitement donnees";
+   #echo "traitement donnees";
     try{
         $sql->execute();
-        echo "execute";
+        #echo "execute";
     }catch(Exception $e){
         return $e = throw new Exception ("Problème lors de l'ajout veuillez recommencer");
 
@@ -83,7 +83,7 @@ function addSound(pdo $dbConnect, string $name, string $description, array $file
     if ($files->uploaded) {
       $files->file_new_name_body   = $name;
      # $files->file_safe_name = true;
-     $files->allowed = array('audio/mp3');
+     $files->allowed = array('audio/mp3,', '*/*');
     # $files->forbidden = array('');
       $files->process('assets/soundInstrument');
       $path = $files->file_dst_pathname ;
@@ -127,7 +127,11 @@ function addSound(pdo $dbConnect, string $name, string $description, array $file
 
 function deleteSound(pdo $dbConnect, int $idInstrumentDelete){
     $sql= $dbConnect->prepare('DELETE FROM sound WHERE id='.$idInstrumentDelete.'');
+    $sql2 = $dbConnect->prepare('SELECT * FROM sound WHERE id=?');
+    $sql2->execute([$idInstrumentDelete]);
     $sql->execute();
+    $sound= $sql2->fetch(PDO::FETCH_ASSOC);
+    unlink($sound['audio']);
     header("Location:./");
     return "Projet bien effacé";
 }

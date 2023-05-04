@@ -121,14 +121,9 @@
 
                         <div class="form-group">
                             <label for="dateTake">Date de prise :</label>
-                            <input type="date" class="form-control" id="dateTake">
+                            <input type="date" class="form-control" id="dateTake" name="dateTake">
                         </div>
 
-
-                        <div class="form-group">
-                            <label for="dateFetch">Date d'ajout :</label>
-                            <input type="date" class="form-control" id="dateFetch">
-                        </div>
 
                         </div>
                         <div class="row">
@@ -159,13 +154,13 @@
 
                             <div class="form-group">
                                 <label for="dateBorn">Date de naissance</label>
-                                <input type="date" class="form-control" id="dateBorn" placeholder="Date de l'ajout de l'article">
+                                <input type="date" class="form-control" id="dateBorn" name="bornDate" >
                             </div>
 
 
                             <div class="form-group">
                                 <label for="dateDeath">Date de décès</label>
-                                <input type="date" class="form-control" id="dateDeath" placeholder="Date de l'ajout de l'article">
+                                <input type="date" class="form-control" id="dateDeath" name="deathDate" >
                             </div>
 
                         </div>
@@ -196,15 +191,11 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group">
-                                <label for="dateSound">Date :</label>
-                                <input type="date" class="form-control" id="dateSound" >
-                            </div>
 
 
                             <div class="custom-file  col">
                                 <label class="custom-file-label" for="addSound">Ajouter un audio :</label>
-                                <input type="file" class="custom-file-input w-100" id="addSound" lang="fr" name="addSound">
+                                <input type="file" class="custom-file-input w-100" id="addSound" lang="fr" name="sound">
                                     
                             </div>
                         </div>

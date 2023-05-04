@@ -53,13 +53,13 @@ echo "instrument by id";*/
 
                         <div class="form-group">
                             <label for="dateBorn">Date de naissance</label>
-                            <input type="date" class="form-control" id="dateBorn" value="<?=$musicianById->musicianBorn?>">
+                            <input type="date" class="form-control" id="dateBorn" name="bornDate"value="<?=$musicianById->musicianBorn?>">
                         </div>
 
 
                         <div class="form-group">
                             <label for="dateDeath">Date de décès</label>
-                            <input type="date" class="form-control" id="dateDeath" value="<?=$musicianById->musicianDeath?>">
+                            <input type="date" class="form-control" id="dateDeath" name="deathDate" value="<?=$musicianById->musicianDeath?>">
                         </div>
 
                         </div>
