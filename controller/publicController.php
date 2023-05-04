@@ -8,6 +8,23 @@ use Symfony\Component\Mime\Email;
 $transport = Transport::fromDsn(DNS_MAILER);
 $mailer = new Mailer($transport);
 $temps = microtime(true);
+if(isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
+    var_dump($_POST);
+     $userLogin = htmlspecialchars(strip_tags(trim($_POST['userLogin'])),ENT_QUOTES);
+     $userPassword = htmlspecialchars(strip_tags(trim($_POST['userPassword'])),ENT_QUOTES); 
+ 
+ 
+     $userConnect = connectAdmin($dbConnect,$userLogin,$userPassword);
+     if (is_string($userConnect)) {
+         $erreur = $userConnect;
+     }
+   
+    // redirection si connexion ok
+     if ($userConnect===true) {
+         // redirection sur index.php
+         header("Location: ./");
+     }
+ }
 if (isset($_GET['p'])) {
     switch ($_GET['p']) {
 
@@ -76,23 +93,7 @@ elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
     include_once "../publicView/homepageView.php";
 }
    
-if(isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
-   
-    $userLogin = htmlspecialchars(strip_tags(trim($_POST['userLogin'])),ENT_QUOTES);
-    $userPassword = htmlspecialchars(strip_tags(trim($_POST['userPassword'])),ENT_QUOTES); 
 
-
-    $userConnect = connectAdmin($dbConnect,$userLogin,$userPassword);
-    if (is_string($userConnect)) {
-        $erreur = $userConnect;
-    }
-  
-   // redirection si connexion ok
-    if ($userConnect===true) {
-        // redirection sur index.php
-        header("Location:./");
-    }
-}
 
 
 

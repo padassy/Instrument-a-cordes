@@ -83,7 +83,7 @@ function addSound(pdo $dbConnect, string $name, string $description, array $file
     if ($files->uploaded) {
       $files->file_new_name_body   = $name;
      # $files->file_safe_name = true;
-     $files->allowed = array('audio/mp3', '*/*');
+     $files->allowed = array('audio/mp3');
     # $files->forbidden = array('');
       $files->process('assets/soundInstrument');
       $path = $files->file_dst_pathname ;

@@ -180,7 +180,13 @@ function addPicture(pdo $dbConnect, string $name, string $description, array $fi
 
 
 function deletePicture(pdo $dbConnect, int $idInstrumentDelete){
+  $sql2 = $dbConnect->prepare('SELECT * FROM picture WHERE id=?');
   $sql= $dbConnect->prepare('DELETE FROM picture WHERE id='.$idInstrumentDelete.'');
+  $sql2->execute([$idInstrumentDelete]);
+  $picture= $sql2->fetch(PDO::FETCH_ASSOC);
+  unlink($picture['imageMini']);
+  unlink($picture['imageMiddle']);
+  unlink($picture['imageFull']);
   $sql->execute();
   header("Location:./");
   return "Projet bien effacé";

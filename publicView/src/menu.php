@@ -18,7 +18,9 @@
                 <a href="?p=contact">CONTACT</a>
             </li>
             <li>
-                <a href="?p=admin">ADMIN</a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            ADMIN
+            </button>
             </li>
         </ul>
     </div>
@@ -31,9 +33,48 @@
             </div>
             <nav class="nav-desktop">
                 <a class="titre-menu-tab" href="./">ACCUEIL</a>
-                <a href="?p=article">ARTICLE</a> <a href="?p=contact">CONTACT</a>
-                <a href="?p=admin">ADMIN</a>
+                <a href="?p=article">ARTICLE</a> 
+                <a href="?p=contact">CONTACT</a>
+                <a href="?p=admin">ADMIN Form</a>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">ADMIN Modal</button>
             </nav>
         </div>
     </header>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Connexion</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <div class="modal-body">
+        <?php
+            if(isset($e)){
+                echo $e;
+            }
+            if(empty($_SESSION)):
+            ?>
+            <form action="" method="POST" id="contactForm">
+                <label for="userLogin">Login :</label>
+                <input type="text" name="userLogin" required>
+                <label for="userPassword">Mot de passe :</label>
+                <input type="password" name="userPassword" required>
+                <input type="checkbox" placeholder="Rester connecter">
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-light">Se connecter</button>
+                
+            </form>
+        </div>
+                <?php
+                endif;
+            ?>
+
+    </div>
+  </div>
 </div>

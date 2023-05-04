@@ -1,212 +1,5 @@
 <?php
-if (isset($_GET['p'])) {
-
-    switch ($_GET['p']) {
-        case "addInstrument":
-            $category = fetchCategory($dbConnect);
-            #var_dump($category);
-            include_once "../privateView/addInstrument.php";
-        break;
-
-        case "addMusician":
-            $category = fetchCategory($dbConnect);
-            $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
-            #var_dump($category);
-            $allMusician = allMusician($dbConnect);
-            //var_dump($dataAllInstrument);
-            foreach($allMusician as $item){
-                /*if (is_array($instruments[])){
-                    $instrument= explode($instruments,'||');
-                }*/
-                $musicians[] = new modelInstrument($item);
-            }
-            include_once "../privateView/addMusician.php";
-        break;
-
-        case "addPicture":
-            $category = fetchCategory($dbConnect);
-
-            $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
-
-            $allPicture = allPicture($dbConnect);
-            //var_dump($dataAllInstrument);
-            foreach($allPicture as $item){
-                /*if (is_array($instruments[])){
-                    $instrument= explode($instruments,'||');
-                }*/
-                $pictures[] = new modelInstrument($item);
-            }
-            #var_dump($category);
-            #var_dump($dataInstrumentAdminAdd);
-            include_once "../privateView/addPicture.php";
-        break;
-
-        case "addSound":
-            $category = fetchCategory($dbConnect);
-
-            $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
-            $allSound = allSound($dbConnect);
-            //var_dump($dataAllInstrument);
-            foreach($allSound as $item){
-                /*if (is_array($instruments[])){
-                    $instrument= explode($instruments,'||');
-                }*/
-                $sounds[] = new modelInstrument($item);
-            }
-            #var_dump($category);
-            include_once "../privateView/addSound.php";
-        break;
-    }
-            
- 
-
-
-    }else if(isset($_GET['disconnect'])){
-        disconnect();
-        header("Location: ./");
-        exit();
-    
-
-
-
-
-    }else if (isset($_GET['idInstrumentDelete'])){
-        $idInstrumentDelete = (int) $_GET['idInstrumentDelete'];
-
-        deleteInstrument($dbConnect,$idInstrumentDelete);
-
-
-
-
-
-    }else if (isset($_GET['idSoundDelete'])){
-        $idSoundDelete = (int) $_GET['idSoundDelete'];
-
-        deleteSound($dbConnect,$idSoundDelete);
-
-
-
-
-
-    }else if (isset($_GET['idPictureDelete'])){
-        $idPictureDelete = (int) $_GET['idPictureDelete'];
-
-        deletePicture($dbConnect,$idPictureDelete);
-
-
-
-
-    }else if (isset($_GET['idMusicianDelete'])){
-        $idMusicianDelete = (int) $_GET['idMusicianDelete'];
-
-        deleteMusician($dbConnect,$idMusicianDelete);
-  
-
-
-
-
-
-    }else if (isset($_GET['idSoundUpdate'])){
-
-        $idSoundUpdate = (int) $_GET['idSoundUpdate'];
-
-        $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
-        
-        $getSoundById = soundById($dbConnect,$idSoundUpdate);
-
-        $soundById = new modelInstrument($getSoundById);
-
-        include_once "../privateView/updateSound.php";
-
-        
-
-
-
-
-
-    } else if (isset($_GET['idPictureUpdate'])){
-
-        $idPictureUpdate = (int) $_GET['idPictureUpdate'];
-
-        $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
-       
-        
-        $getPictureById = pictureById($dbConnect,$idPictureUpdate);
-
-        $pictureById = new modelInstrument($getPictureById);
-
-        include_once "../privateView/updateImage.php"  ;
-        
-
-
-
-
-
-    }else if (isset($_GET['idMusicianUpdate'])){
-        #echo "idMusician";
-
-        $idMusicianUpdate = (int) $_GET['idMusicianUpdate'];
-        #echo "idMusician INT ";
-        $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
-
-        $getMusicianById = musicianById($dbConnect,$idMusicianUpdate);
-        #echo "idMusician Musician ID ";
-        #var_dump($getMusicianById);
-
-        $musicianById = new modelInstrument ($getMusicianById);
-        #echo "idMusician Modele Instrument";
-        #var_dump($musicianById);
-        #var_dump($instrumentById);
-        include_once "../privateView/updateMusician.php";
-
-     
-        
-
-
-    }elseif(isset($_GET['idInstrumentUpdate'])){
-
-        $idInstrumentUpdate = (int) $_GET['idInstrumentUpdate'];
-
-        
-        $category = fetchCategory($dbConnect);
-
-        $getInstrumentById = fetchDetailInstrument($dbConnect,$idInstrumentUpdate);
-
-        $instrumentById = new modelInstrument ($getInstrumentById);
-
-
-        var_dump($instrumentById);
-
-        #var_dump($instrumentById);
-        include_once "../privateView/updateInstrument.php";
-
-
-
-
-
-
-
-
-
-
-
-
-    }else{
-        $assetInstruAll = fetchAllInstrument($dbConnect);
-        //var_dump($dataAllInstrument);
-        foreach($assetInstruAll as $item){
-            /*if (is_array($instruments[])){
-                $instrument= explode($instruments,'||');
-            }*/
-            $instruments[] = new modelInstrument($item);
-        }
-
-        include_once "../privateView/privateView.php";
-
-    
-
-
-    }if(isset($_POST['addInstrument'])){
+    if(isset($_POST['addInstrument'])){
         echo "addInstrument";
         if (!empty($_POST['titre'])&&!empty($_POST['intro'])&&!empty($_POST['description'])&&!empty($_POST['history'])&&!empty($_POST['technics'])&&!empty($_POST['btn-check-2-outlined'])){
 
@@ -429,4 +222,212 @@ if (isset($_GET['p'])) {
 
 
 }
+if (isset($_GET['p'])) {
+
+    switch ($_GET['p']) {
+        case "addInstrument":
+            $category = fetchCategory($dbConnect);
+            #var_dump($category);
+            include_once "../privateView/addInstrument.php";
+        break;
+
+        case "addMusician":
+            $category = fetchCategory($dbConnect);
+            $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
+            #var_dump($category);
+            $allMusician = allMusician($dbConnect);
+            //var_dump($dataAllInstrument);
+            foreach($allMusician as $item){
+                /*if (is_array($instruments[])){
+                    $instrument= explode($instruments,'||');
+                }*/
+                $musicians[] = new modelInstrument($item);
+            }
+            include_once "../privateView/addMusician.php";
+        break;
+
+        case "addPicture":
+            $category = fetchCategory($dbConnect);
+
+            $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
+
+            $allPicture = allPicture($dbConnect);
+            //var_dump($dataAllInstrument);
+            foreach($allPicture as $item){
+                /*if (is_array($instruments[])){
+                    $instrument= explode($instruments,'||');
+                }*/
+                $pictures[] = new modelInstrument($item);
+            }
+            #var_dump($category);
+            #var_dump($dataInstrumentAdminAdd);
+            include_once "../privateView/addPicture.php";
+        break;
+
+        case "addSound":
+            $category = fetchCategory($dbConnect);
+
+            $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
+            $allSound = allSound($dbConnect);
+            //var_dump($dataAllInstrument);
+            foreach($allSound as $item){
+                /*if (is_array($instruments[])){
+                    $instrument= explode($instruments,'||');
+                }*/
+                $sounds[] = new modelInstrument($item);
+            }
+            #var_dump($category);
+            include_once "../privateView/addSound.php";
+        break;
+    }
+            
+ 
+
+
+    }else if(isset($_GET['disconnect'])){
+        disconnect();
+        header("Location: ./");
+        exit();
+    
+
+
+
+
+    }else if (isset($_GET['idInstrumentDelete'])){
+        $idInstrumentDelete = (int) $_GET['idInstrumentDelete'];
+
+        deleteInstrument($dbConnect,$idInstrumentDelete);
+
+
+
+
+
+    }else if (isset($_GET['idSoundDelete'])){
+        $idSoundDelete = (int) $_GET['idSoundDelete'];
+
+        deleteSound($dbConnect,$idSoundDelete);
+
+
+
+
+
+    }else if (isset($_GET['idPictureDelete'])){
+        $idPictureDelete = (int) $_GET['idPictureDelete'];
+
+        deletePicture($dbConnect,$idPictureDelete);
+
+
+
+
+    }else if (isset($_GET['idMusicianDelete'])){
+        $idMusicianDelete = (int) $_GET['idMusicianDelete'];
+
+        deleteMusician($dbConnect,$idMusicianDelete);
+  
+
+
+
+
+
+    }else if (isset($_GET['idSoundUpdate'])){
+
+        $idSoundUpdate = (int) $_GET['idSoundUpdate'];
+
+        $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
+        
+        $getSoundById = soundById($dbConnect,$idSoundUpdate);
+
+        $soundById = new modelInstrument($getSoundById);
+
+        include_once "../privateView/updateSound.php";
+
+        
+
+
+
+
+
+    } else if (isset($_GET['idPictureUpdate'])){
+
+        $idPictureUpdate = (int) $_GET['idPictureUpdate'];
+
+        $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
+       
+        
+        $getPictureById = pictureById($dbConnect,$idPictureUpdate);
+
+        $pictureById = new modelInstrument($getPictureById);
+
+        include_once "../privateView/updateImage.php"  ;
+        
+
+
+
+
+
+    }else if (isset($_GET['idMusicianUpdate'])){
+        #echo "idMusician";
+
+        $idMusicianUpdate = (int) $_GET['idMusicianUpdate'];
+        #echo "idMusician INT ";
+        $dataInstrumentAdminAdd = fetchInstrumentAdminAdd($dbConnect);
+
+        $getMusicianById = musicianById($dbConnect,$idMusicianUpdate);
+        #echo "idMusician Musician ID ";
+        #var_dump($getMusicianById);
+
+        $musicianById = new modelInstrument ($getMusicianById);
+        #echo "idMusician Modele Instrument";
+        #var_dump($musicianById);
+        #var_dump($instrumentById);
+        include_once "../privateView/updateMusician.php";
+
+     
+        
+
+
+    }elseif(isset($_GET['idInstrumentUpdate'])){
+
+        $idInstrumentUpdate = (int) $_GET['idInstrumentUpdate'];
+
+        
+        $category = fetchCategory($dbConnect);
+
+        $getInstrumentById = fetchDetailInstrument($dbConnect,$idInstrumentUpdate);
+
+        $instrumentById = new modelInstrument ($getInstrumentById);
+
+
+        var_dump($instrumentById);
+
+        #var_dump($instrumentById);
+        include_once "../privateView/updateInstrument.php";
+
+
+
+
+
+
+
+
+
+
+
+
+    }else{
+        $assetInstruAll = fetchAllInstrument($dbConnect);
+        //var_dump($dataAllInstrument);
+        foreach($assetInstruAll as $item){
+            /*if (is_array($instruments[])){
+                $instrument= explode($instruments,'||');
+            }*/
+            $instruments[] = new modelInstrument($item);
+        }
+
+        include_once "../privateView/privateView.php";
+
+    
+
+
+    }
 
