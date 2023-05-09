@@ -37,12 +37,12 @@ function fetchDetailInstrument (pdo $dbConnect, int $idInstrument):array{
     LEFT JOIN musician m 
     ON i.id=m.id_instrument 
     WHERE i.id=$idInstrument;");
-    $sql3 = $dbConnect->query("SELECT GROUP_CONCAT(s.id) AS idSound , GROUP_CONCAT(s.name SEPARATOR '||') as soundName, GROUP_CONCAT(s.audio SEPARATOR '||')as sound, GROUP_CONCAT(s.description SEPARATOR '||') as soundDescription,GROUP_CONCAT(s.dateFetch SEPARATOR '||')as soundDate
+    $sql3 = $dbConnect->query("SELECT GROUP_CONCAT(s.id) AS idSound , GROUP_CONCAT(s.name SEPARATOR '||') as soundName, GROUP_CONCAT(s.audio SEPARATOR '||')as sound, GROUP_CONCAT(s.description SEPARATOR '||') as soundDescription,GROUP_CONCAT(s.date SEPARATOR '||')as soundDate
     FROM instrument i
     LEFT JOIN sound s 
     ON  i.id = s.id_instrument
     WHERE i.id=$idInstrument;");
-    $sql4 = $dbConnect->query("SELECT GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.imageMini SEPARATOR '||') as pictureMini ,GROUP_CONCAT(p.imageMiddle SEPARATOR '||') as pictureMiddle ,GROUP_CONCAT(p.imageFull SEPARATOR '||') as pictureFull ,GROUP_CONCAT(p.date SEPARATOR '||')as pictureDateTake,GROUP_CONCAT(p.dateFetch SEPARATOR '||')as pictureDateFetch
+    $sql4 = $dbConnect->query("SELECT GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.imageMini SEPARATOR '||') as pictureMini ,GROUP_CONCAT(p.imageMiddle SEPARATOR '||') as pictureMiddle ,GROUP_CONCAT(p.imageFull SEPARATOR '||') as pictureFull ,GROUP_CONCAT(p.date SEPARATOR '||')as pictureDateTake,GROUP_CONCAT(p.date SEPARATOR '||')as pictureDate
     FROM instrument i
     LEFT JOIN picture p 
     ON i.id = p.id_instrument  
@@ -111,16 +111,17 @@ function fetchAllInstrument (pdo $dbConnect) :array{
     GROUP BY m.id_instrument
         ;");
    
-    $sql3 = $dbConnect->query("SELECT GROUP_CONCAT(s.id) AS idSound , GROUP_CONCAT(s.name SEPARATOR '||') as soundName, GROUP_CONCAT(s.audio SEPARATOR '||')as sound, GROUP_CONCAT(s.description SEPARATOR '||') as soundDescription,GROUP_CONCAT(s.dateFetch SEPARATOR '||')as soundDate
+    $sql3 = $dbConnect->query("SELECT GROUP_CONCAT(s.id) AS idSound , GROUP_CONCAT(s.name SEPARATOR '||') as soundName, GROUP_CONCAT(s.audio SEPARATOR '||')as sound, GROUP_CONCAT(s.description SEPARATOR '||') as soundDescription,GROUP_CONCAT(s.date SEPARATOR '||')as soundDate
     FROM instrument i
     LEFT JOIN sound s 
     ON  i.id = s.id_instrument
     GROUP BY i.id
     ;");
-    $sql4 = $dbConnect->query("SELECT GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.imageMini SEPARATOR '||') as pictureMini,GROUP_CONCAT(p.imageMiddle SEPARATOR '||') as pictureMiddle,GROUP_CONCAT(p.imageFull SEPARATOR '||') as pictureFull ,GROUP_CONCAT(p.date SEPARATOR '||')as pictureDateTake,GROUP_CONCAT(p.dateFetch SEPARATOR '||')as pictureDateFetch
+    $sql4 = $dbConnect->query("SELECT p.id AS idPicture,  p.name as pictureName, p.description  as pictureDescription,p.imageMini  as pictureMini,p.imageMiddle  as pictureMiddle,p.imageFull  as pictureFull ,p.date as pictureDateTake,p.date as pictureDate
     FROM instrument i
     LEFT JOIN picture p 
     ON i.id = p.id_instrument 
+    WHERE p.orientation = 'l'
     GROUP BY i.id
     ;");
     
@@ -187,7 +188,7 @@ function fetchAllInstrumentAdmin (pdo $dbConnect) :array{
 
     $dbConnect->beginTransaction();
 
-    $sql = $dbConnect->query("SELECT i.id as idInstrument, i.title,LEFT(i.description,500)as shortdescription , i.history, i.intro, i.technics,i.visible,i.date as dateArticle,
+    $sql = $dbConnect->query("SELECT i.id as idInstrument, i.title,LEFT(i.description,1200)as shortdescription , i.history, i.intro, i.technics,i.visible,i.date as dateArticle,
     GROUP_CONCAT(c.id SEPARATOR '||') as idCategory,GROUP_CONCAT(c.namecategory) as nameCategory
     FROM instrument i  
     LEFT JOIN category_has_instrument ihc 
@@ -203,13 +204,13 @@ function fetchAllInstrumentAdmin (pdo $dbConnect) :array{
     GROUP BY m.id_instrument
         ;");
    
-    $sql3 = $dbConnect->query("SELECT GROUP_CONCAT(s.id) AS idSound , GROUP_CONCAT(s.name SEPARATOR '||') as soundName, GROUP_CONCAT(s.audio SEPARATOR '||')as sound, GROUP_CONCAT(s.description SEPARATOR '||') as soundDescription,GROUP_CONCAT(s.dateFetch SEPARATOR '||')as soundDate
+    $sql3 = $dbConnect->query("SELECT GROUP_CONCAT(s.id) AS idSound , GROUP_CONCAT(s.name SEPARATOR '||') as soundName, GROUP_CONCAT(s.audio SEPARATOR '||')as sound, GROUP_CONCAT(s.description SEPARATOR '||') as soundDescription,GROUP_CONCAT(s.date SEPARATOR '||')as soundDate
     FROM instrument i
     LEFT JOIN sound s 
     ON  i.id = s.id_instrument
     GROUP BY i.id
     ;");
-    $sql4 = $dbConnect->query("SELECT GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.imageMini SEPARATOR '||') as pictureMini,GROUP_CONCAT(p.imageMiddle SEPARATOR '||') as pictureMiddle,GROUP_CONCAT(p.imageFull SEPARATOR '||') as pictureFull ,GROUP_CONCAT(p.date SEPARATOR '||')as pictureDateTake,GROUP_CONCAT(p.dateFetch SEPARATOR '||')as pictureDateFetch
+    $sql4 = $dbConnect->query("SELECT p.id AS idPicture,  p.name as pictureName, p.description  as pictureDescription,p.imageMini  as pictureMini,p.imageMiddle  as pictureMiddle,p.imageFull  as pictureFull ,p.date as pictureDateTake,p.date as pictureDate
     FROM instrument i
     LEFT JOIN picture p 
     ON i.id = p.id_instrument 
@@ -387,7 +388,7 @@ function deleteInstrument(pdo $dbConnect, int $idInstrumentDelete){
     p.id AS idPicture,  p.name as pictureName, p.description  as pictureDescription,p.imageMini  as picture ,
     m.id as idMusician, m.firstname  as musicianFirstname, m.biography as musicianBio,  m.lastname as musicianLastname,
     (SELECT i.id as idInstrument, i.title, i.description, i.history, i.intro, i.technics,i.visible, 
-    GROUP_CONCAT(c.id SEPARATOR '||') as idCategory,GROUP_CONCAT(c.namecategory) as nameCategory
+    c.id SEPARATOR '||') as idCategory,GROUP_CONCAT(c.namecategory) as nameCategory
     FROM instrument i  
     LEFT JOIN category_has_instrument ihc 
     ON i.id= ihc.instrument_id 

@@ -15,16 +15,28 @@
     <title>Modification</title>
 </head>
 
-<body>
+<body style="overflow-x: hidden;">
     <?php
                   require_once "../publicView/src/error.php";
+
+#var_dump($_POST);
+#var_dump($_FILES);
     ?>
-    <div class="vh-100 vw-100 d-flex justify-content-center align-items-center flex-column mr-0 ml-0 ">
-        <h1 class="mb-5">Modifier une image</h1>
-        <form action="" class="article row g-3 h-100 w-100 " id="updatePicture" method="POST" width="" name="updatePicture" >
+ <div class="vh-100 vw-100 d-flex row m-0 p-0"> 
+        <?php
+            include_once "../privateView/src/menuPrivate.php";
+        ?>  
+  <div class="h-100 w-75 d-flex justify-content-center align-items-center flex-column mr-0 ml-0 p-0 ">    
+      <h1 class="mb-5">Modifier l'image</h1>
+        <form action="" class="article row g-3 w-100 " id="updatePicture" method="POST" width="" name="updatePicture" >
             <div class="row">    
+                <div class="form-group form-control col">
+                    <label for="titleImage" class="w-25">Titre de l'image:</label>
+                    <input type="text" class="w-100" aria-describedby="" name="titleImage" value="<?=$pictureById->pictureName?>"></input>
+                </div>
                     <div class="form-group form-control col ">
-                        <select name="idInstrument" class=" w-100 form-select h-100" id="idInstrument" value="" >
+                        <label for="idInstrument">Instrument :</label>
+                        <select name="idInstrument" class=" w-100 form-select" id="idInstrument" value="" >
                         <option value="<?=$pictureById->idInstrument?>" selected><?=$pictureById->title?></option>
                         <?php
                         if(isset($dataInstrumentAdminAdd)):
@@ -40,49 +52,46 @@
                         ?>
                             
                         </select>
-                    </div>
-                    <div class="form-group form-control col">
-                        <label for="titleImage" class="w-25">Titre de l'image:</label>
-                        <input type="text" class="w-100" aria-describedby="" name="titleImage" value="<?=$pictureById->pictureName?>"></input>
-                    </div>
-                    <div class="row">
-
-                        <div class="form-group">
-                            <label for="dateTake">Date de prise :</label>
-                            <input type="date" class="form-control" id="dateTake" value="<?=$pictureById->pictureDateTake?>">
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="dateFetch">Date d'ajout :</label>
-                            <input type="date" class="form-control" id="dateFetch" value="<?=$pictureById->pictureDateFetch?>">
-                        </div>
-
-                    </div>
-                        
+                </div>
+            </div>
+            <div class="row">
+                
                     <div class="form-group form-control col">
                         <label for="descriptionImage w-25" class="">Description :</label>
                         <textarea type="text" class="w-100" aria-describedby="" name="descriptionImage" rows="3"><?=$pictureById->pictureDescription?></textarea>
                     </div>
                 </div>
-                        
-                      
-            </div>
-        
-            <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="updatePictureSubmit"></input>
-            <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">
-        
-            
+                
+                <div class="row">
+
+                    <div class="form-group">
+                        <label for="dateTake">Date de prise :</label>
+                        <input type="date" class="form-control" id="dateTake" value="<?=$pictureById->pictureDateTake?>">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="dateFetch">Date d'ajout :</label>
+                        <input type="date" class="form-control" id="dateFetch" value="<?=$pictureById->pictureDateFetch?>">
+                    </div>
+
+                </div>
+                
+                <div class="row">
+                    
+                    <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="updatePictureSubmit"></input>
+                    <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">
+                </div>
+                
+                
                 
         
 
 
         </form>
-        <a href="?p=addMusician">Musician</a>
-        <a href="?p=addPicture">Picture</a>
-        <a href="?p=addSound">Son</a>
-
+        </div>
     </div>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

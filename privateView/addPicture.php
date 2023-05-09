@@ -15,24 +15,59 @@
     <title>Ajout Image</title>
 </head>
 
-<body>
+<body style="overflow-x: hidden;">
     <?php
-        require_once "../publicView/src/error.php";
+                  require_once "../publicView/src/error.php";
 
-    #var_dump($_FILES);
-    #var_dump($_POST);
+#var_dump($_POST);
+#var_dump($_FILES);
     ?>
-    <div class="vh-100 vw-100 d-flex mt-5 align-items-center flex-column">
-        <div style=""> 
-            <form class="article row g-3 " id="formAddPicture" method="POST" width="" name="formAddArticle" enctype="multipart/form-data">
-            
-            
-            
-                <div class="row">    
-                    <div class="form-group form-control col">
-                        <label for="titleImage" class="w-25">Titre de l'image:</label>
-                        <input type="text" class="w-100" aria-describedby="" name="titleImage"></input>
-                    </div>
+ <div class="vh-100 vw-100 d-flex row m-0 p-0"> 
+        <?php
+            include_once "../privateView/src/menuPrivate.php";
+        ?>  
+  <div class="h-100 w-75 d-flex justify-content-center align-items-center flex-column mr-0 ml-0 p-0 ">    
+      <h1 class="mb-5">Ajouter une image</h1>
+      <form class="article row g-3 w-100  " id="formAddPicture" method="POST" width="" name="formAddArticle" enctype="multipart/form-data">
+          
+          
+          
+          <div class="row ">
+              
+              <div class="form-group form-control col w-100">
+                <label for="idInstrument">Instrument :</label>
+                  <select name="idInstrument" class=" w-100 form-select " id="idInstrument" value="" required>
+                      <option></option>
+                      <?php
+              if(isset($dataInstrumentAdminAdd)):
+                  foreach($dataInstrumentAdminAdd as $item):
+                      
+                      ?>
+              <option value="<?=$item->id?>"> <?=$item->title?></option>
+              <?php
+                  endforeach;
+              endif;
+              
+              
+              ?>
+                  
+              </select>
+          </div>
+      </div>
+      <div class="row">
+        <div class="form-group form-control col">
+        <label class="custom-file-label w-50" for="addPicture">Image :</label>
+                  <input type="file" class="custom-file-input" id="addPicture" lang="fr" name="addPicture" >
+        </div>
+      </div>
+          <div class="row">    
+              <div class="form-group form-control col">
+                  <label for="titleImage" class="w-25">Titre de l'image:</label>
+                  <input type="text" class="w-100" aria-describedby="" name="titleImage"></input>
+                  
+                </div>
+                
+      
                         
                     <div class="form-group form-control col">
                         <label for="descriptionImage w-25" class="">Description :</label>
@@ -41,49 +76,32 @@
                 </div>
                             
                 <div class="row">
-                    <div class="custom-file col">
-                        <label class="custom-file-label w-50" for="addPicture">Image :</label>
-                        <input type="file" class="custom-file-input" id="addPicture" lang="fr" name="addPicture" >
-                                        
-                    </div>
-                <div class="row">
-
-                    <div class="form-group">
+                    
+                    <div class="form-group form-control col">
                         <label for="dateTake">Date de prise :</label>
                         <input type="date" class="form-control" id="dateTake" name="dateTake">
                     </div>
-
-
-                </div>
-                <div class="row">
-
                     <div class="form-group form-control col ">
-                        <select name="idInstrument" class=" w-100 form-select h-100" id="idInstrument" value="" >
-                        <option selected>Instrument</option>
-                        <?php
-                        if(isset($dataInstrumentAdminAdd)):
-                            foreach($dataInstrumentAdminAdd as $item):
-
-                        ?>
-                        <option value="<?=$item->id?>"> <?=$item->title?></option>
-                        <?php
-                            endforeach;
-                        endif;
-                                
-
-                        ?>
+                    <label for="orientation">Orientation de la photo :</label>
+                        <select name="orientation" class=" w-100 form-select "  value="" >
+                            <option selected></option>
+                            <option value="l">Paysage</option>
+                            <option value="p">Portrait</option>
                             
                         </select>
+                        
+                        
                     </div>
                 </div>
-                      
+                
+            <div class="row">
+                <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="addPicture"></input>
+                <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">
             </div>
-        
-            <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="addPicture"></input>
-            <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">
 
         </form>
     </div>
+ </div>
     <table class="table table-striped">
       
         
@@ -96,6 +114,7 @@
              
             </tr>
             <?php
+            #var_dump($pictures);
             if(isset($pictures)):
                 foreach ($pictures as $item):
 
@@ -138,6 +157,7 @@
             ?>
         </table>
 </div>
+<script src="js/script.js"></script>
 
 </body>
 

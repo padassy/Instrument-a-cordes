@@ -15,27 +15,53 @@
     <title>Ajout Musicien</title>
 </head>
 
-<body>
+<body style="overflow-x: hidden;">
     <?php
                   require_once "../publicView/src/error.php";
 
-    #var_dump($_FILES);
-    #var_dump($_POST);
+#var_dump($_POST);
+#var_dump($_FILES);
     ?>
-    <div class="vh-100 vw-100 d-flex justify-content-center align-items-center flex-column">
-        <form class="article row g-3 " id="formAddInstrument" method="POST" width="" name="formAddArticle" enctype="multipart/form-data">
-            <div style="">  
-                       
-                <div class="row">
+ <div class="vh-100 vw-100 d-flex row m-0 p-0"> 
+        <?php
+            include_once "../privateView/src/menuPrivate.php";
+        ?>  
+  <div class="h-100 w-75 d-flex justify-content-center align-items-center flex-column mr-0 ml-0 p-0 ">
+           
+      <h1 class="mb-5">Ajouter un musicien</h1>
+        <form class="article row g-3 w-100 " id="formAddInstrument" method="POST" width="" name="formAddArticle" enctype="multipart/form-data"> 
+            
+            <div class="row">
+                <div class="form-group form-control col ">
+                    <label for="idInstrument">Instrument :</label>
+                    <select name="idInstrument" class=" w-100 form-select" id="idInstrument" value="" required>
+                        <option value=""></option>
+                        <?php
+                    if(isset($dataInstrumentAdminAdd)):
+                        foreach($dataInstrumentAdminAdd as $item):
+                            
+                            ?>
+                    <option value="<?=$item->id?>"> <?=$item->title?></option>
+                    <?php
+                        endforeach;
+                    endif;
+                    
+                    
+                    ?>
+                        
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="form-group form-control col">
+                        <label for="lastnameMusician" class="w-25">Nom :</label>
+                        <input type="text" class="w-100" aria-describedby="" name="lastnameMusician"></input>
+                    </div>
                    <div class="form-group form-control col">
-                                <label for="firstnameMusician" class="w-25">Prénom du musicien :</label>
+                                <label for="firstnameMusician" class="w-25">Prénom :</label>
                                 <input type="text" class="w-100" aria-describedby="" name="firstnameMusician"></input>
                             </div>
                 
-                            <div class="form-group form-control col">
-                                <label for="lastnameMusician" class="w-25">Nom du musicien :</label>
-                                <input type="text" class="w-100" aria-describedby="" name="lastnameMusician"></input>
-                            </div>
                         </div>
                 <div class="row">
                     <div class="form-group form-control col">
@@ -57,35 +83,16 @@
                     </div>
 
                 </div>
-                <div class="row">
-                    <div class="form-group form-control col ">
-                        <select name="idInstrument" class=" w-100 form-select h-100" id="idInstrument" value="" >
-                        <option selected>Instrument</option>
-                        <?php
-                        if(isset($dataInstrumentAdminAdd)):
-                            foreach($dataInstrumentAdminAdd as $item):
-
-                        ?>
-                        <option value="<?=$item->id?>"> <?=$item->title?></option>
-                        <?php
-                            endforeach;
-                        endif;
-                                
-
-                        ?>
-                            
-                        </select>
-                    </div>
-                </div>
                             
                       
-            </div>
+            
             <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="addMusician"></input>
             <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">
         
 
         </form>
     </div>
+ </div>
             <table class="table table-striped">
       
         
@@ -138,6 +145,7 @@
             ?>
         </table>
     </div>
+    <script src="js/script.js"></script>
 
 </body>
 

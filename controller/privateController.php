@@ -26,7 +26,7 @@ if(isset($_POST['addInstrument'])){
         
                     try{
                             
-                        addPicture($dbConnect, $_POST['titleImage'],$_POST['descriptionImage'],$_FILES['addPicture'],$_POST['dateTake'],$lastInsert);
+                        addPicture($dbConnect, $_POST['titleImage'],$_POST['descriptionImage'],$_FILES['addPicture'],$_POST['dateTake'],$_POST['orientation'],$lastInsert);
         
                     }catch(Exception $e){
                         $e = throw new Exception ("Un problème est survenu lors de l ajout de l'image, veuillez réessayer");
@@ -97,7 +97,7 @@ if(isset($_POST['addInstrument'])){
         #echo "ajout musicien";
             $e = throw new Exception ("Un problème est survenu lors de l ajout de l'artiste, veuillez réessayer");
         }
-        header('Refresh:2');
+        
 
     }else{
         $e = throw new Exception('Veuillez remplir tous les champs nécessaires, merci');
@@ -122,7 +122,7 @@ if(isset($_POST['addInstrument'])){
 
             try{
                     
-                addPicture($dbConnect, $_POST['titleImage'],$_POST['descriptionImage'],$_FILES,$_POST['dateTake'],$_POST['idInstrument']);
+                addPicture($dbConnect, $_POST['titleImage'],$_POST['descriptionImage'],$_FILES,$_POST['dateTake'],$_POST['orientation'],$_POST['idInstrument']);
 
             }catch(Exception $e){
                 $e = throw new Exception ("Un problème est survenu lors de l ajout de l'image, veuillez réessayer");
@@ -131,7 +131,7 @@ if(isset($_POST['addInstrument'])){
         }else{
             $e = throw new Exception ('Veuillez insérer une image plus petite');
         }
-        header('Refresh:2');
+        
 
     }else{
         $e = throw new Exception('Veuillez remplir tous les champs nécessaires, merci');
@@ -161,7 +161,7 @@ if(isset($_POST['addInstrument'])){
         }else{
             $e = throw new Exception ('Veuillez insérer un audio plus petit');
         }
-        header('Refresh:2');
+        
 
     }else{
         $e = throw new Exception('Veuillez remplir tous les champs nécessaires, merci');
@@ -249,6 +249,14 @@ if (isset($_GET['p'])) {
         case "addInstrument":
             $category = fetchCategory($dbConnect);
             #var_dump($category);
+            $assetInstruAll = fetchAllInstrumentAdmin($dbConnect);
+            //var_dump($dataAllInstrument);
+            foreach($assetInstruAll as $item){
+                /*if (is_array($instruments[])){
+                    $instrument= explode($instruments,'||');
+                }*/
+                $instruments[] = new modelInstrument($item);
+            }
             include_once "../privateView/addInstrument.php";
         break;
 
@@ -300,6 +308,7 @@ if (isset($_GET['p'])) {
             #var_dump($category);
             include_once "../privateView/addSound.php";
         break;
+       
     }
             
  
@@ -427,6 +436,15 @@ if (isset($_GET['p'])) {
 
         $instrumentById = new modelInstrument ($getInstrumentById);
 
+        
+        $assetInstruAll = fetchAllInstrumentAdmin($dbConnect);
+        //var_dump($dataAllInstrument);
+        foreach($assetInstruAll as $item){
+            /*if (is_array($instruments[])){
+                $instrument= explode($instruments,'||');
+            }*/
+            $instruments[] = new modelInstrument($item);
+        }
 
         #var_dump($instrumentById);
 
