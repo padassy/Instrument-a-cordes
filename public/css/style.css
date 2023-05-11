@@ -447,23 +447,38 @@ input[type="checkbox"]{
     width: 90%;
     height: 35vh;
     margin:10% auto 10%;
-    border: 1.5px solid black;
+
     border-radius: 15px;
-    padding: 1em;
     color: #FDF7F7;
 }
 
 .imageTableauArticle{
     width: 50%;
+    
 }
 .titleTableauArticle{
     text-align: center;
+    background-color: rgba(0, 0, 0, .6);
+    font-size: 2em;
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+    height: 2.5em;
+    line-height: 2.5em;
 }
 .imageTableauArticle img{
     width: 100%;
 }
 .texteTableauArticle{
     text-align: justify;
+    padding: 0 1em;
+    
+    
+}
+.fondTableauArticle{
+    background-color: rgba(0, 0, 0, .6);
+    font-size: 1.5em;
+    width: 100%;
+    border-radius: 0 0 15px 15px;
 }
 #boxCategory {
     background-color: #D9D9D9 ;
@@ -488,6 +503,7 @@ input[type="checkbox"]{
   .linkArticle{
     color: #FDF7F7;
     text-decoration: none;
+    padding: 0 1em;
   }
 
 
@@ -782,6 +798,7 @@ input[type="checkbox"]{
     .tableauCartesArticle{
         height: 20%;
         background-color: #574d4d11;
+        border-radius: 15px;
       
     }
 

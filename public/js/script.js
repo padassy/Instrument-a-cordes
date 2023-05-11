@@ -1,8 +1,8 @@
-var lien = document.querySelectorAll("a"); // Récupère tous les éléments <a> du document
+var lien = document.querySelectorAll(".nav-link"); // Récupère tous les éléments <a> du document
 function changerCouleurLien() {
-   // Associe la fonction à l'événement onclick de chaque élément <a>
-        this.classList.add = "active"; // Modifie la couleur du lien cliqué en rouge
-      
+      for (let i = 0; i < lien.length; i++) {
+        lien[i].classList.add = "active"; 
+      }
     
   }
   lien.addEventListener("click", changerCouleurLien);
