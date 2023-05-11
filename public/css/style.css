@@ -322,13 +322,15 @@ input[type="checkbox"]{
 }
 .boxLabelInputContact input{
     height: 1.5em;
-    border: #FDF7F7 0.5em solid;
+    border: #FDF7F7 1px solid;
+    padding: 0 1em ;
     border-radius: 15px;
 
 }
 .boxLabelInputContact textarea{
     height: 15em;
-    border: #FDF7F7 0.5em solid;
+    border: #FDF7F7 1px solid;
+    padding: 0 1em ;
     border-radius: 15px;
 
 }
@@ -336,12 +338,15 @@ input[type="checkbox"]{
     display: flex;
 }
 #contactForm button{
-        height: 2em;
+    
         border: #FDF7F7 0.5em solid;
         border-radius: 15px;
         color:#303030;
-        margin: 2.5% auto 0;
-    
+        margin: 2.5% auto 2.5%;
+        text-transform: capitalize;
+        font-size: 1.25em;
+        font-weight: 600;
+       
     
 }
 #adminForm{
@@ -847,6 +852,10 @@ input[type="checkbox"]{
 }
 #boxIntroContact{
     width: 50%;
+}
+#boxIntroContact h1{
+    margin-bottom: 2.5em;
+    font-size: 2.5em;
 }
 #contactForm {
     width: 45%;
