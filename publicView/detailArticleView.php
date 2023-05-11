@@ -22,55 +22,85 @@
 
         ?>
     </nav>
+    <a href="#hist">Histoire</a> 
+   <a href="#art">Artiste</a>
+   <a href="#gal">Galerie</a>
+   <a href="#son">Extrait sonore</a>
+   <a href="#url">Source</a>
 
     <section>
      
         <article>
             <h1><?=$detailInstrument->title?></h1>
             <p><?=$detailInstrument->intro?></p>
-        </article>
-        
-        <article>
+       
+            <h2 id="hist">Histoire</h2>
             <p><?=$detailInstrument->history?></p>
-        </article>
-        
-        <article>
-            <p><?=$detailInstrument->technics?></p>
-        </article>
 
-         <article>
+            <h2>Techniques</h2>
+            <p><?=$detailInstrument->technics?></p>
+
+            <h2>Description</h2>
             <p><?=$detailInstrument->description?></p>
-        </article>  
-        
-        <article>
-        <?php if(isset($item->pictureMini)):?>
-            <p><?=$detailInstrument->pictureMini?></p>
-            <?php endif;?>
-        </article>
-        <article>
+            
+            <h2 id="art">Artistes</h2>
             <?php
             $nomMusicien = explode('||',$detailInstrument->musicianLastname);
             $prenomMusicien = explode('||',$detailInstrument->musicianFirstname);
             $bioMusicien = explode('||',$detailInstrument->musicianBio);
             $idMusicien = explode(',',$detailInstrument->idMusician);
 
-            var_dump($nomMusicien);
-            var_dump($prenomMusicien);
-            var_dump($bioMusicien);
-            var_dump($idMusicien);
+            //var_dump($nomMusicien);
+            //var_dump($prenomMusicien);
+            //var_dump($bioMusicien);
+            //var_dump($idMusicien);
             foreach ($idMusicien as $key => $value):
             ?>
             <p><?=$nomMusicien[$key]?>,<?=$prenomMusicien[$key]?>,<?=$bioMusicien[$key]?></p>
             
-        </article>
-        <?php
-        endforeach;
+            <?php
+            endforeach;
+
+            ?>
+            
+            <h2 id="gal">Galerie</h2>
+            <?php
+
+            
+
+            $nomPict= explode('||',$detailInstrument->pictureName);
+            $descriptionPict = explode('||',$detailInstrument->pictureDescription);
+            $mini = explode('||',$detailInstrument->pictureMini);
+            $middle = explode('||',$detailInstrument->pictureMiddle);
+            $full = explode('||',$detailInstrument->pictureFull);
+            $dateTake = explode('||',$detailInstrument->pictureDateTake);
+            $dateFetch = explode('||',$detailInstrument->pictureDateFetch);
+            $idPict = explode(',',$detailInstrument->idPicture);
+           
+            foreach ($idPict as $key => $value):
 
         ?>
+            <p><?=$detailInstrument->pictureMini?></p>
+
+            
+            <?php
+            endforeach;
+            ?>
+            <?php
+             $nomPict= explode('||',$detailInstrument->pictureName);
+            $descriptionPict = explode('||',$detailInstrument->pictureDescription);
+            $mini = explode('||',$detailInstrument->pictureMini);
+            $middle = explode('||',$detailInstrument->pictureMiddle);
+            $idPict = explode(',',$detailInstrument->idPicture);
+            ?>
+
+            <h2 id="son">Extrait audio</h2>
+            <audio controls src="<?=$detailInstrument->sound?>"></audio>
+            <h2>Sources</h2>
+           
+
     
     
-        <article>
-            <p><?=$detailInstrument->sound?></p>
         </article>
     
       
@@ -80,6 +110,11 @@
     <footer>
         <?php include_once "src/footer.php"?>
     </footer>
+    
+</body>
+</html>
+
+
     
 </body>
 </html>
