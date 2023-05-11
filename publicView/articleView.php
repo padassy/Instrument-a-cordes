@@ -40,7 +40,7 @@
                 if(isset($instruments)):
                 foreach ($instruments as $item):
                 ?>
-                      <table class="tableauCartesArticle" style="background: no-repeat url(<?=$item->pictureMiddle?>)bottom ; background-size:cover ; background-color:#574d4d11;" >
+                      <table class="tableauCartesArticle" style="background: no-repeat url(<?=$item->pictureMiddle?>)bottom ; background-size:cover ;border-radius:15px;" >
 
 
                             <tr>
@@ -51,15 +51,15 @@
                             </tr>
 
 
-                            <tr>
+                            <tr class="fondTableauArticle">
                                 
                                 <td class="texteTableauArticle">
-                                    <p><?=$item->shortdescription?></p>
+                                    <p><?=truncate($item->shortdescription)?></p>
                                 </td>
                             </tr>
 
 
-                            <tr>
+                            <tr class="fondTableauArticle">
                                 <td>
                                     <a href="?idInstrument=<?=$item->idInstrument?>" class="linkArticle">En savoir plus ...</a>
                                 </td>
@@ -71,10 +71,11 @@
             <?php
                 endforeach;
                 elseif(isset($categoryInstrument)):
+                    #var_dump($categoryInstrument);
                     foreach ($categoryInstrument as $item):
             ?>
-                    <table class="tableauCartesArticle" style="background: no-repeat url(<?=$item->pictureMiddle?>)bottom ; background-size:cover ; background-color:#574d4d11;" >
-
+                    <table class="tableauCartesArticle" style="background: no-repeat url(<?=$item->pictureMiddle?>)center ; background-size:cover ;border-radius:15px;" >
+                        
 
                         <tr>
                             <th colspan="2" >
@@ -83,20 +84,20 @@
                         
                         </tr>
 
-
-                        <tr>
+                        <tr class="fondTableauArticle" >
                             
                             <td class="texteTableauArticle">
-                                <p><?=$item->shortdescription?></p>
+                                <p><?=truncate($item->shortdescription)?></p>
                             </td>
                         </tr>
 
 
-                        <tr>
+                        <tr class="fondTableauArticle">
                             <td>
                                 <a href="?idInstrument=<?=$item->idInstrument?>" class="linkArticle">En savoir plus ...</a>
                             </td>
                         </tr>
+                        
 
                     </table>
             

@@ -21,14 +21,14 @@ function fetchCategory(PDO $db): array  {
 // récupère une catégorie complète
 function recupCategoryById(PDO $db,int $idcategory):array|bool{
     $db->beginTransaction();
-    $recup = "SELECT c.id as idCategory,c.nameCategory,i.id as idInstrument, i.title,LEFT(i.description,500)as shortdescription,i.history,i.technics,i.visible, i.intro,p.id AS idPicture,  p.name as pictureName, p.description as pictureDescription,p.imageMiddle as pictureMiddle 
+    $recup = "SELECT c.id as idCategory,c.nameCategory,i.id as idInstrument, i.title,LEFT(i.description,500)as shortdescription,i.history,i.technics,i.visible, i.intro,p.id AS idPicture,  p.name as pictureName, p.description  as pictureDescription,p.imageMini  as pictureMini,p.imageMiddle  as pictureMiddle,p.imageFull  as pictureFull ,p.date as pictureDateTake,p.date as pictureDate
     FROM  instrument i
     LEFT JOIN picture p 
     ON i.id = p.id_instrument 
     INNER JOIN category_has_instrument ih 
     ON i.id=ih.instrument_id
     INNER JOIN  category c
-    ON ih.category_id = c.id where c.id=?
+    ON ih.category_id = c.id where c.id=? AND p.orientation = 'l'
     GROUP BY i.id;" ;
  
     
