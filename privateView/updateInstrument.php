@@ -35,8 +35,8 @@
 
                     <div class="form-group col form-check d-flex ">
 
-                        <input type="checkbox" class="btn-check w-25 mx-auto" id="btn-check-2-outlined" name="btn-check-2-outlined" checked value="1">
-                        <label class="btn btn-outline-secondary w-50 " for="btn-check-2-outlined">Visible</label><br>
+                        <input type="checkbox" class="btn-check w-25 mx-auto" id="btn-check-2-outlined" name="visible" checked value="1">
+                        <label class="btn btn-outline-secondary w-50 " for="visible">Visible</label><br>
 
 
                     </div>

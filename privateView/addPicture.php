@@ -106,7 +106,7 @@
 
             <th width="15%">Image</th>
             <th width="10%">Titre</th>
-            <th width="55%">Lien</th>
+            <th width="55%">Description</th>
             <th width="20%"></th>
 
         </tr>

@@ -4,7 +4,7 @@
 
 function fetchInstrumentHome(pdo $dbConnect):array { 
 
-        $sql= $dbConnect->query('SELECT i.id, i.title , LEFT(i.description,200)as shortIntro, p.imageMini,p.name,p.imageMiddle,p.imageFull FROM instrument i LEFT JOIN picture p ON i.id = p.id_instrument GROUP BY i.id LIMIT 10');
+        $sql= $dbConnect->query('SELECT i.id, i.title , LEFT(i.description,200)as shortIntro, p.imageMini,p.name,p.imageMiddle,p.imageFull FROM instrument i LEFT JOIN picture p ON i.id = p.id_instrument WHERE i.visible = "1" GROUP BY i.id LIMIT 10');
         $dataInstrumentHome= $sql->fetchAll(PDO::FETCH_ASSOC);
         $sql->closeCursor();
         return $dataInstrumentHome;
@@ -103,6 +103,7 @@ function fetchAllInstrument (pdo $dbConnect) :array{
     ON i.id= ihc.instrument_id 
     LEFT JOIN category c 
     ON ihc.category_id=c.id
+    WHERE i.visible = '1'
     GROUP BY i.id");
     $nbRow = $sql->rowCount();
     $sql2 = $dbConnect->query("SELECT GROUP_CONCAT(m.id) as idMusician, GROUP_CONCAT(m.firstname SEPARATOR '||') as musicianFirstname, GROUP_CONCAT(m.biography SEPARATOR '||')as musicianBio,  GROUP_CONCAT(m.lastname SEPARATOR '||')as musicianLastname,GROUP_CONCAT(m.bornDate SEPARATOR '||')as musicianBorn,GROUP_CONCAT(m.deathDate SEPARATOR '||')as musicianDeath
@@ -116,13 +117,14 @@ function fetchAllInstrument (pdo $dbConnect) :array{
     FROM instrument i
     LEFT JOIN sound s 
     ON  i.id = s.id_instrument
+    WHERE i.visible = '1'
     GROUP BY i.id
     ;");
     $sql4 = $dbConnect->query("SELECT p.id AS idPicture,  p.name as pictureName, p.description  as pictureDescription,p.imageMini  as pictureMini,p.imageMiddle  as pictureMiddle,p.imageFull  as pictureFull ,p.date as pictureDateTake,p.date as pictureDate
     FROM instrument i
     LEFT JOIN picture p 
     ON i.id = p.id_instrument 
-    WHERE p.orientation = 'l'
+    WHERE i.visible = '1' AND p.orientation = 'l'
     GROUP BY i.id
     ;");
     
@@ -203,6 +205,7 @@ function fetchAllInstrumentAdmin (pdo $dbConnect) :array{
     LEFT JOIN musician m 
     ON i.id=m.id_instrument
     GROUP BY m.id_instrument
+    
         ;");
    
     $sql3 = $dbConnect->query("SELECT GROUP_CONCAT(s.id) AS idSound , GROUP_CONCAT(s.name SEPARATOR '||') as soundName, GROUP_CONCAT(s.audio SEPARATOR '||')as sound, GROUP_CONCAT(s.description SEPARATOR '||') as soundDescription,GROUP_CONCAT(s.date SEPARATOR '||')as soundDate
@@ -210,12 +213,14 @@ function fetchAllInstrumentAdmin (pdo $dbConnect) :array{
     LEFT JOIN sound s 
     ON  i.id = s.id_instrument
     GROUP BY i.id
+    
     ;");
     $sql4 = $dbConnect->query("SELECT p.id AS idPicture,  p.name as pictureName, p.description  as pictureDescription,p.imageMini  as pictureMini,p.imageMiddle  as pictureMiddle,p.imageFull  as pictureFull ,p.date as pictureDateTake,p.date as pictureDate
     FROM instrument i
     LEFT JOIN picture p 
     ON i.id = p.id_instrument 
     GROUP BY i.id
+    
     ;");
     
 

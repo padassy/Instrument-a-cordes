@@ -93,8 +93,8 @@
         <tr>
 
             <th width="15%">Titre</th>
-            <th width="10%">Description</th>
-            <th width="55%">Lien</th>
+            <th width="10%">Audio</th>
+            <th width="55%">Description</th>
             <th width="20%"></th>
 
         </tr>
@@ -112,7 +112,7 @@
                         <h2><?= $item->soundDescription ?></h2>
                     </td>
                     <td>
-                        <p><?= $item->sound ?></p>
+                        <p><audio controls src="<?= $item->sound ?>"></audio></p>
                     </td>
                     <td>
                         <a href="?idSoundUpdate=<?= $item->idSound ?>" class="btn btn-outline-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

@@ -116,7 +116,7 @@ function addPicture(pdo $dbConnect, string $name, string $description, array $fi
       #$$files->file_safe_name = true;
       $files->image_convert = 'jpg';
       $files->image_resize         = true;
-      $files->image_x              = 1000;
+      $files->image_x              = 1500;
       $files->image_ratio_y        = true;
       $files->process('assets/imgInstrument/middle');
       $pathMiddle = $files->file_dst_pathname ;
@@ -124,7 +124,7 @@ function addPicture(pdo $dbConnect, string $name, string $description, array $fi
      # $files->file_safe_name = true;
       $files->image_convert = 'jpg';
       $files->image_resize         = true;
-      $files->image_x              = 2500;
+      $files->image_x              = 4500;
       $files->image_ratio_y        = true;
       $files->process('assets/imgInstrument/full');
       $pathFull = $files->file_dst_pathname ;
