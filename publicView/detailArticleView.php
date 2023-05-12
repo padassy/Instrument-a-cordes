@@ -86,8 +86,13 @@
                         foreach ($mini as $key => $value) :
 
                         ?>
-
-                            <a data-fslightbox="gallery" href="<?= $middle[$key] ?>"><img src="<?= $value ?>" class="img"></img></a>
+                            <figure role="figure" aria-label="<?=$descriptionPict[$key]?>">
+                            <a data-fslightbox="gallery" href="<?= $full[$key] ?>"><img src="<?=$middle[$key]?>" alt="<?= $nomPict[$key] ?>" class="img"></img></a>
+                                <figcaption>
+                                <?=$descriptionPict[$key]?>
+                                </figcaption>
+                            </figure>
+                            
 
                         <?php
                         endforeach;
