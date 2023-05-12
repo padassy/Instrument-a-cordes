@@ -14,128 +14,126 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <title>Détail article</title>
     <link rel="stylesheet" href="css/style.css"> <!-- a voir avec le css personelle -->
-    
+
 </head>
 
 <body>
-    <nav>
-        <?php
-        require_once "src/menu.php";
-        require_once "../publicView/src/error.php";
+    <div id="pageDetailArticle">
+        <nav>
+            <?php
+            require_once "src/menu.php";
+            require_once "../publicView/src/error.php";
 
-        ?>
-    </nav>
-<div id="glob">
-    <div id="bar">
-        <a href="#hist">Histoire</a> 
-        <a href="#art">Artiste</a>
-        <a href="#gal">Galerie</a>
-        <a href="#son">Extrait sonore</a>
-        <a href="#url">Source</a>
+            ?>
+        </nav>
+        <div id="glob">
+            <section id="sectionDetail">
+                <h1 class="fontLobster subtitleDetail titleDetailInstru"><?= $detailInstrument->title ?></h1>
+                <p id="introDetail"><?= $detailInstrument->intro ?></p>
+                <div id="bar">
+                    <a href="#hist">Histoire</a>
+                    <a href="#art">Artiste</a>
+                    <a href="#gal">Galerie</a>
+                    <a href="#son">Extrait sonore</a>
+                    <a href="#url">Source</a>
+                </div>
+                <article id="articleDetail">
+                    <h2 id="hist" class="fontLobster subtitleDetail">Histoire</h2>
+                    <p><?= $detailInstrument->history ?></p>
+
+                    <h2 class="fontLobster subtitleDetail">Techniques</h2>
+                    <p><?= $detailInstrument->technics ?></p>
+
+                    <h2 class="fontLobster subtitleDetail">Description</h2>
+                    <p><?= $detailInstrument->description ?></p>
+
+                    <h2 id="art" class="fontLobster subtitleDetail">Artistes</h2>
+
+                    <?php
+                    $nomMusicien = explode('||', $detailInstrument->musicianLastname);
+                    $prenomMusicien = explode('||', $detailInstrument->musicianFirstname);
+                    $bioMusicien = explode('||', $detailInstrument->musicianBio);
+                    $idMusicien = explode(',', $detailInstrument->idMusician);
+
+
+                    //var_dump($nomMusicien);
+                    //var_dump($prenomMusicien);
+                    //var_dump($bioMusicien);
+                    //var_dump($idMusicien);
+                    foreach ($idMusicien as $key => $value) :
+                    ?>
+                        <h3> <?= $prenomMusicien[$key] ?> <?= $nomMusicien[$key] ?></h3>
+                        <p class="bioMusician"><?= $bioMusicien[$key] ?></p>
+
+                    <?php
+                    endforeach;
+
+                    ?>
+
+                    <h2 id="gal" class="fontLobster subtitleDetail">Galerie</h2>
+                    <div id="boxGallery">
+                        <?php
+
+                        $nomPict = explode('||', $detailInstrument->pictureName);
+                        $descriptionPict = explode('||', $detailInstrument->pictureDescription);
+                        $mini = explode('||', $detailInstrument->pictureMini);
+                        $middle = explode('||', $detailInstrument->pictureMiddle);
+                        $full = explode('||', $detailInstrument->pictureFull);
+                        $date = explode('||', $detailInstrument->pictureDate);
+                        $pictureDateFetch = explode('||', $detailInstrument->pictureDateFetch);
+                        $idPict = explode(',', $detailInstrument->idPicture);
+
+                        foreach ($mini as $key => $value) :
+
+                        ?>
+
+                            <a data-fslightbox="gallery" href="<?= $middle[$key] ?>"><img src="<?= $value ?>" class="img"></img></a>
+
+                        <?php
+                        endforeach;
+                        ?>
+                    </div>
+                    <h2 id="son" class="fontLobster subtitleDetail">Extrait audio</h2>
+                    <div id="boxAudio">
+                        <?php
+                        $nomSon = explode('||', $detailInstrument->soundName);
+                        $descripSon = explode('||', $detailInstrument->soundDescription);
+                        $dateSon = explode('||', $detailInstrument->soundDate);
+                        $son = explode('||', $detailInstrument->sound);
+                        $idSon = explode(',', $detailInstrument->idSound);
+
+                        foreach ($son as $key => $value) :
+                        ?>
+
+                            <div class="audioControl">
+                                <audio controls src="<?= $value ?>"></audio>
+                            </div>
+                        <?php
+                        endforeach;
+                        ?>
+                    </div>
+
+                    <h2 id="url" class="fontLobster subtitleDetail">Sources</h2>
+
+
+
+
+
+                </article>
+
+
+
+
+
+            </section>
+        </div>
+        <footer>
+            <?php include_once "src/footer.php" ?>
+        </footer>
+
+
+        <script src="js/fslightbox.js"></script>
     </div>
-    <section>
-            <h1><?=$detailInstrument->title?></h1>
-            <p><?=$detailInstrument->intro?></p>
-       <article>
-            <h2 id="hist">Histoire</h2>
-            <p><?=$detailInstrument->history?></p>
-
-            <h2>Techniques</h2>
-            <p><?=$detailInstrument->technics?></p>
-
-            <h2>Description</h2>
-            <p><?=$detailInstrument->description?></p>
-            
-            <h2 id="art">Artistes</h2>
-
-            <?php
-            $nomMusicien = explode('||', $detailInstrument->musicianLastname);
-            $prenomMusicien = explode('||', $detailInstrument->musicianFirstname);
-            $bioMusicien = explode('||', $detailInstrument->musicianBio);
-            $idMusicien = explode(',', $detailInstrument->idMusician);
-
-
-            //var_dump($nomMusicien);
-            //var_dump($prenomMusicien);
-            //var_dump($bioMusicien);
-            //var_dump($idMusicien);
-            foreach ($idMusicien as $key => $value):
-            ?>
-            <h4><?=$nomMusicien[$key]?> <?=$prenomMusicien[$key]?></h4>
-            <p><?=$bioMusicien[$key]?></p>
-            
-            <?php
-            endforeach;
-
-            ?>
-            
-            <h2 id="gal">Galerie</h2>
-            <?php
-
-            $nomPict= explode('||',$detailInstrument->pictureName);
-            $descriptionPict = explode('||',$detailInstrument->pictureDescription);
-            $mini = explode('||',$detailInstrument->pictureMini);
-            $middle = explode('||',$detailInstrument->pictureMiddle);
-            $full = explode('||',$detailInstrument->pictureFull);
-            $date = explode('||',$detailInstrument->pictureDate);
-            $pictureDateFetch = explode('||',$detailInstrument->pictureDateFetch);
-            $idPict = explode(',',$detailInstrument->idPicture);
-           
-            foreach ($mini as $key => $value):
-
-        ?>
-
-            <a data-fslightbox="gallery" href="<?=$middle[$key]?>"><img src="<?=$value?>"></img></a>  
-            
-            <?php
-            endforeach;
-            ?>
-            <h2 id="son">Extrait audio</h2>
-            <?php
-            $nomSon= explode('||',$detailInstrument->soundName);
-            $descripSon= explode('||',$detailInstrument->soundDescription);
-            $dateSon = explode('||',$detailInstrument->soundDate);
-            $son = explode('||',$detailInstrument->sound);
-            $idSon = explode(',',$detailInstrument->idSound);
-
-            foreach ($son as $key => $value):
-            ?>
-
-            
-            <audio controls src="<?=$value?>"></audio>
-
-            <?php
-            endforeach;
-            ?>
-
-            <h2 id="url">Sources</h2>
-           
-
-    
-    
-
-        </article>
-    <?php
-            endforeach;
-
-    ?>
-
-
-    <article>
-        <p><?= $detailInstrument->sound ?></p>
-    </article>
-
-
-    </section>
-</div>
-    <footer>
-        <?php include_once "src/footer.php" ?>
-    </footer>
-
-    
-    <script src="js/fslightbox.js"></script>
 </body>
+
 </html>
-
-
-   

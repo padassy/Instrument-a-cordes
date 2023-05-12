@@ -435,6 +435,7 @@ input[type="checkbox"]{
         justify-content: center;
         align-items:center ;
         color: #FDF7F7;
+        padding:1.5em 0;
         
     }
     #logoFooter{
@@ -500,6 +501,9 @@ input[type="checkbox"]{
     width: 50%;
     
 }
+.bottomTableauArticle{
+    border-radius: 0 0 15px 15px;
+}
 .titleTableauArticle{
     text-align: center;
     background-color: rgba(0, 0, 0, .6);
@@ -509,6 +513,14 @@ input[type="checkbox"]{
     height: 2.5em;
     line-height: 2.5em;
     font-family: 'Lobster Two', cursive;
+}
+.fondTitleArticle{
+    background-color: rgba(0, 0, 0, .6);
+    border-radius: 15px 15px 0 0;
+}
+.thTitleArticle{
+
+    border-radius: 15px 15px 0 0;
 }
 .imageTableauArticle img{
     width: 100%;
@@ -528,9 +540,9 @@ input[type="checkbox"]{
 #boxCategory {
     background-color: #D9D9D9 ;
     text-align: center;
-    height: 2.5em;
-    line-height: 2.5em;
     border-radius: 15px 15px 0 0 ;
+    display: flex;
+    justify-content: center;
     
   }
   #boxCategory a{
@@ -550,7 +562,89 @@ input[type="checkbox"]{
     color: #FDF7F7;
     text-decoration: none;
     padding: 0 1em;
+    text-align: right;
+    display: block;
+    width: 100%;
   }
+  .darkGrey{
+    background-color: #AFA7A7;
+    border-radius: 15px 15px 0 0 ;
+  }
+  .divCateg {
+    height: 100%;
+    width: 20vw;
+  }
+
+                    /*              CSS Detail Article              */
+
+#pageDetailArticle{
+    width: 100vw;
+    overflow-x: hidden;
+}
+ #glob{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto 1.5em;
+    text-align: justify;
+  
+ }
+ #sectionDetail{
+    width: 90%;
+    
+ }
+#articleDetail{
+    padding: 1.5em;
+    background-color: #AFA7A7;
+    border-radius:0 0 15px 15px;
+    margin-top: 0;
+}
+#sectionDetail p{
+    font-size: 1.2em
+}
+
+ #bar{
+    display: flex;
+    flex-direction: row;
+    background-color: #AFA7A7;
+    background-color: #D9D9D9;
+    margin-bottom: 0;
+    height: 5vh;
+    line-height: 5vh;
+    justify-content: space-around;
+    border-radius: 15px 15px 0 0;
+ }
+ #bar a {
+    text-decoration: none;
+    color: #000;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+ }
+ .img{
+    display: flex;
+    flex-flow: row wrap;
+    width: 90%;
+    height: auto;
+    margin: 0 auto 1.5em;
+    border-radius: 15px;
+ }
+ .subtitleDetail{
+    font-size: 3em;
+    text-align: center;
+    margin: 1.5em 0;
+ }
+ .titleDetailInstru{
+    text-align: center;
+    margin: 1.5em 0;
+ }
+.audioControl{
+    margin:0 auto 1.5em;
+    width: 100%;
+    text-align: center;
+}
+.bioMusician{
+    margin-bottom: 1.5em;
+}
 
 
 
@@ -740,8 +834,50 @@ input[type="checkbox"]{
     #contactForm {
         width: 45%;
     }
+            /*          Detail Article           */
+ .subtitleDetail{
+    font-size: 4em;
+    text-align: center;
+    margin: 1em 0;
+ }
+ #sectionDetail{
+    width: 80%;
+    
+ }
+ #sectionDetail p{
+    font-size: 1.5em
+}
+ #introDetail{
+    margin-bottom: 2.5em
+ }
+ .titleDetailInstru{
+    font-size: 5em;
+ }
+ #articleDetail{
+    padding: 3em;
+ }
+ .img{
 
+    width: 70%;
+    height: auto;
+    margin: 0 auto 1.5em;
+ }
+ #boxGallery{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
 
+ }
+ #boxAudio{
+    display: flex;
+    flex-direction: row;
+
+ }
+ .audioControl{
+    margin:0 auto 1.5em;
+    width: 50%;
+   
+}
 
 
 }
@@ -805,7 +941,7 @@ input[type="checkbox"]{
         margin-left: 3em;
         overflow: auto;
         position: absolute;
-        top: 0%;
+        top: -7.5%;
     }
     header img{
         display: block;
@@ -869,12 +1005,14 @@ input[type="checkbox"]{
                     /*              CSS Article                 */
     #boxCategory{
         font-size: 1.5em;
+        height: 5vh;
+        line-height: 5vh;
     }
     #boxPageArticle{
         width: 90%;
         background-color: #AFA7A7;
-        margin: 5% auto 0;
-        border-radius: 15px 15px 0 0 ;
+        margin: 5% auto ;
+        border-radius: 15px;
     }
 
     #boxTableauCartesArticle{
@@ -950,6 +1088,7 @@ input[type="checkbox"]{
 }
 footer{
     justify-content: space-around;
+    padding: 2.5% 0;
     
 }
 }
@@ -960,23 +1099,5 @@ footer{
     grid-template-rows: ;
     grid-template-areas: ;
  }*/
- #glob{
-    margin: 25px;
-    display: flex;
-    align-items: center;
- }
-article{
-    background-color: #AFA7A7;
-}
- #bar{
-    display: flex;
-    flex-direction: column;
-    background-color: #D9D9D9;
- }
- img{
-display: flex;
-flex-flow: row wrap;
-    width: 271px;
-    height: 217px;
- }
+
  
