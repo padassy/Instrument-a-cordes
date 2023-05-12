@@ -41,23 +41,23 @@
         </div>
               <form action="" method="post" id="contactForm">
                 <div class="boxLabelInputContact">
-                    <label for="firstname">Prénom :</label>
+                    <label for="firstname">Votre prénom :</label>
                     <input type="text" id="firstname" name="firstname" placeholder="" required>
                 </div>
                 <div class="boxLabelInputContact">
-                    <label for="lastname">Nom :</label>
+                    <label for="lastname">Votre nom :</label>
                     <input type="text" id="lastname" name="lastname" placeholder="" required>
                 </div>
                 <div class="boxLabelInputContact">
-                    <label for="mail">Mail :</label>
+                    <label for="mail">Votre mail :</label>
                     <input type="mail" id="email" name="mail" placeholder="" required>
                 </div>
                 <div class="boxLabelInputContact">
-                    <label for="message">Message :</label>
+                    <label for="message">Votre message :</label>
                     <textarea id="message" name="message" required></textarea>
                 </div>
                 <div id="buttonContact">
-                    <button type="submit">Envoyer mon message.</button>
+                    <button type="submit">Envoyer </button>
                 </div>
               </form>
     </div>
