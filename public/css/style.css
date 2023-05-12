@@ -653,6 +653,17 @@ figure{
 
 }
 
+#page404{
+width: 100%;
+
+}
+#page404 h1{
+    font-size: 7em;
+    text-align: center;
+    padding-top: 10vh;
+    height: 35vh;
+    
+}
 
 
 
