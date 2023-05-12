@@ -42,7 +42,7 @@ function fetchDetailInstrument (pdo $dbConnect, int $idInstrument):array{
     LEFT JOIN sound s 
     ON  i.id = s.id_instrument
     WHERE i.id=$idInstrument;");
-    $sql4 = $dbConnect->query("SELECT GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.imageMini SEPARATOR '||') as pictureMini ,GROUP_CONCAT(p.imageMiddle SEPARATOR '||') as pictureMiddle ,GROUP_CONCAT(p.imageFull SEPARATOR '||') as pictureFull ,GROUP_CONCAT(p.date SEPARATOR '||')as pictureDateTake,GROUP_CONCAT(p.date SEPARATOR '||')as pictureDate
+    $sql4 = $dbConnect->query("SELECT GROUP_CONCAT(p.id) AS idPicture,  GROUP_CONCAT(p.name SEPARATOR '||')as pictureName, GROUP_CONCAT(p.description SEPARATOR '||') as pictureDescription,GROUP_CONCAT(p.imageMini SEPARATOR '||') as pictureMini ,GROUP_CONCAT(p.imageMiddle SEPARATOR '||') as pictureMiddle ,GROUP_CONCAT(p.imageFull SEPARATOR '||') as pictureFull ,GROUP_CONCAT(p.dateFetch SEPARATOR '||')as pictureDateFetch,GROUP_CONCAT(p.date SEPARATOR '||')as pictureDate
     FROM instrument i
     LEFT JOIN picture p 
     ON i.id = p.id_instrument  
@@ -84,7 +84,8 @@ unset($instrument[2]);
     $sql2->closeCursor();
     $sql3->closeCursor();
     $sql4->closeCursor();
-    #var_dump($instrument);
+    
+    var_dump($instrument);
     return $instrument;
 }
 

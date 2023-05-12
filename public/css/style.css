@@ -835,4 +835,14 @@ input[type="checkbox"]{
     width: 45%;
 }
 }
-
+/*css detailArticle*/
+ /*#glob{
+    display: grid;
+    grid-template-columns: ;
+    grid-template-rows: ;
+    grid-template-areas: ;
+ }*/
+ #glob{
+    background-color:#AFA7A7 ;
+ }
+ /*#AFA7A7 color centre*/
