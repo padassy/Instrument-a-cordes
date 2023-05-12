@@ -85,7 +85,7 @@ unset($instrument[2]);
     $sql3->closeCursor();
     $sql4->closeCursor();
     
-    var_dump($instrument);
+    #var_dump($instrument);
     return $instrument;
 }
 

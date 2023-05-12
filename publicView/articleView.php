@@ -25,14 +25,21 @@
         </nav>
     </header>
     <div id="boxPageArticle">
+    <!-- <style>
+        .divCateg{
+            background-color: /* echo isset($_SESSION['clicked_links']) ? $_SESSION['clicked_links'] : '#D9D9D9';*/ ?>;
+        }
+    </style> -->
         <div id="boxCategory">
             <?php
             if (isset($category)) :
                 foreach ($category as $item) :
             ?>
-
-                    <a href="?idCategory=<?= $item->idCategory ?>"><?= $item->nameCategory ?></a>
-
+                    <div id="category<?=$item->idCategory?>" class="divCateg">
+                        <a href="?idCategory=<?= $item->idCategory ?>"  ><?= $item->nameCategory ?></a>
+                    </div>
+                        
+                    
             <?php
                 endforeach;
             endif;
@@ -45,7 +52,7 @@
                 <table class="tableauCartesArticle " style="background: no-repeat url(<?= $item->pictureMiddle ?>)bottom ; background-size:cover ;border-radius:15px;">
 
 
-                    <tr>
+                    <tr class="fondTitleArticle" >
                         <th colspan="2">
                             <h2 class="titleTableauArticle"><?= $item->title ?></h2>
                         </th>
@@ -62,7 +69,7 @@
 
 
                     <tr class="fondTableauArticle">
-                        <td>
+                        <td class="bottomTableauArticle" >
                             <a href="?idInstrument=<?= $item->idInstrument ?>" class="linkArticle">En savoir plus ...</a>
                         </td>
                     </tr>
@@ -79,8 +86,8 @@
                 <table class="tableauCartesArticle" style="background: no-repeat url(<?= $item->pictureMiddle ?>)center ; background-size:cover ;border-radius:15px;">
 
 
-                    <tr>
-                        <th colspan="2">
+                    <tr class="fondTitleArticle" >
+                        <th colspan="2" class="thTitleArticle" >
                             <h2 class="titleTableauArticle"><?= $item->title ?></h2>
                         </th>
 
@@ -95,7 +102,7 @@
 
 
                     <tr class="fondTableauArticle">
-                        <td>
+                        <td class="bottomTableauArticle" >
                             <a href="?idInstrument=<?= $item->idInstrument ?>" class="linkArticle">En savoir plus ...</a>
                         </td>
                     </tr>

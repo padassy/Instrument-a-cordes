@@ -122,7 +122,7 @@ if (isset($_GET['p'])) {
     $idInstrument = (int) $_GET['idInstrument'];
     $dataDetailInstrument = fetchDetailInstrument($dbConnect,$idInstrument);
     $detailInstrument = new modelInstrument($dataDetailInstrument);
-    var_dump($detailInstrument);
+    #var_dump($detailInstrument);
     include_once "../publicView/detailArticleView.php";
   
 
