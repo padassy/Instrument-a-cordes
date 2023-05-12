@@ -29,7 +29,7 @@ class modelInstrument {
     public null|string $pictureMini;
     public null|string $pictureMiddle;
     public null|string $pictureFull;
-    public null|string $pictureDateTake;
+    public null|string $pictureDate;
     public null|string $pictureDateFetch;
 
     
@@ -562,17 +562,17 @@ class modelInstrument {
     /**
      * Get the value of pictureDateTake
      */
-    public function getPictureDateTake(): ?string
+    public function getPictureDate(): ?string
     {
-        return $this->pictureDateTake;
+        return $this->pictureDate;
     }
 
     /**
      * Set the value of pictureDateTake
      */
-    public function setPictureDateTake(?string $pictureDateTake): self
+    public function setPictureDate(?string $pictureDate): self
     {
-        $this->pictureDateTake = $pictureDateTake;
+        $this->pictureDate = $pictureDate;
 
         return $this;
     }
