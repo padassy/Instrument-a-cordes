@@ -114,7 +114,7 @@ if (isset($_GET['p'])) {
 
 
         default:
-            include_once "../publicView/404View.php";
+            include_once "../publicView/404view.php";
     }
 
 } elseif (isset($_GET['idInstrument']) && ctype_digit($_GET['idInstrument'])){
