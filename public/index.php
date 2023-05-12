@@ -11,7 +11,7 @@ require_once "../model/modelMusician.php";
 require_once "../model/modelPicture.php";
 require_once "../model/modelSound.php";
 
-try {
+try{
     $dbConnect = new PDO (DB_TYPE.':host='.DB_HOST.';port='.DB_PORT.';dbname='.DB_NAME.';charset='.DB_CHARSET,
 DB_USER,DB_PWD);
 }catch(Exception $e){

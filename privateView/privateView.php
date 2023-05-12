@@ -23,8 +23,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    
-                    
+
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Autre contenu
@@ -35,10 +35,10 @@
                             <li><a class="dropdown-item" href="?p=addSound">Nouveau son</a></li>
                         </ul>
                     </li>
-                    
+
                 </ul>
-                <div class="boxLogo m-auto" style="width: 200px; height: 150px;" >
-                    <img src="../public/assets/logo.png" alt="" class="h-100 " >
+                <div class="boxLogo m-auto" style="width: 200px; height: 150px;">
+                    <img src="../public/assets/logo.png" alt="" class="h-100 ">
                 </div>
                 <form class="d-flex" role="search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
