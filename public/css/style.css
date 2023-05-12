@@ -844,7 +844,8 @@ input[type="checkbox"]{
  }*/
  #glob{
     margin: 25px;
-    justify-content: center;
+    display: flex;
+    align-items: center;
  }
 article{
     background-color: #AFA7A7;
@@ -853,5 +854,11 @@ article{
     display: flex;
     flex-direction: column;
     background-color: #D9D9D9;
+ }
+ img{
+display: flex;
+flex-flow: row wrap;
+    width: 271px;
+    height: 217px;
  }
  
