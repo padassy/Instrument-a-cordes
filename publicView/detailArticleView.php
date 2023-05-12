@@ -11,8 +11,8 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
     <title>Détail article</title>
-    <link rel="stylesheet" href="../public/css/style.css"> <!-- a voir avec le css personelle -->
-
+    <link rel="stylesheet" href="css/style.css"> <!-- a voir avec le css personelle -->
+    
 </head>
 <body>
     <nav>
@@ -31,11 +31,9 @@
         <a href="#url">Source</a>
     </div>
     <section>
-     
-        <article>
             <h1><?=$detailInstrument->title?></h1>
             <p><?=$detailInstrument->intro?></p>
-       
+       <article>
             <h2 id="hist">Histoire</h2>
             <p><?=$detailInstrument->history?></p>
 
@@ -81,8 +79,8 @@
             foreach ($mini as $key => $value):
 
         ?>
-            <img src="<?=$value?>"></img>
 
+            <a data-fslightbox="gallery" href="<?=$middle[$key]?>"><img src="<?=$value?>"></img></a>  
             
             <?php
             endforeach;
@@ -119,6 +117,7 @@
         <?php include_once "src/footer.php"?>
     </footer>
     
+    <script src="js/fslightbox.js"></script>
 </body>
 </html>
 

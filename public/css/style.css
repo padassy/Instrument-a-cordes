@@ -843,6 +843,15 @@ input[type="checkbox"]{
     grid-template-areas: ;
  }*/
  #glob{
-    background-color:#AFA7A7 ;
+    margin: 25px;
+    justify-content: center;
  }
- /*#AFA7A7 color centre*/
+article{
+    background-color: #AFA7A7;
+}
+ #bar{
+    display: flex;
+    flex-direction: column;
+    background-color: #D9D9D9;
+ }
+ 
