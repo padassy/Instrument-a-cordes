@@ -38,7 +38,7 @@
             <p>Une question à nous poser ?</p>
             <p>Un problème rencontré lors de votre visite ?</p>
             <p>Veuillez utiliser ce formulaire pour prendre contact avec nous !</p>
-            <p>Je me ferai un plaisir de vous répondre dans les plus brefs délais .</p>
+            <p>Nous nous ferons un plaisir de vous répondre dans les plus brefs délais .</p>
         </div>
         <form action="" method="post" id="contactForm">
             <div class="boxLabelInputContact">

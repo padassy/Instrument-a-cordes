@@ -49,8 +49,8 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
    ->from(MAIL_FROM)
    ->to($mailCustomer)
    ->subject('Votre message a bien été posté !')
-   ->text('Votre message a bien été posté !\r\n \r\n sur le site https://www.instruments-a-cordes.webdev-cf2m.be/')
-   ->html('<p>Votre message a bien été posté !<br><br>sur le site  https://www.instruments-a-cordes.webdev-cf2m.be/</p>'); 
+   ->text('Votre message : "'. $message .'"  a bien été posté !\r\n \r\n sur le site https://www.instruments-a-cordes.webdev-cf2m.be/')
+   ->html('<p>Votre message : "'. $message .'"  a bien été posté !<br><br>sur le site  https://www.instruments-a-cordes.webdev-cf2m.be/</p>'); 
    #echo "avant le send";
    $mailer->send($mail);    
 
@@ -60,8 +60,8 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["message"])&&filter_var($
    ->from(MAIL_FROM)
    ->to(MAIL_ADMIN)
    ->subject('Un nouveau message est arrivé sur votre site !')
-   ->text('Un nouveau message est arrivé sur votre site !\r\n \r\n Posté par ' . $mailCustomer)
-   ->html('<p>Un nouveau message est arrivé sur votre site !<br><br>Posté par ' . $mailCustomer . '</p>'); 
+   ->text('Ce message "'.$message .'" est arrivé sur votre site !\r\n \r\n Posté par ' . $mailCustomer)
+   ->html('<p>Ce message "'.$message .'" est arrivé sur votre site !<br><br>Posté par ' . $mailCustomer . '</p>'); 
    $mailer->send($mail);    
 
      $e ="Merci pour votre commentaire"; 
