@@ -39,86 +39,148 @@
                 </div>
                 <article id="articleDetail">
                     <h2 id="hist" class="fontLobster subtitleDetail">Histoire</h2>
-                    <p><?= $detailInstrument->history ?></p>
+                    <p>
+                        <?php
+                        if (!empty($detailInstrument->history)) :
+                        ?>
+                            <?= $detailInstrument->history ?>
+                        <?php
+                        else :
+                        ?>
+                    <h4>Cette section est vide... </h4>
+                <?php
+                        endif;
+                ?>
+                </p>
 
-                    <h2 class="fontLobster subtitleDetail">Techniques</h2>
-                    <p><?= $detailInstrument->technics ?></p>
-
-                    <h2 class="fontLobster subtitleDetail">Description</h2>
-                    <p><?= $detailInstrument->description ?></p>
-
-                    <h2 id="art" class="fontLobster subtitleDetail">Artistes</h2>
-
+                <h2 class="fontLobster subtitleDetail">Techniques</h2>
+                <p>
                     <?php
-                    $nomMusicien = explode('||', $detailInstrument->musicianLastname);
-                    $prenomMusicien = explode('||', $detailInstrument->musicianFirstname);
-                    $bioMusicien = explode('||', $detailInstrument->musicianBio);
-                    $idMusicien = explode(',', $detailInstrument->idMusician);
-
-
-                    //var_dump($nomMusicien);
-                    //var_dump($prenomMusicien);
-                    //var_dump($bioMusicien);
-                    //var_dump($idMusicien);
-                    foreach ($idMusicien as $key => $value) :
+                    if (!empty($detailInstrument->technics)) :
                     ?>
-                        <h3> <?= $prenomMusicien[$key] ?> <?= $nomMusicien[$key] ?></h3>
-                        <p class="bioMusician"><?= $bioMusicien[$key] ?></p>
-
+                        <?= $detailInstrument->technics ?>
                     <?php
-                    endforeach;
-
+                    else :
                     ?>
+                <h4>Cette section est vide... </h4>
+            <?php
+                    endif;
+            ?>
+            </p>
 
-                    <h2 id="gal" class="fontLobster subtitleDetail">Galerie</h2>
-                    <div id="boxGallery">
-                        <?php
+            <h2 class="fontLobster subtitleDetail">Description</h2>
+            <p>
+                <?php
+                if (!empty($detailInstrument->description)) :
+                ?>
+                    <?= $detailInstrument->description ?>
+                <?php
+                else :
+                ?>
+            <h4>Cette section est vide... </h4>
+        <?php
+                endif;
+        ?>
+        </p>
 
-                        $nomPict = explode('||', $detailInstrument->pictureName);
-                        $descriptionPict = explode('||', $detailInstrument->pictureDescription);
-                        $mini = explode('||', $detailInstrument->pictureMini);
-                        $middle = explode('||', $detailInstrument->pictureMiddle);
-                        $full = explode('||', $detailInstrument->pictureFull);
-                        $date = explode('||', $detailInstrument->pictureDate);
-                        $pictureDateFetch = explode('||', $detailInstrument->pictureDateFetch);
-                        $idPict = explode(',', $detailInstrument->idPicture);
+        <h2 id="art" class="fontLobster subtitleDetail">Artistes</h2>
 
-                        foreach ($mini as $key => $value) :
+        <?php
+        if (!empty($detailInstrument->idMusician)) :
 
-                        ?>
-                            <figure role="figure" aria-label="<?=$descriptionPict[$key]?>">
-                            <a data-fslightbox="gallery" href="<?= $full[$key] ?>"><img src="<?=$middle[$key]?>" alt="<?= $nomPict[$key] ?>" class="img"></img></a>
-                                <figcaption>
-                                <?=$descriptionPict[$key]?>
-                                </figcaption>
-                            </figure>
-                            
+            $nomMusicien = explode('||', $detailInstrument->musicianLastname);
+            $prenomMusicien = explode('||', $detailInstrument->musicianFirstname);
+            $bioMusicien = explode('||', $detailInstrument->musicianBio);
+            $idMusicien = explode(',', $detailInstrument->idMusician);
 
-                        <?php
-                        endforeach;
-                        ?>
+
+            //var_dump($nomMusicien);
+            //var_dump($prenomMusicien);
+            //var_dump($bioMusicien);
+            //var_dump($idMusicien);
+            foreach ($idMusicien as $key => $value) :
+        ?>
+                <h3> <?= $prenomMusicien[$key] ?> <?= $nomMusicien[$key] ?></h3>
+                <p class="bioMusician"><?= $bioMusicien[$key] ?></p>
+
+            <?php
+            endforeach;
+        else :
+            ?>
+
+
+            <h4>Pas de contenu disponible pour cet article </h4>
+        <?php
+        endif;
+        ?>
+
+        <h2 id="gal" class="fontLobster subtitleDetail">Galerie</h2>
+        <div id="boxGallery">
+            <?php
+            if (!empty($detailInstrument->idPicture)) :
+
+                $nomPict = explode('||', $detailInstrument->pictureName);
+                $descriptionPict = explode('||', $detailInstrument->pictureDescription);
+                $mini = explode('||', $detailInstrument->pictureMini);
+                $middle = explode('||', $detailInstrument->pictureMiddle);
+                $full = explode('||', $detailInstrument->pictureFull);
+                $date = explode('||', $detailInstrument->pictureDate);
+                $pictureDateFetch = explode('||', $detailInstrument->pictureDateFetch);
+                $idPict = explode(',', $detailInstrument->idPicture);
+
+                foreach ($mini as $key => $value) :
+
+            ?>
+                    <figure role="figure" aria-label="<?= $descriptionPict[$key] ?>">
+                        <a data-fslightbox="gallery" href="<?= $full[$key] ?>"><img src="<?= $middle[$key] ?>" alt="<?= $nomPict[$key] ?>" class="img"></img></a>
+                        <figcaption>
+                            <?= $descriptionPict[$key] ?>
+                        </figcaption>
+                    </figure>
+
+
+                <?php
+                endforeach;
+            else :
+                ?>
+                <h4>Pas de contenu disponible pour cet article </h4>
+            <?php
+            endif;
+            ?>
+        </div>
+        <h2 id="son" class="fontLobster subtitleDetail">Extrait audio</h2>
+        <div id="boxAudio">
+            <?php
+            if (!empty($detailInstrument->idSound)) :
+                $nomSon = explode('||', $detailInstrument->soundName);
+                $descripSon = explode('||', $detailInstrument->soundDescription);
+                $dateSon = explode('||', $detailInstrument->soundDate);
+                $son = explode('||', $detailInstrument->sound);
+                $idSon = explode(',', $detailInstrument->idSound);
+
+                foreach ($son as $key => $value) :
+            ?>
+
+                    <div class="audioControl">
+                        <audio controls src="<?= $value ?>"></audio>
                     </div>
-                    <h2 id="son" class="fontLobster subtitleDetail">Extrait audio</h2>
-                    <div id="boxAudio">
-                        <?php
-                        $nomSon = explode('||', $detailInstrument->soundName);
-                        $descripSon = explode('||', $detailInstrument->soundDescription);
-                        $dateSon = explode('||', $detailInstrument->soundDate);
-                        $son = explode('||', $detailInstrument->sound);
-                        $idSon = explode(',', $detailInstrument->idSound);
+                <?php
+                endforeach;
+            else :
+                ?>
+                <h4>Pas de contenu disponible pour cet article </h4>
+            <?php
+            endif;
+            ?>
+        </div>
 
-                        foreach ($son as $key => $value) :
-                        ?>
-
-                            <div class="audioControl">
-                                <audio controls src="<?= $value ?>"></audio>
-                            </div>
-                        <?php
-                        endforeach;
-                        ?>
-                    </div>
-
-                    <h2 id="url" class="fontLobster subtitleDetail">Sources</h2>
+        <h2 id="url" class="fontLobster subtitleDetail">Sources</h2>
+        <p>Texte:</p>
+        <p><a class="source" href="https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Accueil_principal"> Wikipedia.org</a></p>
+        <p>Image et son: </p>
+        <p><a class="source" href="https://commons.wikimedia.org/wiki/Accueil">Wikicommons.org</a></p>
+        <p>Police d'ecriture: </p>
+        <p><a class="source" href="https://fonts.google.com/">Fonts.google.com</a></p>
 
 
 
