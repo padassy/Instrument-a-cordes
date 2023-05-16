@@ -46,6 +46,7 @@ function recupCategoryById(PDO $db,int $idcategory):array|bool{
         
     }
     $bp = $prepare->fetchAll(PDO::FETCH_ASSOC);
+    $bp = array_reverse($bp);
 
 
     

@@ -45,7 +45,6 @@
                                 endforeach;
                             endif;
 
-
                             ?>
 
                         </select>
@@ -62,21 +61,21 @@
                 <div class="row">
 
                     <div class="form-group">
-                        <label for="dateTake">Date de prise :</label>
-                        <input type="date" class="form-control" id="dateTake" value="<?= $pictureById->pictureDateTake ?>">
+                        <label for="date">Date de prise :</label>
+                        <input type="date" class="form-control" name="date" id="date" <?php if(!empty($pictureById->pictureDate)):?> value="<?=$pictureById->pictureDate?>" <?php endif;?>>
                     </div>
 
 
                     <div class="form-group">
                         <label for="dateFetch">Date d'ajout :</label>
-                        <input type="date" class="form-control" id="dateFetch" value="<?= $pictureById->pictureDateFetch ?>">
+                        <input type="date" class="form-control" name=dateFetch id="dateFetch" value="<?= $pictureById->pictureDateFetch ?>">
                     </div>
 
                 </div>
 
                 <div class="row">
 
-                    <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="updatePictureSubmit"></input>
+                    <input class="btn btn-secondary  w-25 mx-auto" type="submit" value="Envoyer" name="updatePicture"></input>
                     <input class="btn btn-danger w-25 mx-auto" type="reset" value="Reset">
                 </div>
 

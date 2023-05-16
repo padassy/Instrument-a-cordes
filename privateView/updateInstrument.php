@@ -25,7 +25,7 @@
         ?>
         <div class="h-100 w-75 d-flex justify-content-center align-items-center flex-column mr-0 ml-0 p-0 ">
             <h1 class="mb-5">Modifier l'article</h1>
-            <form action="" class="article row g-3  w-100 " id="formUpdateInstrument" method="POST" width="" name="formUpdateArticle">
+            <form action="" class="article row g-3  w-100 " id="updateInstrument" method="POST" width="" name="updateInstrument">
                 <div class="row">
                     <div class="form-group form-control col d-flex ">
                         <label for="titre" class="w-25 align-self-center">Titre :</label>
@@ -35,7 +35,7 @@
 
                     <div class="form-group col form-check d-flex ">
 
-                        <input type="checkbox" class="btn-check w-25 mx-auto" id="btn-check-2-outlined" name="visible" checked value="1">
+                        <input type="checkbox" class="btn-check w-25 mx-auto" id="visible" name="visible" value="1">
                         <label class="btn btn-outline-secondary w-50 " for="visible">Visible</label><br>
 
 

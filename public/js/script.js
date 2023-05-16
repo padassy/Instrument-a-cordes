@@ -74,3 +74,33 @@ window.onload = function() {
           });
       }
   };
+  function verifierCaracteresPrenom(event) {
+	 		
+    var keyCode = event.which ? event.which : event.keyCode;
+    var touche = String.fromCharCode(keyCode);
+        
+    var caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    var champNom = document.getElementById('firstnameMusician');
+        
+        
+    if(caracteres.indexOf(touche) >= 0) {
+      champNom.value += touche;
+    }
+        
+  }
+  
+  function verifierCaracteresNom(event) {
+	 		
+    var keyCode = event.which ? event.which : event.keyCode;
+    var touche = String.fromCharCode(keyCode);
+        
+    var caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    var champPrenom = document.getElementById('lastnameMusician');
+        
+        
+    if(caracteres.indexOf(touche) >= 0) {
+      champPrenom.value += touche;
+    }
+        
+  }
+  

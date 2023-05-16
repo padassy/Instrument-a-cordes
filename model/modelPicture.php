@@ -1,12 +1,12 @@
 <?php
 function allPicture(pdo $dbConnect){
-  $sql= $dbConnect->query('SELECT p.id as idPicture , p.name as pictureName, p.description as pictureDescription, p.imageMini as pictureMini,p.imageMiddle as pictureMiddle,p.imageFull as pictureFull,p.date as pictureDateTake,p.dateFetch as pictureDateFetch  FROM  picture p ORDER BY p.dateFetch DESC');
+  $sql= $dbConnect->query('SELECT p.id as idPicture , p.name as pictureName, p.description as pictureDescription, p.imageMini as pictureMini,p.imageMiddle as pictureMiddle,p.imageFull as pictureFull,p.date as pictureDate,p.dateFetch as pictureDateFetch  FROM  picture p ORDER BY p.dateFetch DESC');
         $dataPicture= $sql->fetchAll(PDO::FETCH_ASSOC);
         $sql->closeCursor();
         return $dataPicture;
 }
 function pictureById(pdo $dbConnect,int $idPicture){
-  $sql= $dbConnect->query("SELECT i.title,p.id as idPicture , p.name as pictureName, p.description as pictureDescription, p.imageMini as pictureMini,p.imageMiddle as pictureMiddle,p.imageFull as pictureFull,p.id_instrument as idInstrument,p.date as pictureDateTake,p.dateFetch as pictureDateFetch  FROM  picture p INNER JOIN instrument i ON p.id_instrument = i.id WHERE p.id ='$idPicture '");
+  $sql= $dbConnect->query("SELECT i.title,p.id as idPicture , p.name as pictureName, p.description as pictureDescription, p.imageMini as pictureMini,p.imageMiddle as pictureMiddle,p.imageFull as pictureFull,p.id_instrument as idInstrument,p.date as pictureDate,p.dateFetch as pictureDateFetch  FROM  picture p INNER JOIN instrument i ON p.id_instrument = i.id WHERE p.id ='$idPicture '");
         $dataPicture= $sql->fetch(PDO::FETCH_ASSOC);
         $sql->closeCursor();
         return $dataPicture;
@@ -14,11 +14,13 @@ function pictureById(pdo $dbConnect,int $idPicture){
 
 
 
-function updatePicture(pdo $dbConnect, string $name, string $description, $idInstrument, $idPicture ){
+function updatePicture(pdo $dbConnect, string $name, string $description,null|string $date,string $dateFetch, string $idInstrument,int $idPicture ){
     
     
     $name = htmlspecialchars(strip_tags(trim($name)), ENT_QUOTES);
     $description = htmlspecialchars(strip_tags(trim($description)), ENT_QUOTES);
+    $date = htmlspecialchars(strip_tags(trim($date)), ENT_QUOTES);
+    $dateFetch = htmlspecialchars(strip_tags(trim($dateFetch)), ENT_QUOTES);
     $idPicture = (int) htmlspecialchars(strip_tags(trim($idPicture)), ENT_QUOTES);
     $idInstrument = (int) htmlspecialchars(strip_tags(trim($idInstrument)), ENT_QUOTES);
     #var_dump($idPicture);
@@ -75,11 +77,13 @@ function updatePicture(pdo $dbConnect, string $name, string $description, $idIns
     $pathFull = htmlspecialchars(strip_tags(trim($pathFull)), ENT_QUOTES);*/
     
 
-    $sql = $dbConnect->prepare("UPDATE picture SET name=?, description=?, id_instrument=? WHERE id = $idPicture");
+    $sql = $dbConnect->prepare("UPDATE picture SET name=?, description=?,date=?,dateFetch=?, id_instrument=? WHERE id = $idPicture");
 
     $sql->bindParam(1, $name ,PDO::PARAM_STR);
     $sql->bindParam(2, $description ,PDO::PARAM_STR);
-    $sql->bindParam(3,  $idInstrument ,PDO::PARAM_INT);
+    $sql->bindParam(3, $date ,PDO::PARAM_STR);
+    $sql->bindParam(4, $dateFetch ,PDO::PARAM_STR);
+    $sql->bindParam(5,  $idInstrument ,PDO::PARAM_INT);
     
    #echo "traitement donnees";
     try{

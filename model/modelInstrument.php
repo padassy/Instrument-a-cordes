@@ -4,7 +4,12 @@
 
 function fetchInstrumentHome(pdo $dbConnect):array { 
 
-        $sql= $dbConnect->query('SELECT i.id, i.title , LEFT(i.description,200)as shortIntro, p.imageMini,p.name,p.imageMiddle,p.imageFull FROM instrument i LEFT JOIN picture p ON i.id = p.id_instrument WHERE i.visible = "1" GROUP BY i.id LIMIT 10');
+        $sql= $dbConnect->query('SELECT i.id, i.title , LEFT(i.description,200)as shortIntro, p.imageMini,p.name,p.imageMiddle,p.imageFull FROM instrument i LEFT JOIN picture p ON i.id = p.id_instrument 
+        WHERE i.visible = "1" 
+        GROUP BY i.id 
+        ORDER BY i.date DESC
+        LIMIT 10
+        ');
         $dataInstrumentHome= $sql->fetchAll(PDO::FETCH_ASSOC);
         $sql->closeCursor();
         return $dataInstrumentHome;
@@ -120,7 +125,7 @@ function fetchAllInstrument (pdo $dbConnect) :array{
     WHERE i.visible = '1'
     GROUP BY i.id
     ;");
-    $sql4 = $dbConnect->query("SELECT p.id AS idPicture,  p.name as pictureName, p.description  as pictureDescription,p.imageMini  as pictureMini,p.imageMiddle  as pictureMiddle,p.imageFull  as pictureFull ,p.date as pictureDateTake,p.date as pictureDate
+    $sql4 = $dbConnect->query("SELECT p.id AS idPicture,  p.name as pictureName, p.description  as pictureDescription,p.imageMini  as pictureMini,p.imageMiddle  as pictureMiddle,p.imageFull  as pictureFull ,p.date as pictureDate,p.date as pictureDate
     FROM instrument i
     LEFT JOIN picture p 
     ON i.id = p.id_instrument 
@@ -181,6 +186,7 @@ function fetchAllInstrument (pdo $dbConnect) :array{
     $sql2->closeCursor();
     $sql3->closeCursor();
     $sql4->closeCursor();
+    $assetInstru = array_reverse($assetInstru);
 
     return $assetInstru;
 }
@@ -215,7 +221,7 @@ function fetchAllInstrumentAdmin (pdo $dbConnect) :array{
     GROUP BY i.id
     
     ;");
-    $sql4 = $dbConnect->query("SELECT p.id AS idPicture,  p.name as pictureName, p.description  as pictureDescription,p.imageMini  as pictureMini,p.imageMiddle  as pictureMiddle,p.imageFull  as pictureFull ,p.date as pictureDateTake,p.date as pictureDate
+    $sql4 = $dbConnect->query("SELECT p.id AS idPicture,  p.name as pictureName, p.description  as pictureDescription,p.imageMini  as pictureMini,p.imageMiddle  as pictureMiddle,p.imageFull  as pictureFull ,p.date as pictureDate,p.date as pictureDate
     FROM instrument i
     LEFT JOIN picture p 
     ON i.id = p.id_instrument 
@@ -308,7 +314,7 @@ function updateInstrument(pdo $dbConnect,string $title,string $intro, string|nul
 
     }
 }
-function addInstrument(pdo $dbConnect,string $title,string $intro, string|null $description, string $history,string $technics,string $visible){
+function addInstrument(pdo $dbConnect,string $title,string $intro, string|null $description, string $history,string $technics,string|null $visible){
 
     
     $title = htmlspecialchars(strip_tags(trim($title)), ENT_QUOTES);
@@ -317,6 +323,7 @@ function addInstrument(pdo $dbConnect,string $title,string $intro, string|null $
     $history = htmlspecialchars(strip_tags(trim($history)), ENT_QUOTES);
     $technics = htmlspecialchars(strip_tags(trim($technics)), ENT_QUOTES);
     $visible= (int) htmlspecialchars(strip_tags(trim($visible)), ENT_QUOTES);
+   
     
 
     $sql = $dbConnect->prepare("INSERT INTO instrument (title,intro,description,history,technics,visible) VALUES (?,?,?,?,?,?)");

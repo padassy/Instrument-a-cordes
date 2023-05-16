@@ -25,7 +25,7 @@
         ?>
         <div class="h-100 w-75 d-flex justify-content-center align-items-center flex-column mr-0 ml-0 p-0 ">
             <h1 class="mb-5">Modifier l'artiste</h1>
-            <form class="article row g-3 w-100 " id="formUpdateMusician" method="POST" width="" name="formUpdateMusician">
+            <form class="article row g-3 w-100 " id="updateMusician" method="POST" width="" name="updateMusician">
 
                 <div class="row">
                     <div class="form-group form-control col">
@@ -48,13 +48,13 @@
 
                     <div class="form-group">
                         <label for="dateBorn">Date de naissance</label>
-                        <input type="date" class="form-control" id="dateBorn" name="bornDate" value="<?= $musicianById->musicianBorn ?>">
+                        <input type="date" class="form-control" id="dateBorn" name="bornDate" <?php if(!empty($musicianById->musicianBorn)):?> value="<?= $musicianById->musicianBorn ?>"<?php  endif;?>>
                     </div>
 
 
                     <div class="form-group">
                         <label for="dateDeath">Date de décès</label>
-                        <input type="date" class="form-control" id="dateDeath" name="deathDate" value="<?= $musicianById->musicianDeath ?>">
+                        <input type="date" class="form-control" id="dateDeath" name="deathDate" <?php if(!empty($musicianById->musicianDeath)):?> value="<?= $musicianById->musicianDeath?>" <?php  endif;?>>
                     </div>
 
                 </div>

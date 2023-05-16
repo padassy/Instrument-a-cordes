@@ -25,7 +25,7 @@
         ?>
         <div class="h-100 w-75 d-flex justify-content-center align-items-center flex-column mr-0 ml-0 p-0 ">
             <h1 class="mb-5">Modifier l'audio</h1>
-            <form action="" class="article row g-3 w-100 " id="formUpdateInstrument" method="POST" width="" name="formUpdateArticle" enctype="multipart/form-data">
+            <form action="" class="article row g-3 w-100 " id="updateSound" method="POST" width="" name="updateSound" >
                 <div class="row">
                     <div class="form-group form-control col">
                         <label for="titleSound" class="">Titre du son :</label>

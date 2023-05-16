@@ -155,12 +155,12 @@
                             <div class="row">
                                 <div class="form-group form-control col">
                                     <label for="firstnameMusician" class="w-25">Prénom du musicien :</label>
-                                    <input type="text" class="w-100" aria-describedby="" name="firstnameMusician"></input>
+                                    <input type="text" class="w-100" aria-describedby="" name="firstnameMusician" id="lastnameMusician" onkeypress="verifierCaracteresNom(event); return false;"></input>
                                 </div>
 
                                 <div class="form-group form-control col">
                                     <label for="lastnameMusician" class="w-25">Nom du musicien :</label>
-                                    <input type="text" class="w-100" aria-describedby="" name="lastnameMusician"></input>
+                                    <input type="text" class="w-100" aria-describedby="" name="lastnameMusician" id="firstnameMusician" onkeypress="verifierCaracteresPrenom(event); return false;" ></input>
                                 </div>
                             </div>
                             <div class="row">

@@ -1,8 +1,12 @@
 <?php
 if(isset($_POST['addInstrument'])){
+    #var_dump($_POST);
        # echo "addInstrument";
-        if (!empty($_POST['titre'])&&!empty($_POST['intro'])&&!empty($_POST['description'])&&!empty($_POST['history'])&&!empty($_POST['technics'])&&!empty($_POST['btn-check-2-outlined'])){
-
+        if (!empty($_POST['titre'])&&!empty($_POST['intro'])&&!empty($_POST['description'])&&!empty($_POST['history'])&&!empty($_POST['technics'])){
+            if(!isset($_POST['btn-check-2-outlined'])){
+                $_POST['btn-check-2-outlined'] = 0;
+            }
+            #var_dump($_POST);
             try{
 
                 $lastInsert = addInstrument($dbConnect,$_POST['titre'],$_POST['intro'],$_POST['description'],$_POST['history'],$_POST['technics'],$_POST['btn-check-2-outlined']);
@@ -40,6 +44,7 @@ if(isset($_POST['addInstrument'])){
 
             }
              if(!empty($_POST['lastnameMusician'])&&!empty($_POST['firstnameMusician'])&&!empty($lastInsert)){
+                
 
                 #echo "musicien";
                     try{
@@ -54,15 +59,15 @@ if(isset($_POST['addInstrument'])){
 
 
             }
-              if(!empty($_POST['titleSound'])&&!empty($_FILES['addSound'])&&!empty($lastInsert)){
+              if(!empty($_POST['titleSound'])&&!empty($_FILES['sound'])&&!empty($lastInsert)){
                 #echo "addSound";
         
 
-                if ($_FILES['addSound']['error']===0){
+                if ($_FILES['sound']['error']===0){
         
                     try{
                         #echo "addSound before function ";
-                        addSound($dbConnect, $_POST['titleSound'],$_POST['descriptionSound'],$_FILES['addSound'],$lastInsert);
+                        addSound($dbConnect, $_POST['titleSound'],$_POST['descriptionSound'],$_FILES['sound'],$lastInsert);
         
                     }catch(Exception $e){
                         $e = throw new Exception ("Un problème est survenu lors de l'ajout de l audio , veuillez réessayer");
@@ -74,7 +79,8 @@ if(isset($_POST['addInstrument'])){
             }        
         
         #echo "fin";
-        header('Location:./');
+       # header('Location:./');
+       
         }else{
             $e = throw new Exception('Veuillez remplir tous les champs nécessaires, merci');
         }
@@ -152,7 +158,7 @@ if(isset($_POST['addInstrument'])){
 
             try{
                     
-                addSound($dbConnect, $_POST['titleSound'],$_POST['descriptionSound'],$_FILES,$_POST['idInstrument']);
+                addSound($dbConnect, $_POST['titleSound'],$_POST['descriptionSound'],$_FILES['sound'],$_POST['idInstrument']);
 
             }catch(Exception $e){
                 $e = throw new Exception ("Un problème est survenu lors de l'ajout de l audio , veuillez réessayer");
@@ -189,13 +195,13 @@ if(isset($_POST['addInstrument'])){
 
 
 }
- if (isset($_POST['updatePictureSubmit'])){
+ if (isset($_POST['updatePicture'])){
 
     $idPictureUpdate = (int) $_GET['idPictureUpdate'];
     #var_dump($_POST);
 
     try{
-        updatePicture($dbConnect , $_POST['titleImage'],$_POST['descriptionImage'],$_POST['idInstrument'],$idPictureUpdate);
+        updatePicture($dbConnect , $_POST['titleImage'],$_POST['descriptionImage'],$_POST['date'],$_POST['dateFetch'],$_POST['idInstrument'],$idPictureUpdate);
         header("Location:./");
     }catch(Exception $e){
     $e = throw new Exception ('Un problème est survenu lors de la modification , veuillez recommencer !');
@@ -227,7 +233,9 @@ if(isset($_POST['addInstrument'])){
  if (isset($_POST['updateInstrument'])){
     $idInstrumentUpdate = (int) $_GET['idInstrumentUpdate'];
 
-
+    if(!isset($_POST['visible'])){
+        $_POST['visible'] = 0;
+    }
     try{
         updateInstrument($dbConnect,$_POST['titre'],$_POST['intro'],$_POST['description'],$_POST['history'],$_POST['technics'],$_POST['visible'],$idInstrumentUpdate);
         
@@ -251,6 +259,7 @@ if (isset($_GET['p'])) {
             #var_dump($category);
             $assetInstruAll = fetchAllInstrumentAdmin($dbConnect);
             //var_dump($dataAllInstrument);
+            $assetInstruAll = array_reverse($assetInstruAll);
             foreach($assetInstruAll as $item){
                 /*if (is_array($instruments[])){
                     $instrument= explode($instruments,'||');
@@ -438,6 +447,7 @@ if (isset($_GET['p'])) {
 
         
         $assetInstruAll = fetchAllInstrumentAdmin($dbConnect);
+        $assetInstruAll = array_reverse($assetInstruAll);
         //var_dump($dataAllInstrument);
         foreach($assetInstruAll as $item){
             /*if (is_array($instruments[])){
@@ -464,6 +474,7 @@ if (isset($_GET['p'])) {
 
 }else{
         $assetInstruAll = fetchAllInstrumentAdmin($dbConnect);
+        $assetInstruAll = array_reverse($assetInstruAll);
         //var_dump($dataAllInstrument);
         foreach($assetInstruAll as $item){
             /*if (is_array($instruments[])){
