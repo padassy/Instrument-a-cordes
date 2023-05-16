@@ -40,9 +40,9 @@
                 <div class="boxLogo m-auto" style="width: 200px; height: 150px;">
                     <img src="../public/assets/logo.png" alt="" class="h-100 ">
                 </div>
-                <form class="d-flex" role="search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" role="search"  method = "get" >
+                    <button class="btn btn-outline-success" type="submit" name="submitSearch" value="submitSearch">Search</button>
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="terme">
                 </form>
                 <button type="button" class="btn btn-primary"><a href="?disconnect" class="link-light">Se Déconnecter</a></button>
             </div>

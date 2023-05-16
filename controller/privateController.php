@@ -251,6 +251,7 @@ if(isset($_POST['addInstrument'])){
 
 
 
+
 if (isset($_GET['p'])) {
 
     switch ($_GET['p']) {
@@ -472,7 +473,30 @@ if (isset($_GET['p'])) {
 
 
 
-}else{
+
+    }elseif (isset($_GET["submitSearch"]) AND $_GET["submitSearch"] == "submitSearch"){
+        $_GET["terme"] = htmlspecialchars($_GET["terme"]); 
+        $terme = $_GET["terme"];
+       
+        if (isset($terme))
+        {
+               $resultSearch = searching($dbConnect, $terme);
+        }
+        else
+        {
+         $message = "Vous devez entrer votre requete dans la barre de recherche";
+        }
+        foreach($resultSearch as $item){
+           /*if (is_array($instruments[])){
+               $instrument= explode($instruments,'||');
+           }*/
+           $resultSearchObj[] = new modelInstrument($item);
+       }
+        
+      # var_dump($resultSearchObj);
+        include_once "../privateView/resultSearch.php";
+       
+    }else{
         $assetInstruAll = fetchAllInstrumentAdmin($dbConnect);
         $assetInstruAll = array_reverse($assetInstruAll);
         //var_dump($dataAllInstrument);

@@ -50,6 +50,43 @@ function connectAdmin (pdo $dbConnect, string $userLogin, string $userPassword):
         session_destroy();
     }
 
+   function searching(pdo $dbConnect, string $terme ){
+    $terme = trim($terme);
+    $terme = strip_tags($terme); 
+    $terme = strtolower($terme);
+    $select_terme_instrument = $dbConnect->prepare("SELECT i.id as idInstrument, i.title,i.description as description , i.history, i.intro, i.technics as technics ,i.visible,i.date as dateArticle FROM instrument i WHERE i.title  LIKE ? OR i.intro LIKE ? OR i.description LIKE ? OR i.technics LIKE ? OR i.history LIKE ?");
+    
+    $select_terme_musician = $dbConnect->prepare("SELECT m.id as idMusician , m.firstname as musicianFirstname, m.lastname as musicianLastname, m.biography as musicianBio, m.bornDate as musicianBorn,m.deathDate as musicianDeath FROM musician m WHERE m.firstname LIKE ? OR m.lastname LIKE ? OR m.biography LIKE ? ");
+    
+    $select_terme_picture = $dbConnect->prepare("SELECT p.id as idPicture , p.name as pictureName, p.description as pictureDescription, p.imageMini as pictureMini,p.imageMiddle as pictureMiddle,p.imageFull as pictureFull,p.date as pictureDate,p.dateFetch as pictureDateFetch  FROM  picture p WHERE p.name LIKE ? OR p.description LIKE ? ");
+       
+    $select_terme_sound = $dbConnect->prepare("SELECT s.id as idSound, s.name as soundName, s.audio as sound, s.description as soundDescription,s.date as soundDate  FROM  sound s WHERE s.name LIKE ? OR s.description LIKE ? ");
+    try{
+
+    $select_terme_instrument->execute(array("%".$terme."%", "%".$terme."%", "%".$terme."%", "%".$terme."%", "%".$terme."%"));
+    $instrumentSearchResult = $select_terme_instrument->fetchAll(PDO::FETCH_ASSOC);
+
+    $select_terme_musician->execute(array("%".$terme."%", "%".$terme."%", "%".$terme."%"));
+    $musicianSearchResult = $select_terme_musician->fetchAll(PDO::FETCH_ASSOC);
+
+    $select_terme_picture->execute(array("%".$terme."%", "%".$terme."%"));
+    $pictureSearchResult = $select_terme_picture->fetchAll(PDO::FETCH_ASSOC);
+
+    $select_terme_sound->execute(array("%".$terme."%", "%".$terme."%"));
+    $soundSearchResult = $select_terme_sound->fetchAll(PDO::FETCH_ASSOC);
+    $instrumentSearchResult = $instrumentSearchResult + $musicianSearchResult;
+    $instrumentSearchResult = $instrumentSearchResult + $pictureSearchResult;
+    $instrumentSearchResult = $instrumentSearchResult + $soundSearchResult;
+    #var_dump($instrumentSearchResult);
+    unset($musicianSearchResult);
+    unset($pictureSearchResult);
+    unset($soundSearchResult);
+    return $instrumentSearchResult;
+}catch(Exception $e){
+        $e = throw new Exception('Un problème est survenu lors de la requête');
+    }
+   }
+
 
 
 
