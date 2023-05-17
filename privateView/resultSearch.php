@@ -11,6 +11,14 @@
 </head>
 
 <body>
+    <style>
+        p{
+            height: fit-content;
+            max-height: 20vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    </style>
     <?php
     require_once "../publicView/src/error.php";
 
@@ -52,19 +60,22 @@
 
 
 
-    <table class="table table-striped mt-5">
-
-        <?php
+    
+    <?php
         if (isset($resultSearchObj)) :
             foreach ($resultSearchObj as $item) :
                 if(isset($item->idInstrument)):
-        ?>
+                    ?>
 
-        <tr>
-
-            <th width="25%">Titre</th>
-            <th width="55%">Intro</th>
-            <th width="30%">Date</th>
+<table class="table table-striped mt-5">
+<tr>
+    
+            <th width="10%">Titre</th>
+            <th width="45%">Intro</th>
+            <th width="45%" >Description</th>
+            <th></th>
+        
+            
 
         </tr>
                 <tr>
@@ -79,20 +90,21 @@
                         <p><?= $item->intro ?></p>
                         <?php endif; ?>
                         
-                    </td>
-                    <td>
-                    <?php if (isset($item->dateArticle)) : ?>
-                        <p><?= $item->dateArticle ?></p>
+                    </td >
+                    <td colspan="2">
+                    <?php if (isset($item->description)) : ?>
+                        <p><?= $item->description ?></p>
                         <?php endif; ?>
                     </td>
+                    <td></td>
         
                 </tr>
                 <tr>
                     
                     <th width="30%">Histoire</th>
                     <th width="30%">Technique</th>
-                    <th width="30%">Description</th>
-                    <th width="10%"></th>
+                    <th width="20%">Date</th>
+                    <th width="20%"></th>
                     
                 </tr>
                 <tr>
@@ -106,8 +118,9 @@
                         <p><?= $item->technics ?></p>
                         <?php endif; ?>
                         <td>
-                    <?php if (isset($item->description)) : ?>
-                        <p><?= $item->description ?></p>
+                    
+                        <?php if (isset($item->dateArticle)) : ?>
+                        <p><?= $item->dateArticle ?></p>
                         <?php endif; ?>
                     </td>
                     <td>
@@ -118,10 +131,12 @@
                     </td>
 
                 </tr>
+</table>
             <?php
                 endif;
                 if(isset($item->idMusician)):
                 ?>
+                <table class="table table-striped mt-5">
             <tr>
 
             <th width="10%">Nom</th>
@@ -133,8 +148,6 @@
 
             </tr>
 
-                
-                ?>
                 <tr>
                     
                     <td>
@@ -169,10 +182,12 @@
                         </svg>Modifier</a>
                     </td>
                 </tr>
+                </table>
                 <?php
                 endif;
                 if(isset($item->idPicture)):
                 ?>
+                <table class="table table-striped mt-5">
                 <tr>
 
                     <th width="15%">Image</th>
@@ -209,10 +224,12 @@
                             </svg>Modifier</a>
                     </td>
                 </tr>
+                </table>
                 <?php
                 endif;
                 if(isset($item->idSound)):
                 ?>
+                <table class="table table-striped mt-5">
                 <tr>
 
                     <th width="15%">Titre</th>
@@ -244,6 +261,7 @@
 
                     </td>
                 </tr>
+                </table>
 
 
         <?php 
@@ -251,6 +269,7 @@
             endforeach;
         else :
             ?>
+            <table class="table table-striped mt-5">
             <tr>
                 <h1 id="messageErreurPrivateAdmin">Un problème est survenu, veuillez recommencer</h1>
             </tr>

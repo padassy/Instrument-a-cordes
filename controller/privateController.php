@@ -493,7 +493,8 @@ if (isset($_GET['p'])) {
            $resultSearchObj[] = new modelInstrument($item);
        }
         
-      # var_dump($resultSearchObj);
+      #var_dump($resultSearch);
+      #var_dump($resultSearchObj);
         include_once "../privateView/resultSearch.php";
        
     }else{
